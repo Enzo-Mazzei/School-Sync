@@ -43,10 +43,12 @@ const userSchema = new Schema(
       enum: ["student", "teacher", "admin"],
       default: "student",
     },
-    course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Courses",
-    },
+    courses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Courses",
+      },
+    ],
     grades: [
       {
         type: mongoose.Schema.Types.ObjectId,
