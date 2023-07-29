@@ -1,0 +1,44 @@
+<div class="form__container form__container-signup">
+  <form class="form__signup" action="/signup" method="POST">
+    <h1>Create your account</h1>
+    <div class="form__group" id="firstName">
+      <input type="text" placeholder=" " name="firstName" />
+      <label>First name</label>
+    </div>
+    <div class="form__group" id="lastName">
+      <input type="text" placeholder=" " name="lastName" />
+      <label>Last name</label>
+    </div>
+    <div class="form__group form__group-hidden" id="email">
+      <input type="text" placeholder=" " name="email" />
+      <label>Email adress</label>
+    </div>
+    <div class="form__group form__group-hidden" id="password">
+      <input type="password" placeholder=" " name="password" />
+      <label>Password</label>
+    </div>
+    <button type="button" id="next">
+      <span class="material-symbols-outlined form__button__icon-right">
+        arrow_forward
+      </span>
+      <span>Continue</span>
+    </button>
+    <button type="submit" id="submit" class="form__group-hidden">
+      <span class="material-symbols-outlined form__button__icon-right">
+        login
+      </span>
+      <span>Continue</span>
+    </button>
+    <div id="error-message">
+      {{#if errorMessage}}
+        <p class="form__error__message">
+          <span class="material-symbols-outlined">error</span>
+          <span>{{errorMessage}}</span>
+        </p>
+        <br />
+      {{/if}}
+    </div>
+    <p>Already have an account? <a href="/login">Log In</a></p>
+    <p class="form__footer">*Please use your real name.</p>
+  </form>
+</div>
