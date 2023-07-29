@@ -13,6 +13,7 @@
 body {
   font-family: var(--font-family);
   color: var(--main-text-color);
+  background-color: black;
 }
 
 /* form */
@@ -118,9 +119,14 @@ body {
   gap: 10px;
 }
 
-.form__container form button .form__button__icon {
+.form__container form button .form__button__icon-left {
   position: absolute;
   left: 10px;
+}
+
+.form__container form button .form__button__icon-right {
+  position: absolute;
+  right: 10px;
 }
 
 .form__container p {
@@ -143,4 +149,11 @@ body {
 
 .form__error__message span {
   font-size: 15px;
+}
+
+.form__container .form__footer {
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--form-label-color);
 }
