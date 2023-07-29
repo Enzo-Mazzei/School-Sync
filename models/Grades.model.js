@@ -7,7 +7,7 @@ const gradesSchema = new Schema(
       type: Number,
       min: 0,
       max: 1000,
-      required: true,
+      required: [true, "Field can't be empty"],
       validate: {
         validator: function (v) {
           return /^(\d{1,2}(\.\d{1,2})?)$/.test(v);
@@ -25,7 +25,7 @@ const gradesSchema = new Schema(
         message: (input) =>
           `${input.value} is not a valid max grade. Should be an integer.`,
       },
-      required: true,
+      required: [true, "Field can't be empty"],
     },
     course: {
       type: mongoose.Schema.Types.ObjectId,
@@ -41,20 +41,14 @@ const gradesSchema = new Schema(
     },
     title: {
       type: String,
-      required: true,
+      required: [true, "Field can't be empty"],
       trim: true,
-      maxlength: 80,
-      validate: {
-        validator: function (v) {
-          return v.trim().length > 0;
-        },
-        message: "Title should not be empty and should be below 80 characters.",
-      },
+      maxlength: [80, "Title can't be above 80 characters"],
     },
     comment: String,
     date: {
       type: Date,
-      required: true,
+      required: [true, "Field can't be empty"],
     },
   },
   { timestamps: true }
