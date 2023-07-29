@@ -5,32 +5,20 @@ const classSchema = new Schema(
   {
     number: {
       type: Number,
-      min: 1,
-      max: 99,
-      required: true,
-      validate: {
-        validator: function (v) {
-          return Number.isInteger(v) && v >= 1 && v <= 99;
-        },
-        message: (input) =>
-          `${input.value} is not a valid class number. It should be an integer between 1 and 99.`,
-      },
+      min: [1, "Class can't 0 or below"],
+      max: [1, "Number can't be above 100"],
+      required: [true, "Field can't be empty"],
     },
     letter: {
       type: String,
-      match: /^[A-Za-z]$/,
-      required: true,
-      validator: function (v) {
-        return /^[A-Za-z]$/.test(v);
-      },
-      message: (input) =>
-        `${input.value} is not a valid letter. It should be exactly one letter.`,
+      match: [/^[A-Za-z]$/, "Needs to be one letter"],
+      required: [true, "Field can't be empty"],
     },
     year: {
       type: Number,
       min: new Date().getFullYear() - 5,
       max: new Date().getFullYear() + 200,
-      required: true,
+      required: [true, "Field can't be empty"],
     },
     students: [
       {

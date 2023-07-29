@@ -1,37 +1,25 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
-const nameRegex = /^[A-Za-z\s]+$/;
-
 const userSchema = new Schema(
   {
     firstName: {
       type: String,
       required: true,
       trim: true,
-      validate: {
-        validator: function (v) {
-          return nameRegex.test(v.trim());
-        },
-        message:
-          "Last name should only contain normal characters (letters and spaces).",
-      },
+      regex: [
+        /^[A-Za-z\s]+$/,
+        "Name can't contain special characters or numbers",
+      ],
     },
     lastName: {
       type: String,
       required: true,
       trim: true,
-      validate: {
-        validator: function (v) {
-          return nameRegex.test(v.trim());
-        },
-        message:
-          "Last name should only contain normal characters (letters and spaces).",
-      },
+      regex: [
+        /^[A-Za-z\s]+$/,
+        "Name can't contain special characters or numbers",
+      ],
     },
     email: {
       type: String,
@@ -39,7 +27,7 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       lowercase: true,
-      validate: [validateEmail, "Please provide a valid email address."],
+      regex: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email needs to be valid"],
     },
     passwordHash: {
       type: String,

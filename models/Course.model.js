@@ -5,7 +5,7 @@ const courseSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, "Field can't be empty"],
       trim: true,
     },
   },
