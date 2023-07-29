@@ -35,21 +35,22 @@ const userSchema = new Schema(
     },
     class: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Class",
+      ref: "Classes",
     },
     role: {
       type: String,
       required: true,
+      enum: ["student", "teacher", "admin"],
       default: "student",
     },
     course: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Courses",
     },
     grades: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Grade",
+        ref: "Grades",
       },
     ],
   },
@@ -58,4 +59,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Users", userSchema);

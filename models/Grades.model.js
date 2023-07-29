@@ -5,39 +5,27 @@ const gradesSchema = new Schema(
   {
     grade: {
       type: Number,
-      min: 0,
-      max: 1000,
+      min: [0, "Number can't be 0 or bellow"],
+      max: [1000, "Number can't be above 999"],
       required: [true, "Field can't be empty"],
-      validate: {
-        validator: function (v) {
-          return /^(\d{1,2}(\.\d{1,2})?)$/.test(v);
-        },
-        message: (input) =>
-          `${input.value} is not a valid grade. Should have up to two decimal places.`,
-      },
+      regex: [/^(\d{1,2}(\.\d{1,2})?)$/, "Should have 2 decimal maximum"],
     },
     maxGrade: {
       type: Number,
-      validate: {
-        validator: function (v) {
-          return Number.isInteger(v);
-        },
-        message: (input) =>
-          `${input.value} is not a valid max grade. Should be an integer.`,
-      },
+      regex: [/^\d+$/, "Should be a integer number"]
       required: [true, "Field can't be empty"],
     },
     course: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Courses",
     },
     student: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Users",
     },
     teacher: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Users",
     },
     title: {
       type: String,
@@ -54,4 +42,4 @@ const gradesSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Grade", gradesSchema);
+module.exports = mongoose.model("Grades", gradesSchema);

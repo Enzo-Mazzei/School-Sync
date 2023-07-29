@@ -11,6 +11,7 @@ require("./db");
 
 // Routes
 app.use("/", require("./routes/index.routes"));
+app.use("/", require("./routes/auth.routes"));
 
 // Errors Handling
 require("./error-handling")(app);

@@ -5,8 +5,8 @@ const classSchema = new Schema(
   {
     number: {
       type: Number,
-      min: [1, "Class can't 0 or below"],
-      max: [1, "Number can't be above 100"],
+      min: [1, "Number can't be 0 or below"],
+      max: [99, "Number can't be above 100"],
       required: [true, "Field can't be empty"],
     },
     letter: {
@@ -23,21 +23,21 @@ const classSchema = new Schema(
     students: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Users",
       },
     ],
     teachers: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Users",
       },
     ],
     course: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Courses",
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Class", classSchema);
+module.exports = mongoose.model("Classes", classSchema);
