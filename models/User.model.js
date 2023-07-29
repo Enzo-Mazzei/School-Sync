@@ -1,32 +1,54 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
-const userSchema = new Schema(
-  {
-    username: {
-      type: String,
-      required: false,
-      unique: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
+const userSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
   },
-  {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
-    timestamps: true,
-  }
-);
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
+  passwordHash: {
+    type: String,
+    required: true,
+  },
+  class: {
+    type: Schema.Types.ObjectId,
+    ref: 'Class',
+  },
+  role: {
+    type: String,
+    required: true,
+    default: 'student',
+  },
+  course: {
+    type: Schema.Types.ObjectId,
+    ref: 'Course',
+  },
+  grades: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Grade',
+  }],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  timestamps: true,  
+});
 
-const User = model("User", userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);
