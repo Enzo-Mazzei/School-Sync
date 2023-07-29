@@ -65,7 +65,10 @@ const userSchema = new Schema(
       },
     ],
   },
-  { timestamps: true }
+  {
+    // this second object adds extra properties: `createdAt` and `updatedAt`
+    timestamps: true,
+  }
 );
 
 module.exports = mongoose.model("User", userSchema);
