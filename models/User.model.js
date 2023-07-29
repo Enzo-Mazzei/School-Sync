@@ -1,54 +1,71 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-    lowercase: true
-  },
-  passwordHash: {
-    type: String,
-    required: true,
-  },
-  class: {
-    type: Schema.Types.ObjectId,
-    ref: 'Class',
-  },
-  role: {
-    type: String,
-    required: true,
-    default: 'student',
-  },
-  course: {
-    type: Schema.Types.ObjectId,
-    ref: 'Course',
-  },
-  grades: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Grade',
-  }],
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-  timestamps: true,  
-});
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+const nameRegex = /^[A-Za-z\s]+$/;
 
-module.exports = mongoose.model('User', userSchema);
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+      validate: {
+        validator: function (v) {
+          return nameRegex.test(v.trim());
+        },
+        message:
+          "Last name should only contain normal characters (letters and spaces).",
+      },
+    },
+    lastName: {
+      type: String,
+      required: true,
+      trim: true,
+      validate: {
+        validator: function (v) {
+          return nameRegex.test(v.trim());
+        },
+        message:
+          "Last name should only contain normal characters (letters and spaces).",
+      },
+    },
+    email: {
+      type: String,
+      unique: true,
+      required: true,
+      trim: true,
+      lowercase: true,
+      validate: [validateEmail, "Please provide a valid email address."],
+    },
+    passwordHash: {
+      type: String,
+      required: true,
+    },
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Class",
+    },
+    role: {
+      type: String,
+      required: true,
+      default: "student",
+    },
+    course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+    },
+    grades: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Grade",
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("User", userSchema);
