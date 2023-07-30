@@ -17,8 +17,11 @@
 
   <body>
 
+    {{! NAVBAR }}
     <nav class="navbar">
       <div class="navbar__container">
+
+        {{! NAVBAR LEFT }}
         <div class="navbar__left">
           <a href="/">
             <div class="navbar__logo">
@@ -31,7 +34,11 @@
             </div>
           </a>
         </div>
+
+        {{! NAVBAR RIGHT }}
         <div class="navbar__right">
+
+          {{! USER LOGIN }}
           {{#if currentUser}}
             <ul class="navbar__navigation">
               <li>
@@ -77,6 +84,8 @@
                 </form>
               </div>
             </div>
+
+            {{! USER NOT LOGIN }}
           {{else}}
             <a href="/signup" class="navbar__signup__button">
               <span class="material-symbols-outlined navbar__login__icon">

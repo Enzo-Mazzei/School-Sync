@@ -42,4 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
   navbarMenuClose.addEventListener("click", () => {
     navbarMenu.classList.toggle("navbar__user__menu-active");
   });
+
+  window.addEventListener("click", function (e) {
+    if (!navbarMenu.contains(e.target) && !navbarMenuBtn.contains(e.target)) {
+      navbarMenu.classList.remove("navbar__user__menu-active");
+    }
+  });
 });
