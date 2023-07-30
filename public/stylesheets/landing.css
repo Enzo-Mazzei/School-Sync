@@ -115,15 +115,15 @@
     max-width: 150px;
   }
   .landing__container::before {
-    width: 40vw;
+    width: 300px;
     height: 300px;
-    filter: blur(300px);
+    filter: blur(500px);
   }
 
   .landing__container::after {
     width: 40vw;
     height: 300px;
-    filter: blur(300px);
+    filter: blur(500px);
   }
 }
 
