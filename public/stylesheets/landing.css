@@ -35,7 +35,7 @@
 
 .navbar {
   height: 40px;
-  padding: 12px 10px;
+  padding: 12px 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +43,11 @@
 
 .navbar .navbar__right {
   margin-left: auto;
+}
+
+.navbar .navbar__user__logo {
+  height: 35px;
+  border-radius: 50%;
 }
 
 .navbar .navbar__right .navbar__login__button {
@@ -53,7 +58,6 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  padding: 10px 10px;
   border-radius: 25px;
   cursor: pointer;
 }

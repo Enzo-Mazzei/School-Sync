@@ -3,12 +3,20 @@
     <nav class="navbar">
       <div class="navbar__logo"></div>
       <div class="navbar__right">
-        <a href="/login" class="navbar__login__button">
-          <span>Login</span>
-          <span class="material-symbols-outlined navbar__login__icon">
-            login
-          </span>
-        </a>
+        {{#if currentUser}}
+          <img
+            class="navbar__user__logo"
+            src="https://ui-avatars.com/api/?size=128&background=random&name={{currentUser.firstName}}+{{currentUser.lastName}}"
+            alt="{{currentUser.firstname}} {{currentUser.lastname}}"
+          />
+        {{else}}
+          <a href="/login" class="navbar__login__button">
+            <span>Login</span>
+            <span class="material-symbols-outlined navbar__login__icon">
+              login
+            </span>
+          </a>
+        {{/if}}
       </div>
     </nav>
     <header class="landing__hero">

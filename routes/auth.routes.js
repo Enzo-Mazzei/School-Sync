@@ -102,7 +102,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.currentUser = user;
-    res.redirect("/user/profile");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
