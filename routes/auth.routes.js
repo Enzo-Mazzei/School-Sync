@@ -102,10 +102,17 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.currentUser = user;
+
     res.redirect("/");
   } catch (error) {
     console.log(error);
   }
+});
+
+/* POST logout */
+router.post("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 module.exports = router;

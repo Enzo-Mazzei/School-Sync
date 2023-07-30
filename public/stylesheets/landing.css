@@ -4,6 +4,7 @@
   position: relative;
   z-index: 1;
   color: white;
+  padding: 70px 0 0;
 }
 
 .landing__container div:first-child {
@@ -31,39 +32,6 @@
   right: 0;
   top: 0;
   filter: blur(150px);
-}
-
-.navbar {
-  height: 40px;
-  padding: 12px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.navbar .navbar__right {
-  margin-left: auto;
-}
-
-.navbar .navbar__user__logo {
-  height: 35px;
-  border-radius: 50%;
-}
-
-.navbar .navbar__right .navbar__login__button {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-.navbar .navbar__right .navbar__login__icon {
-  font-size: 18px;
 }
 
 /* HERO */

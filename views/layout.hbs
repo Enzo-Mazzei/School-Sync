@@ -11,10 +11,89 @@
     />
     <link rel="stylesheet" href="/stylesheets/reset.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/navbar.css" />
     <link rel="stylesheet" href="/stylesheets/landing.css" />
   </head>
 
   <body>
+
+    <nav class="navbar">
+      <div class="navbar__container">
+        <div class="navbar__left">
+          <a href="/">
+            <div class="navbar__logo">
+              <img
+                class="navbar__logo__image"
+                src="/images/logo-white.svg"
+                alt="school-sync-logo"
+              />
+              <h1 class="navbar__logo__title">SchoolSync</h1>
+            </div>
+          </a>
+        </div>
+        <div class="navbar__right">
+          {{#if currentUser}}
+            <ul class="navbar__navigation">
+              <li>
+                <a href="/profile">
+                  <span class="material-symbols-outlined">
+                    person
+                  </span>
+                  <span>Profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard">
+                  <span class="material-symbols-outlined">
+                    bar_chart
+                  </span>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+            </ul>
+            <img
+              id="navbar-menu-btn"
+              class="navbar__user__logo"
+              src="https://ui-avatars.com/api/?size=128&background=random&name={{currentUser.firstName}}+{{currentUser.lastName}}"
+              alt="{{currentUser.firstname}} {{currentUser.lastname}}"
+            />
+
+            {{! USER MENU }}
+            <div class="navbar__user__menu" id="navbar-menu">
+              <span
+                class="material-symbols-outlined menu__close"
+                id="navbar-menu-close"
+              >
+                close
+              </span>
+              <div class="menu__container">
+                <a class="menu__container__profile" href="/profile">Profile</a>
+                <a
+                  class="menu__container__dashboard"
+                  href="/dashboard"
+                >Dashboard</a>
+                <form action="/logout" method="POST">
+                  <button>Logout</button>
+                </form>
+              </div>
+            </div>
+          {{else}}
+            <a href="/signup" class="navbar__signup__button">
+              <span class="material-symbols-outlined navbar__login__icon">
+                grade
+              </span>
+              <span>Sign Up</span>
+            </a>
+            <a href="/login" class="navbar__login__button">
+              <span class="material-symbols-outlined navbar__login__icon">
+                login
+              </span>
+              <span>Log In</span>
+            </a>
+          {{/if}}
+        </div>
+      </div>
+    </nav>
 
     {{{body}}}
 
