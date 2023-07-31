@@ -32,10 +32,12 @@ const classSchema = new Schema(
         ref: "Users",
       },
     ],
-    course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Courses",
-    },
+    courses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Courses",
+      },
+    ],
   },
   { timestamps: true }
 );

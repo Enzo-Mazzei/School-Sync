@@ -6,7 +6,7 @@ const User = require("../models/User.model");
 
 /* GET signup */
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup-1");
+  res.render("auth/signup");
 });
 
 /* GET login */
@@ -18,13 +18,13 @@ router.get("/login", (req, res, next) => {
 router.post("/signup", (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,30}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*#?&]{6,30}$/;
 
   if (!passwordRegex.test(password)) {
-    res.render("auth/signup-2", {
+    res.render("auth/signup", {
       errorMessage:
         "Password must be 6 to 30 characters long and contain at least one uppercase letter and one number.",
-      errorPassword: true,
     });
     return;
   }
@@ -32,7 +32,7 @@ router.post("/signup", (req, res) => {
   User.findOne({ email })
     .then((existingUser) => {
       if (existingUser) {
-        res.render("auth/signup-2", {
+        res.render("auth/signup", {
           errorMessage: "Email is already in use. Please use a different one.",
           errorEmail: true,
         });
@@ -48,7 +48,7 @@ router.post("/signup", (req, res) => {
         passwordHash: hashedPassword,
       });
     })
-    .then(() => {
+    .then((user) => {
       res.redirect("/login");
     })
     .catch((error) => {
@@ -57,34 +57,55 @@ router.post("/signup", (req, res) => {
 });
 
 /* POST login */
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  User.findOne({ email })
-    .then((user) => {
-      if (!user) {
-        res.render("auth/login", {
-          errorMessage: "User not found. Please sign up.",
-          errorEmail: true,
-        });
-        return;
-      }
+  let requiredOptions = {
+    errorMessage: "This field is required.",
+    email,
+    password,
+  };
 
-      return bcrypt.compare(password, user.passwordHash);
-    })
-    .then((isPasswordMatch) => {
-      if (!isPasswordMatch) {
-        res.render("auth/login", {
-          errorMessage: "Invalid credentials. Please try again.",
-          errorPassword: true,
-        });
-        return;
-      }
-      res.redirect("/user/profile");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  if (!email && password) {
+    requiredOptions.errorEmail = true;
+    res.render("auth/login", requiredOptions);
+  } else if (email && !password) {
+    requiredOptions.errorPassword = true;
+    res.render("auth/login", requiredOptions);
+  } else if (!email && !password) {
+    requiredOptions.errorEmail = true;
+    requiredOptions.errorPassword = true;
+    res.render("auth/login", requiredOptions);
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.render("auth/login", {
+        errorMessage: "User not found. Please sign up.",
+        errorEmail: true,
+        email,
+        password,
+      });
+      return;
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.passwordHash);
+    if (!isPasswordMatch) {
+      res.render("auth/login", {
+        errorMessage: "Invalid password. Please try again.",
+        errorPassword: true,
+        email,
+        password,
+      });
+      return;
+    }
+
+    req.session.currentUser = user;
+    res.redirect("/user/profile");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
