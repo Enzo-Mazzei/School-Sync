@@ -2,7 +2,7 @@
   <form action="/login" method="POST">
     <h1>Welcome to SchoolSync</h1>
     <div class="form__group {{#if errorEmail}}form__group-error{{/if}}">
-      <input type="text" placeholder=" " name="email" />
+      <input type="text" placeholder=" " name="email" value="{{email}}"/>
       <label>Email adress</label>
     </div>
     {{#if errorEmail}}
@@ -12,7 +12,7 @@
       </p>
     {{/if}}
     <div class="form__group {{#if errorPassword}}form__group-error{{/if}}">
-      <input type="password" placeholder=" " name="password" />
+      <input type="password" placeholder=" " name="password" value="{{password}}" />
       <label>Password</label>
     </div>
     {{#if errorPassword}}
