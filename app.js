@@ -7,7 +7,6 @@ const hbs = require("hbs");
 
 // Config
 require("./config")(app);
-require("./config/index.js")(app); // Add this line to set up session middleware
 require("./db");
 
 // Local variable
@@ -19,6 +18,7 @@ app.use("/", (req, res, next) => {
 // Routes
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
+app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
 
 // Errors Handling
 require("./error-handling")(app);
