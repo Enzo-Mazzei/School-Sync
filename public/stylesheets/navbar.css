@@ -108,6 +108,7 @@
 .navbar-right__menu-informations-container p {
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .navbar-right__menu-fullname {
