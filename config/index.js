@@ -5,6 +5,7 @@ const favicon = require("serve-favicon");
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose");
 
 const MONGO_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/school-sync";
