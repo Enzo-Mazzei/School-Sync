@@ -7,6 +7,7 @@ const hbs = require("hbs");
 
 // Config
 require("./config")(app);
+require("./config/index.js")(app); // Add this line to set up session middleware
 require("./db");
 
 // Local variable
