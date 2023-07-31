@@ -6,16 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbarMenuClose = document.querySelector("#navbar-menu-close");
 
   navbarMenuBtn.addEventListener("click", () => {
-    navbarMenu.classList.toggle("navbar__user__menu-active");
+    navbarMenu.classList.toggle("navbar-right__menu-active");
   });
 
   navbarMenuClose.addEventListener("click", () => {
-    navbarMenu.classList.toggle("navbar__user__menu-active");
+    navbarMenu.classList.toggle("navbar-right__menu-active");
   });
 
   window.addEventListener("click", function (e) {
     if (!navbarMenu.contains(e.target) && !navbarMenuBtn.contains(e.target)) {
-      navbarMenu.classList.remove("navbar__user__menu-active");
+      navbarMenu.classList.remove("navbar-right__menu-active");
     }
   });
 });

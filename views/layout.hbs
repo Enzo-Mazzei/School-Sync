@@ -19,89 +19,94 @@
 
     {{! NAVBAR }}
     <nav class="navbar">
-      <div class="navbar__container">
+      <div class="navbar-container">
 
         {{! NAVBAR LEFT }}
-        <div class="navbar__left">
+        <div class="navbar-left">
           <a href="/">
-            <div class="navbar__logo">
+            <div class="navbar-left__container">
               <img
-                class="navbar__logo__image"
-                src="/images/logo-white.svg"
+                class="navbar-left__icon"
+                src="/images/logo.webp"
                 alt="school-sync-logo"
               />
-              <h1 class="navbar__logo__title">SchoolSync</h1>
+              <h1 class="navbar-left__title">SchoolSync</h1>
             </div>
           </a>
         </div>
 
         {{! NAVBAR RIGHT }}
-        <div class="navbar__right">
+        <div class="navbar-right">
 
           {{! USER LOGIN }}
           {{#if currentUser}}
-            <ul class="navbar__navigation">
-              <li>
-                <a href="/profile">
-                  <span class="material-symbols-outlined">
-                    person
-                  </span>
-                  <span>Profile</span>
-                </a>
-              </li>
-              <li>
-                <a href="/dashboard">
-                  <span class="material-symbols-outlined">
-                    bar_chart
-                  </span>
-                  <span>Dashboard</span>
-                </a>
-              </li>
-            </ul>
             <img
               id="navbar-menu-btn"
-              class="navbar__user__logo"
-              src="https://ui-avatars.com/api/?size=128&background=random&name={{currentUser.firstName}}+{{currentUser.lastName}}"
+              class="navbar-right__profile-picture"
+              {{#if currentUser.profilePicture}}
+              src="{{currentUser.profilePicture}}"
+              {{else}}
+              src="https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name={{currentUser.firstName}}"
+              {{/if}}
               alt="{{currentUser.firstname}} {{currentUser.lastname}}"
             />
 
             {{! USER MENU }}
-            <div class="navbar__user__menu" id="navbar-menu">
+            <div class="navbar-right__menu" id="navbar-menu">
               <span
-                class="material-symbols-outlined menu__close"
+                class="material-symbols-outlined navbar-right__menu-close-icon"
                 id="navbar-menu-close"
               >
                 close
               </span>
-              <div class="menu__container">
-                <div class="menu__informations">
-                  <p>{{currentUser.firstName}} {{currentUser.lastName}}</p>
-                  <p class="menu__informations__small">{{currentUser.role}}</p>
+              <div class="navbar-right__menu-container">
+                <div class="navbar-right__menu-informations">
+                  <img
+                    class="navbar-right__menu-profile-picture"
+                    {{#if currentUser.profilePicture}}
+                    src="{{currentUser.profilePicture}}"
+                    {{else}}
+                    src="https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name={{currentUser.firstName}}"
+                    {{/if}}
+                    alt="{{currentUser.firstname}} {{currentUser.lastname}}"
+                  />
+                  <div class="navbar-right__menu-informations-container">
+                    <p class="navbar-right__menu-fullname">{{currentUser.firstName}} {{currentUser.lastName}}</p>
+                    <p class="navbar-right__menu-email">
+                      {{currentUser.email}}
+                    </p>
+                    <p class="navbar-right__menu-role">
+                      {{currentUser.role}}
+                    </p>
+                  </div>
                 </div>
-                <hr />
-                <a class="menu__container__profile" href="/profile">Profile</a>
-                <a class="menu__container__dashboard" href="/dashboard">
+                <a class="navbar-right__menu-dashboard-link" href="/dashboard">
+                  <span class="material-symbols-outlined">
+                    bar_chart
+                  </span>
                   Dashboard
                 </a>
                 <form action="/logout" method="POST">
-                  <button>Logout</button>
+                  <button class="navbar-right__menu-logout-button">
+                    <span class="material-symbols-outlined">
+                      logout
+                    </span>
+                    Log out
+                  </button>
                 </form>
+                <a class="navbar-right__menu-manage" href="/profile">
+                  Manage your account
+                </a>
               </div>
             </div>
 
             {{! USER NOT LOGIN }}
           {{else}}
-            <a href="/signup" class="navbar__signup__button">
-              <span class="material-symbols-outlined navbar__login__icon">
-                grade
-              </span>
-              <span>Sign Up</span>
+            <a href="/signup" class="navbar-right__signup-button">
+              <span>Sign up</span>
             </a>
-            <a href="/login" class="navbar__login__button">
-              <span class="material-symbols-outlined navbar__login__icon">
-                login
-              </span>
-              <span>Log In</span>
+            <a href="/login" class="navbar-right__login-button">
+              <span>Log in</span>
             </a>
           {{/if}}
         </div>
