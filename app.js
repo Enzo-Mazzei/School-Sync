@@ -16,9 +16,15 @@ app.use("/", (req, res, next) => {
 });
 
 // Routes
+const isLoggedIn = require("./middleware/isLoggedIn");
+
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
-app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
+app.use(
+  "/dashboard",
+  isLoggedIn,
+  require("./routes/dashboard/profiles.routes")
+);
 
 // Errors Handling
 require("./error-handling")(app);

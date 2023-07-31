@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const isLoggedIn = require("../../middleware/isLoggedIn");
 const User = require("../../models/User.model");
 
-router.get("/profile", isLoggedIn, (req, res) => {
+router.get("/profile", (req, res) => {
   const userId = req.session.currentUser._id;
   User.findById(userId)
     .then((user) => {
@@ -19,7 +18,7 @@ router.get("/profile", isLoggedIn, (req, res) => {
         .json({ message: "An error occurred while processing your request." });
     });
 });
-router.get("/profile/edit", isLoggedIn, (req, res) => {
+router.get("/profile/edit", (req, res) => {
   const userId = req.user.userId;
   User.findById(userId)
     .then((user) => {
@@ -35,7 +34,7 @@ router.get("/profile/edit", isLoggedIn, (req, res) => {
         .json({ message: "An error occurred while processing your request." });
     });
 });
-router.post("/profile/edit", isLoggedIn, (req, res) => {
+router.post("/profile/edit", (req, res) => {
   const userId = req.user.userId;
   const { firstName, lastName, email, password } = req.body;
 
