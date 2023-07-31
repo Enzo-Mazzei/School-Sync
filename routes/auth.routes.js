@@ -3,19 +3,20 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/User.model");
+const isLoggedOut = require("../middleware/isLoggedOut");
 
 /* GET signup */
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+router.get("/signup", isLoggedOut, (req, res, next) => {
+  res.render("auth/signup", { layout: false });
 });
 
 /* GET login */
-router.get("/login", (req, res, next) => {
-  res.render("auth/login");
+router.get("/login", isLoggedOut, (req, res, next) => {
+  res.render("auth/login", { layout: false });
 });
 
 /* POST signup */
-router.post("/signup", (req, res) => {
+router.post("/signup", isLoggedOut, (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
   const passwordRegex =
@@ -25,6 +26,7 @@ router.post("/signup", (req, res) => {
     res.render("auth/signup", {
       errorMessage:
         "Password must be 6 to 30 characters long and contain at least one uppercase letter and one number.",
+      layout: false,
     });
     return;
   }
@@ -35,6 +37,7 @@ router.post("/signup", (req, res) => {
         res.render("auth/signup", {
           errorMessage: "Email is already in use. Please use a different one.",
           errorEmail: true,
+          layout: false,
         });
         return;
       }
@@ -57,13 +60,14 @@ router.post("/signup", (req, res) => {
 });
 
 /* POST login */
-router.post("/login", async (req, res) => {
+router.post("/login", isLoggedOut, async (req, res) => {
   const { email, password } = req.body;
 
   let requiredOptions = {
     errorMessage: "This field is required.",
     email,
     password,
+    layout: false,
   };
 
   if (!email && password) {
@@ -86,6 +90,7 @@ router.post("/login", async (req, res) => {
         errorEmail: true,
         email,
         password,
+        layout: false,
       });
       return;
     }
@@ -97,6 +102,7 @@ router.post("/login", async (req, res) => {
         errorPassword: true,
         email,
         password,
+        layout: false,
       });
       return;
     }

@@ -9,6 +9,9 @@ const hbs = require("hbs");
 require("./config")(app);
 require("./db");
 
+//Middlewares
+const isLoggedIn = require("./middleware/isLoggedIn");
+
 // Local variable
 app.use("/", (req, res, next) => {
   app.locals.currentUser = req.session.currentUser;
@@ -16,8 +19,6 @@ app.use("/", (req, res, next) => {
 });
 
 // Routes
-const isLoggedIn = require("./middleware/isLoggedIn");
-
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
 app.use(
