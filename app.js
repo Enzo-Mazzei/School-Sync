@@ -9,6 +9,12 @@ const hbs = require("hbs");
 require("./config")(app);
 require("./db");
 
+// Local variable
+app.use("/", (req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
+  next();
+});
+
 // Routes
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));

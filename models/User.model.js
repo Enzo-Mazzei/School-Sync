@@ -33,6 +33,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    profilePicture: String,
     class: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Classes",
