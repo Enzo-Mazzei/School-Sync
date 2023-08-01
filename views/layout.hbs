@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="/stylesheets/reset.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/animation.css">
     <link rel="stylesheet" href="/stylesheets/navbar.css" />
     <link rel="stylesheet" href="/stylesheets/home.css" />
     <link rel="stylesheet" href="/stylesheets/auth.css">
@@ -18,103 +19,7 @@
 
   <body>
 
-    {{! NAVBAR }}
-    <nav class="navbar">
-      <div class="navbar-container">
-
-        {{! NAVBAR LEFT }}
-        <div class="navbar-left">
-          <a href="/">
-            <div class="navbar-left__container">
-              <img
-                class="navbar-left__icon"
-                src="/images/logo.webp"
-                alt="school-sync-logo"
-              />
-              <h1 class="navbar-left__title">SchoolSync</h1>
-            </div>
-          </a>
-        </div>
-
-        {{! NAVBAR RIGHT }}
-        <div class="navbar-right">
-
-          {{! USER LOGIN }}
-          {{#if currentUser}}
-            <img
-              id="navbar-menu-btn"
-              class="navbar-right__profile-picture"
-              {{#if currentUser.profilePicture}}
-              src="{{currentUser.profilePicture}}"
-              {{else}}
-              src="https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name={{currentUser.firstName}}"
-              {{/if}}
-              alt="{{currentUser.firstname}} {{currentUser.lastname}}"
-            />
-
-            {{! USER MENU }}
-            <div class="navbar-right__menu" id="navbar-menu">
-              <span
-                class="material-symbols-outlined navbar-right__menu-close-icon"
-                id="navbar-menu-close"
-              >
-                close
-              </span>
-              <div class="navbar-right__menu-container">
-                <div class="navbar-right__menu-informations">
-                  <img
-                    class="navbar-right__menu-profile-picture"
-                    {{#if currentUser.profilePicture}}
-                    src="{{currentUser.profilePicture}}"
-                    {{else}}
-                    src="https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name={{currentUser.firstName}}"
-                    {{/if}}
-                    alt="{{currentUser.firstname}} {{currentUser.lastname}}"
-                  />
-                  <div class="navbar-right__menu-informations-container">
-                    <p class="navbar-right__menu-fullname">{{currentUser.firstName}} {{currentUser.lastName}}</p>
-                    <p class="navbar-right__menu-email">
-                      {{currentUser.email}}
-                    </p>
-                    <p class="navbar-right__menu-role">
-                      {{currentUser.role}}
-                    </p>
-                  </div>
-                </div>
-                <a class="navbar-right__menu-dashboard-link" href="/dashboard">
-                  <span class="material-symbols-outlined">
-                    bar_chart
-                  </span>
-                  Dashboard
-                </a>
-                <form action="/logout" method="POST">
-                  <button class="navbar-right__menu-logout-button">
-                    <span class="material-symbols-outlined">
-                      logout
-                    </span>
-                    Log out
-                  </button>
-                </form>
-                <a class="navbar-right__menu-manage" href="/profile">
-                  Manage your account
-                </a>
-              </div>
-            </div>
-
-            {{! USER NOT LOGIN }}
-          {{else}}
-            <a href="/signup" class="navbar-right__signup-button">
-              <span>Sign up</span>
-            </a>
-            <a href="/login" class="navbar-right__login-button">
-              <span>Log in</span>
-            </a>
-          {{/if}}
-        </div>
-      </div>
-    </nav>
-    <script src="/js/navbar.js"></script>
-
+    {{> navbar}}
     {{{body}}}
 
     <script src="/js/script.js"></script>

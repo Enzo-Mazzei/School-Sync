@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbarMenu = document.querySelector("#navbar-menu");
   const navbarMenuClose = document.querySelector("#navbar-menu-close");
 
+  if (!navbarMenuBtn) {
+    return;
+  }
+
   navbarMenuBtn.addEventListener("click", () => {
     navbarMenu.classList.toggle("navbar-right__menu-active");
   });

@@ -9,6 +9,9 @@ const hbs = require("hbs");
 require("./config")(app);
 require("./db");
 
+// HBS config
+hbs.registerPartials(__dirname + "/views/partials");
+
 //Middlewares
 const isLoggedIn = require("./middleware/isLoggedIn");
 
