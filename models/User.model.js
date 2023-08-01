@@ -27,22 +27,25 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       lowercase: true,
-      regex: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email needs to be valid"],
+      regex: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Email needs to be valid",
+      ],
     },
     passwordHash: {
       type: String,
       required: true,
     },
     profilePicture: String,
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Classes",
-    },
     role: {
       type: String,
       required: true,
       enum: ["student", "teacher", "admin"],
       default: "student",
+    },
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classes",
     },
     courses: [
       {
@@ -54,6 +57,12 @@ const userSchema = new Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Grades",
+      },
+    ],
+    tests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tests",
       },
     ],
   },
