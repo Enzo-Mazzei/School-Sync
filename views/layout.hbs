@@ -15,11 +15,13 @@
     <link rel="stylesheet" href="/stylesheets/navbar.css" />
     <link rel="stylesheet" href="/stylesheets/home.css" />
     <link rel="stylesheet" href="/stylesheets/auth.css">
+      <link rel="stylesheet" href="/stylesheets/sidebar.css">
   </head>
 
   <body>
-
-    {{> navbar}}
+<div class="container-sidebar">
+ {{> sidebar}}</div>
+{{!--     {{> navbar}} --}}
     {{{body}}}
 
     <script src="/js/script.js"></script>
