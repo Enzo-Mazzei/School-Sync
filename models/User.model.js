@@ -27,7 +27,10 @@ const userSchema = new Schema(
       required: true,
       trim: true,
       lowercase: true,
-      regex: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email needs to be valid"],
+      regex: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Email needs to be valid",
+      ],
     },
     passwordHash: {
       type: String,

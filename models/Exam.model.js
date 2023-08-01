@@ -10,7 +10,10 @@ const examSchema = new Schema(
       maxlength: [80, "Title can't be above 80 characters"],
     },
     comment: String,
-    avgGrade: Number,
+    avgGrade: {
+      type: Number,
+      default: 0,
+    },
     maxGrade: {
       type: Number,
       regex: [/^\d+$/, "Should be a integer number"],
