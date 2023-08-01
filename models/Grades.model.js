@@ -10,33 +10,13 @@ const gradesSchema = new Schema(
       required: [true, "Field can't be empty"],
       regex: [/^(\d{1,2}(\.\d{1,2})?)$/, "Should have 2 decimal maximum"],
     },
-    maxGrade: {
-      type: Number,
-      regex: [/^\d+$/, "Should be a integer number"]
-      required: [true, "Field can't be empty"],
-    },
-    course: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Courses",
-    },
     student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",
     },
-    teacher: {
+    exam: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
-    },
-    title: {
-      type: String,
-      required: [true, "Field can't be empty"],
-      trim: true,
-      maxlength: [80, "Title can't be above 80 characters"],
-    },
-    comment: String,
-    date: {
-      type: Date,
-      required: [true, "Field can't be empty"],
+      ref: "Exams",
     },
   },
   { timestamps: true }
