@@ -1,0 +1,29 @@
+<div class="grades-container">
+  <h2 class="grades-container__title">Lastest grades</h2>
+  <div class="grades-container__collection">
+    {{#each grades}}
+      <a href="/dashboard/grade/{{_id}}">
+        <div class="grades-container__item">
+          <span class="grades-container__item-icon material-symbols-outlined">
+            menu_book
+          </span>
+          <div class="grades-container__item-container">
+            <p class="grades-container__item-grade">
+              <span>{{grade}}</span>
+              <span class="grades-container__item-max-grade">
+                /
+                <span>{{test.maxGrade}}</span>
+              </span>
+            </p>
+            <p class="grades-container__item-title">{{test.title}}</p>
+            <p class="grades-container__item-teacher">
+              {{test.teacher.firstName}}
+              {{test.teacher.lastName}}
+            </p>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </div>
+</div>
+<script src="/js/grades.js"></script>

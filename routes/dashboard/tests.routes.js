@@ -6,6 +6,8 @@ const User = require("../../models/User.model");
 /* POST test/create */
 router.post("/tests/create", async (req, res) => {
   const { title, comment, maxGrade, course, teacher, date } = req.body;
+
+  // Create new test
   const testCreate = await Test.create({
     title,
     comment,
@@ -15,7 +17,7 @@ router.post("/tests/create", async (req, res) => {
     date,
   });
 
-  // Push new test to User
+  // Push new test to User document
   try {
     const updateUser = await User.findOneAndUpdate(
       { _id: testCreate.teacher },
