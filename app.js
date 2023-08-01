@@ -27,7 +27,7 @@ app.use("/", require("./routes/auth.routes"));
 // app.use("/dashboard", isLoggedIn)
 app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
 app.use("/dashboard", require("./routes/dashboard/grades.routes"));
-app.use("/dashboard", require("./routes/dashboard/exam.routes"));
+app.use("/dashboard", require("./routes/dashboard/tests.routes"));
 
 // Errors Handling
 require("./error-handling")(app);

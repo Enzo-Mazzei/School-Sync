@@ -37,15 +37,15 @@ const userSchema = new Schema(
       required: true,
     },
     profilePicture: String,
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Classes",
-    },
     role: {
       type: String,
       required: true,
       enum: ["student", "teacher", "admin"],
       default: "student",
+    },
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classes",
     },
     courses: [
       {
@@ -57,6 +57,12 @@ const userSchema = new Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Grades",
+      },
+    ],
+    tests: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tests",
       },
     ],
   },

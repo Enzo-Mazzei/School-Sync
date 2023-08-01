@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const examSchema = new Schema(
+const testSchema = new Schema(
   {
     title: {
       type: String,
@@ -19,6 +19,10 @@ const examSchema = new Schema(
       regex: [/^\d+$/, "Should be a integer number"],
       required: [true, "Field can't be empty"],
     },
+    date: {
+      type: Date,
+      required: [true, "Field can't be empty"],
+    },
     course: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Courses",
@@ -33,12 +37,8 @@ const examSchema = new Schema(
         ref: "Grades",
       },
     ],
-    date: {
-      type: Date,
-      required: [true, "Field can't be empty"],
-    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Exams", examSchema);
+module.exports = mongoose.model("Tests", testSchema);

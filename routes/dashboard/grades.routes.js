@@ -2,29 +2,43 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/User.model");
 const Grades = require("../../models/Grades.model");
-const Exam = require("../../models/Exam.model");
 const updateAvgGrade = require("../../controllers/updateAvgGrade");
+const Test = require("../../models/Tests.model");
 
 /* GET grades */
 router.get("/grades", (req, res) => {
   const { currentUser } = req.session;
-  User.findOne({ _id: currentUser._id })
-    .populate({
-      path: "grades",
-      populate: {
-        path: "exam",
+
+  if (currentUser.role === "student") {
+    User.findOne({ _id: currentUser._id })
+      .populate({
+        path: "grades",
         populate: {
-          path: "teacher grades",
-          select: "firstName lastName grade",
+          path: "test",
+          populate: {
+            path: "teacher grades",
+            select: "firstName lastName grade",
+          },
         },
-      },
-    })
-    .then((user) => {
-      res.json({ grades: user.grades });
-    })
-    .catch((error) => {
-      res.json({ error: error.message });
-    });
+      })
+      .then((user) => {
+        res.json({ grades: user });
+      })
+      .catch((error) => {
+        res.json({ error: error.message });
+      });
+  }
+
+  if (currentUser.role === "teacher") {
+    User.findOne({ _id: currentUser._id })
+      .populate("tests")
+      .then((user) => {
+        res.json({ tests: user.tests });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 });
 
 /* GET grades/create */
@@ -32,11 +46,11 @@ router.get("/grades/create", async (req, res) => {});
 
 /* POST grades/create */
 router.post("/grades/create", async (req, res) => {
-  const { grade, student, exam } = req.body;
+  const { grade, student, test } = req.body;
 
   try {
     // Create new grade
-    const gradeCreate = await Grades.create({ grade, student, exam });
+    const gradeCreate = await Grades.create({ grade, student, test });
 
     // Push new grade to [grades] inside the User document
     const userUpdate = await User.findOneAndUpdate(
@@ -45,19 +59,19 @@ router.post("/grades/create", async (req, res) => {
       { new: true }
     );
 
-    // Push new grade to [grades] inside the Exam document
-    const examUpdate = await Exam.findOneAndUpdate(
-      { _id: gradeCreate.exam._id },
+    // Push new grade to [grades] inside the Test document
+    const testUpdate = await Test.findOneAndUpdate(
+      { _id: gradeCreate.test._id },
       { $push: { grades: gradeCreate._id } },
       { new: true }
     ).populate("grades");
 
-    const examUpdateAverage = await updateAvgGrade(
-      examUpdate.grades,
-      gradeCreate.exam._id
+    const testUpdateAverage = await updateAvgGrade(
+      testUpdate.grades,
+      gradeCreate.test._id
     );
 
-    res.json(examUpdateAverage);
+    res.json(testUpdateAverage);
   } catch (error) {
     res.json({ error: error.message });
   }

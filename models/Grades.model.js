@@ -14,9 +14,9 @@ const gradesSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Users",
     },
-    exam: {
+    test: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Exams",
+      ref: "Tests",
     },
   },
   { timestamps: true }
