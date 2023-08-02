@@ -1,0 +1,92 @@
+<div class="tests-container">
+  <div class="tests-container__header">
+    <h1 class="tests-container__title">
+      Tests
+    </h1>
+    <div class="tests-container__button-container">
+      <button
+        class="tests-container__button tests-container__button-add"
+        type="button"
+        id="create-test-button"
+      >
+        <span class="tests-container__button-icon material-symbols-outlined">
+          post_add
+        </span>
+      </button>
+      <button
+        class="tests-container__button tests-container__button-menu"
+        type="button"
+      >
+        <span class="tests-container__button-icon material-symbols-outlined">
+          menu
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="tests-collection">
+    {{#each tests}}
+      <div class="tests-collection__item">
+        <div class="tests-collection__item-title-container">
+          <p class="tests-collection__item-title-text">{{title}}</p>
+          <p class="tests-collection__item-date">{{toLocaleDate date}}</p>
+        </div>
+        <p class="tests-collection__item-createdAt">{{toLocaleDate createdAt}}
+          -
+          {{toLocaleTime createdAt}}
+        </p>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<div class="tests-modal tests-modal__hidden" id="create-test-modal">
+  <div class="tests-modal__container">
+    <div class="tests-modal__header">
+      <h2 class="tests-modal__title">Create a test</h2>
+      <span
+        id="close-modal-button"
+        class="tests-modal__close material-symbols-outlined"
+      >
+        close
+      </span>
+    </div>
+    <form
+      class="tests-modal__form"
+      action="/dashboard/tests/create"
+      method="POST"
+    >
+      <input
+        class="tests-modal__form-input"
+        type="text"
+        placeholder="Test name"
+        name="title"
+      />
+      <input
+        class="tests-modal__form-input"
+        type="number"
+        placeholder="Maximum grade"
+        name="maxGrade"
+      />
+      <input
+        class="tests-modal__form-input"
+        type="date"
+        placeholder="Date"
+        name="date"
+      />
+      <textarea
+        class="tests-modal__form-input"
+        type="text"
+        placeholder="Comment (optional)"
+        name="comment"
+      ></textarea>
+      <button class="tests-modal__form-button" type="submit">
+        <span class="material-symbols-outlined">
+          post_add
+        </span>
+        <span> Create</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/grades-teacher.js"></script>

@@ -5,14 +5,15 @@ const User = require("../../models/User.model");
 
 /* POST test/create */
 router.post("/tests/create", async (req, res) => {
-  const { title, comment, maxGrade, course, teacher, date } = req.body;
+  const { title, comment, maxGrade, date } = req.body;
+
+  const teacher = req.session.currentUser._id;
 
   // Create new test
   const testCreate = await Test.create({
     title,
     comment,
     maxGrade,
-    course,
     teacher,
     date,
   });
@@ -25,7 +26,7 @@ router.post("/tests/create", async (req, res) => {
       { new: true }
     );
 
-    res.json({ updateUser });
+    res.redirect("/dashboard/grades");
   } catch (error) {
     console.log(error);
   }

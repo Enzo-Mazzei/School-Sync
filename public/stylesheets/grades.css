@@ -71,8 +71,7 @@
   font-weight: 300;
 }
 
-.grades-container__item-title,
-.grades-container__item-teacher {
+.grades-container__item-title {
   color: rgba(255, 255, 255, 0.75);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -82,4 +81,22 @@
 .grades-container__item-teacher {
   margin-left: auto;
   display: none;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+/* BREAKPOINT SMALL */
+
+@media (min-width: 576px) {
+  .grades-container {
+    width: calc(100% - 4rem);
+    min-height: calc(100vh - 4rem);
+    padding: 4rem;
+    margin: 2rem;
+    border-radius: 2rem;
+  }
+  .grades-container__item-teacher {
+    margin-left: auto;
+    display: block;
+  }
 }

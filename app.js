@@ -11,6 +11,21 @@ require("./db");
 
 // HBS config
 hbs.registerPartials(__dirname + "/views/partials");
+hbs.registerHelper("toLocaleDate", function (dateRaw) {
+  const options = {
+    day: "numeric",
+    year: "numeric",
+    month: "short",
+  };
+  return dateRaw.toLocaleDateString("en-US", options);
+});
+hbs.registerHelper("toLocaleTime", function (dateRaw) {
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+  };
+  return dateRaw.toLocaleTimeString("en-US", options);
+});
 
 //Middlewares
 const isLoggedIn = require("./middleware/isLoggedIn");

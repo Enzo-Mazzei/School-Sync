@@ -6,7 +6,7 @@ const updateAvgGrade = require("../../controllers/updateAvgGrade");
 const Test = require("../../models/Tests.model");
 
 /* GET grades */
-router.get("/grades", (req, res) => {
+router.get("/grades", async (req, res) => {
   const { currentUser } = req.session;
 
   // Student role
@@ -34,14 +34,15 @@ router.get("/grades", (req, res) => {
 
   // Teacher role
   if (currentUser.role === "teacher") {
-    User.findOne({ _id: currentUser._id })
-      .populate("tests")
-      .then((user) => {
-        res.json({ tests: user.tests });
-      })
-      .catch((error) => {
-        console.log(error);
+    try {
+      const user = await User.findOne({ _id: currentUser._id }).populate({
+        path: "tests",
+        options: { sort: { createdAt: -1 } },
       });
+      res.render("dashboard/grades-teacher", { tests: user.tests });
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
