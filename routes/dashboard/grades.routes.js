@@ -9,41 +9,25 @@ const Test = require("../../models/Tests.model");
 router.get("/grades", async (req, res) => {
   const { currentUser } = req.session;
 
-  // Student role
-  if (currentUser.role === "student") {
-    User.findOne({ _id: currentUser._id })
-      .populate({
-        path: "grades",
+  User.findOne({ _id: currentUser._id })
+    .populate({
+      path: "grades",
+      populate: {
+        path: "test",
         populate: {
-          path: "test",
-          populate: {
-            path: "teacher grades",
-            select: "firstName lastName grade",
-          },
+          path: "teacher grades",
+          select: "firstName lastName grade",
         },
-      })
-      .then((user) => {
-        res.render("dashboard/grades-student", {
-          grades: user.grades,
-        });
-      })
-      .catch((error) => {
-        res.json({ error: error.message });
+      },
+    })
+    .then((user) => {
+      res.render("dashboard/grades-student", {
+        grades: user.grades,
       });
-  }
-
-  // Teacher role
-  if (currentUser.role === "teacher") {
-    try {
-      const user = await User.findOne({ _id: currentUser._id }).populate({
-        path: "tests",
-        options: { sort: { createdAt: -1 } },
-      });
-      res.render("dashboard/grades-teacher", { tests: user.tests });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+    })
+    .catch((error) => {
+      res.json({ error: error.message });
+    });
 });
 
 /* GET grade/:id */

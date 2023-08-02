@@ -25,25 +25,37 @@
   </div>
   <div class="tests-collection">
     {{#each tests}}
-      <div class="tests-collection__item">
-        <div class="tests-collection__item-title-container">
-          <p class="tests-collection__item-title-text">{{title}}</p>
-          <p class="tests-collection__item-date">{{toLocaleDate date}}</p>
+      <a href="/dashboard/test/{{_id}}">
+        <div class="tests-collection__item">
+          <div class="tests-collection__item-title-container">
+            <p class="tests-collection__item-title-text">{{title}}</p>
+            <p class="tests-collection__item-date">{{toLocaleDate date}}</p>
+          </div>
+          <p class="tests-collection__item-createdAt">{{toLocaleDate createdAt}}
+            -
+            {{toLocaleTime createdAt}}
+          </p>
         </div>
-        <p class="tests-collection__item-createdAt">{{toLocaleDate createdAt}}
-          -
-          {{toLocaleTime createdAt}}
-        </p>
-      </div>
+      </a>
     {{/each}}
   </div>
 </div>
 
-<div class="tests-modal tests-modal__hidden" id="create-test-modal">
+<div 
+  {{#if errorMessage}}
+    class="tests-modal" 
+  {{else}}
+    class="tests-modal tests-modal__hidden" 
+  {{/if}}
+  id="create-test-modal"
+>
   <div class="tests-modal__container">
     <div class="tests-modal__header">
       <h2 class="tests-modal__title">Create a test</h2>
       <span
+        {{#if errorMessage}}
+          onclick="window.location.replace('/dashboard/tests');"
+        {{/if}}
         id="close-modal-button"
         class="tests-modal__close material-symbols-outlined"
       >
@@ -60,33 +72,39 @@
         type="text"
         placeholder="Test name"
         name="title"
+        value="{{title}}"
       />
       <input
         class="tests-modal__form-input"
         type="number"
         placeholder="Maximum grade"
         name="maxGrade"
+        value="{{maxGrade}}"
       />
       <input
         class="tests-modal__form-input"
         type="date"
         placeholder="Date"
         name="date"
+        value="{{date}}"
       />
       <textarea
         class="tests-modal__form-input"
         type="text"
         placeholder="Comment (optional)"
         name="comment"
-      ></textarea>
+      >{{comment}}</textarea>
       <button class="tests-modal__form-button" type="submit">
         <span class="material-symbols-outlined">
           post_add
         </span>
         <span> Create</span>
       </button>
+      {{#if errorMessage}}
+      <p class="tests__modal__error-message">{{errorMessage}}</p>
+      {{/if}}
     </form>
   </div>
 </div>
 
-<script src="/js/grades-teacher.js"></script>
+<script src="/js/tests.js"></script>
