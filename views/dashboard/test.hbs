@@ -1,34 +1,41 @@
-<div class="">
-
-  <div class="">
+<div class="tests-container">
+  <div class="test-collection">
     <button
-        class=""
-        type="button"
-        id="open-modal-button"
-      >
-      <span class="material-symbols-outlined">
+      class="tests-container__button tests-container__button-add"
+      type="button"
+      id="open-modal-button"
+    >
+      <span class="tests-container__button-icon material-symbols-outlined">
         add
       </span>
     </button>
+    {{#each test.grades}}
+      <div class="test-item">
+        <img
+          class="test-item__image"
+          src="{{student.profilePicture}}"
+          alt="{{student.firstname}} {{student.lastname}}"
+        />
+        <div class="test-item__container">
+          <p class="test-item__full-name">{{student.firstName}}
+            {{student.lastName}}</p>
+          <p class="test-item__grade">{{grade}}</p>
+        </div>
+        <div class="test-item__icon-container">
+          <span class="test-item__icon-edit material-symbols-outlined">
+            edit_note
+          </span>
+          <span class="test-item__icon-delete material-symbols-outlined">
+            delete
+          </span>
+        </div>
+      </div>
+    {{/each}}
   </div>
-
 </div>
 
-
-<div 
-  {{#if errorMessage}}
-      class="modal" 
-  {{else}}
-      class="modal modal__hidden" 
-  {{/if}}
->
-  <div 
-    {{!-- {{#if errorMessage}} --}}
-      class="modal__container" 
-    {{!-- {{else}}
-      class="modal__container modal__container-hidden" 
-    {{/if}} --}}
-  >
+<div class="modal modal__hidden">
+  <div class="modal__container modal__container-hidden">
     <div class="modal__header">
       <div class="modal__header-container">
         <span class="modal__header-icon material-symbols-outlined">
@@ -36,12 +43,7 @@
         </span>
         <h2 class="modal__header-title">Add a grade</h2>
       </div>
-      <span
-        {{#if errorMessage}}
-          onclick="window.location.replace('/dashboard/tests');"
-        {{/if}}
-        class="modal__close material-symbols-outlined"
-      >
+      <span class="modal__close material-symbols-outlined">
         close
       </span>
     </div>
@@ -53,44 +55,33 @@
       <label for="">Student
         <span class="form-require">*</span>
       </label>
-      <input 
-        readonly 
-        type="text" 
-        class="form-input form-select" 
+      <input
+        readonly
+        type="text"
+        class="form-input form-select"
         id="form-select"
         placeholder="Select student"
       />
-      <input 
-        hidden 
-        id="form-select-id"
-        name="student"
-      />
-      <input 
-        hidden 
-        id="form-select-id"
-        name="{{test}}"
-      />
+      <input hidden id="form-select-id" name="student" />
+      <input hidden id="form-select-id" name="{{test}}" />
       <div class="form-options form-options__hidden" id="form-options">
         {{#each students}}
-            <div 
-                class="form-options__item" 
-                data-name="{{firstName}} {{lastName}}" 
-                data-id="{{_id}}"
-                id="form-select-item"
-            >
-                <img
-                    class="form-options__item-image"
-                    {{#if profilePicture}}
-                        src="{{profilePicture}}"
-                    {{else}}
-                        src="https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name={{firstName}}"
-                    {{/if}}
-                    alt="{{firstname}} {{lastname}}"
-                />
-                <span>
-                    {{firstName}} {{lastName}}
-                </span>
-            </div>
+          <div
+            class="form-options__item"
+            data-name="{{firstName}} {{lastName}}"
+            data-id="{{_id}}"
+            id="form-select-item"
+          >
+            <img
+              class="form-options__item-image"
+              src="{{profilePicture}}"
+              alt="{{firstname}} {{lastname}}"
+            />
+            <span>
+              {{firstName}}
+              {{lastName}}
+            </span>
+          </div>
         {{/each}}
       </div>
       <label for="">Grade
@@ -109,12 +100,12 @@
         <span> Add</span>
       </button>
       {{#if errorMessage}}
-      <p class="form-error-message">
-        <span class="form-error__icon material-symbols-outlined">
-          error
-        </span>
-        {{errorMessage}}
-      </p>
+        <p class="form-error-message">
+          <span class="form-error__icon material-symbols-outlined">
+            error
+          </span>
+          {{errorMessage}}
+        </p>
       {{/if}}
     </form>
   </div>

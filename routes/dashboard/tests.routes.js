@@ -56,7 +56,10 @@ router.get("/tests", async (req, res) => {
       path: "tests",
       options: { sort: { createdAt: -1 } },
     });
-    res.render("dashboard/tests", { tests: user.tests });
+    res.render("dashboard/tests", {
+      tests: user.tests,
+      result: user.tests.length,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -66,9 +69,18 @@ router.get("/tests", async (req, res) => {
 router.get("/test/:testID", async (req, res) => {
   const { testID } = req.params;
   try {
-    const test = await Tests.findOne({ _id: testID });
+    const test = await Tests.findOne({ _id: testID }).populate({
+      path: "grades",
+      populate: {
+        path: "student",
+      },
+    });
     const students = await User.find();
-    res.render("dashboard/test", { test, students });
+    res.render("dashboard/test", {
+      test,
+      students,
+      result: test.grades.length,
+    });
   } catch (error) {
     console.log(error);
   }
