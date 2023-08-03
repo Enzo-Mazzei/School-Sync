@@ -126,3 +126,6 @@ a {
   text-decoration: none;
   color: white;
 }
+textarea {
+  resize: none;
+}
