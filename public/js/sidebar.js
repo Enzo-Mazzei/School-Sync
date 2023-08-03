@@ -1,15 +1,11 @@
-let logo = document.querySelector("#logo");
-let menu = document.querySelector("#st-container");
-let notMenu = document.querySelector(".st-pusher");
-let effect;
-
+let logo = document.querySelector(".menu-icon");
+let menu = document.querySelector("#container");
+let sidebar = document.querySelector(".sidebar");
+let minisidebar = document.querySelector("#mini-sidebar");
 logo.addEventListener("click", toggleMenu);
 
 function toggleMenu() {
-  effect = "st-effect-1";
-  menu.classList.toggle(effect);
-  menu.classList.toggle("st-menu-open");
-  logo.classList.toggle("open");
-  let bars = document.querySelectorAll(".menu-icon .bar");
-  bars.forEach((bar) => bar.classList.toggle("cross"));
+  menu.classList.toggle("open");
+  sidebar.classList.toggle("open");
+  minisidebar.classList.toggle("open");
 }
