@@ -19,6 +19,10 @@ router.get("/login", isLoggedOut, (req, res, next) => {
 router.post("/signup", isLoggedOut, (req, res) => {
   const { firstName, lastName, email, password } = req.body;
 
+  const profilePicture =
+    "https://ui-avatars.com/api/?size=128&background=random&length=1&color=fff&bold=true&font-size=0.5&name=" +
+    firstName;
+
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*#?&]{6,30}$/;
 
@@ -49,6 +53,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         lastName,
         email,
         passwordHash: hashedPassword,
+        profilePicture,
       });
     })
     .then((user) => {
