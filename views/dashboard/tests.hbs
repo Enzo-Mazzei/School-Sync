@@ -1,3 +1,9 @@
+<style>
+  @import '/stylesheets/pages/tests.css';
+  @import '/stylesheets/components/modal.css';
+  @import '/stylesheets/components/form.css';
+</style>
+
 <div class="tests-container">
   <div class="tests-container__header">
     <div class="tests-container__header-left">
@@ -68,9 +74,6 @@
         <h2 class="modal__header-title">Add a test</h2>
       </div>
       <span
-        {{#if errorMessage}}
-          onclick="window.location.replace('/dashboard/tests');"
-        {{/if}}
         class="modal__close material-symbols-outlined"
       >
         close

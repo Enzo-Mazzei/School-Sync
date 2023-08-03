@@ -9,17 +9,26 @@ const Tests = require("../../models/Tests.model");
 router.post("/tests/create", async (req, res) => {
   const { title, comment, maxGrade, date } = req.body;
   const { currentUser } = req.session;
-  const optionsError = { title, comment, maxGrade, date };
-
-  // Handleling Error: field is empty
-  if (!title || !maxGrade || !date) {
-    optionsError.errorMessage =
-      "Missing field(s): Test name, maximum grade and date are require!";
-    res.render("dashboard/tests", optionsError);
-    return;
-  }
 
   try {
+    const user = await User.findOne({ _id: currentUser._id }).populate("tests");
+
+    const optionsError = {
+      title,
+      comment,
+      maxGrade,
+      date,
+      tests: user.tests,
+      result: user.tests.length,
+    };
+
+    // Handleling Error: field is empty
+    if (!title || !maxGrade || !date) {
+      optionsError.errorMessage =
+        "Missing field(s): Test name, maximum grade and date are require!";
+      res.render("dashboard/tests", optionsError);
+      return;
+    }
     // Create new test
     const testCreate = await Test.create({
       title,

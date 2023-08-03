@@ -15,7 +15,7 @@
 .tests-container__header-icon {
   font-size: 2rem;
   padding: 0.5rem;
-  background-color: #6554c0;
+  background-color: var(--primary-color);
   border-radius: 0.5rem;
 }
 
@@ -26,18 +26,17 @@
 }
 
 .tests-container__header-title {
-  font-size: 1.5rem;
+  font-size: var(--title-text-size);
   font-weight: 500;
 }
 
 .tests-container__header-text {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+  font-size: var(--secondary-text-size);
 }
 
 .tests-container__button {
   border: none;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +46,8 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
 }
 
 .tests-container__button-icon {
@@ -62,7 +62,7 @@
 
 .tests-collection__item {
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--secondary-background-color);
   border-radius: 0.5rem;
   cursor: pointer;
   display: flex;
@@ -79,7 +79,7 @@
 }
 
 .tests-collection__item-title {
-  font-size: 0.9rem;
+  font-size: var(--primary-text-size);
   font-weight: 500;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -101,7 +101,7 @@
 }
 
 .tests-collection__item-createdAt {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: var(--third-text-size);
+  color: var(--secondary-text-color);
   white-space: nowrap;
 }
