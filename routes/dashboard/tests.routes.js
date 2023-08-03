@@ -45,7 +45,7 @@ router.post("/tests/create", async (req, res) => {
       { new: true }
     );
 
-    res.redirect("/dashboard/tests");
+    res.redirect("/dashboard/test/" + testCreate._id);
   } catch (error) {
     //Mongoose validationError
     if (error instanceof mongoose.Error.ValidationError) {
@@ -90,6 +90,39 @@ router.get("/test/:testID", async (req, res) => {
       students,
       result: test.grades.length,
     });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+/* DELETE test/:id */
+router.post("/test/:testID/delete", async (req, res) => {
+  const { testID } = req.params;
+  const { currentUser } = req.session;
+
+  try {
+    //Delete test
+    const deletedTest = await Test.findOneAndDelete({ _id: testID }).populate(
+      "grades"
+    );
+
+    //Remove test from user.tests
+    const userUpdateTest = await User.findOneAndUpdate(
+      { _id: currentUser._id },
+      { $pull: { tests: deletedTest._id } },
+      { new: true }
+    );
+
+    //Remove grades of test from user.grades
+    deletedTest.grades.forEach(async (grade) => {
+      const updateUserGrade = await User.findOneAndUpdate(
+        { _id: grade.student },
+        { $pull: { grades: grade._id } },
+        { new: true }
+      );
+    });
+
+    res.redirect("/dashboard/tests");
   } catch (error) {
     console.log(error);
   }
