@@ -12,6 +12,7 @@
 
 .modal__container-hidden {
   transform: translateX(-100vw);
+  opacity: 0;
 }
 
 .modal__header {

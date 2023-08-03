@@ -63,15 +63,15 @@ router.get("/tests", async (req, res) => {
 });
 
 /* GET test/:id */
-router.get("/test/:testID", (req, res) => {
+router.get("/test/:testID", async (req, res) => {
   const { testID } = req.params;
-  Tests.findOne({ _id: testID })
-    .then((test) => {
-      res.json(test);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  try {
+    const test = await Tests.findOne({ _id: testID });
+    const students = await User.find();
+    res.render("dashboard/test", { test, students });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
