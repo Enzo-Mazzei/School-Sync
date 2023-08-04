@@ -51,4 +51,9 @@
 </div>
 
 {{! MODAL }}
-{{> modal partial="modal/formAddTest"}}
+{{> modal headerTitle="Add a test" headerIcon="library_add" partial="modal/formAddTest"}}
+
+{{!-- ERROR --}}
+{{#if errorMessage}}
+  {{> error message=errorMessage}}
+{{/if}}

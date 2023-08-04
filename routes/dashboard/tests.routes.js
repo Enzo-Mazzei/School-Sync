@@ -20,13 +20,12 @@ router.post("/tests/create", async (req, res) => {
       maxGrade,
       date,
       tests: user.tests,
-      result: user.tests.length,
     };
 
     // Handleling Error: field is empty
     if (!title || !maxGrade || !date) {
       optionsError.errorMessage =
-        "Missing field(s): Test name, maximum grade and date are require!";
+        "Missing field(s): Test name, maximum score and date are require!";
       res.render("pages/dashboard/tests", optionsError);
       return;
     }
@@ -50,8 +49,13 @@ router.post("/tests/create", async (req, res) => {
   } catch (error) {
     //Mongoose validationError
     if (error instanceof mongoose.Error.ValidationError) {
-      optionsError.errorMessage = error.message;
-      res.render("pages/dashboard/test", optionsError);
+      res.render("pages/dashboard/tests", {
+        title,
+        comment,
+        maxGrade,
+        date,
+        errorMessage: error.message,
+      });
     } else {
       console.log(error);
     }
