@@ -27,7 +27,7 @@ router.post("/tests/create", async (req, res) => {
     if (!title || !maxGrade || !date) {
       optionsError.errorMessage =
         "Missing field(s): Test name, maximum grade and date are require!";
-      res.render("dashboard/tests", optionsError);
+      res.render("pages/dashboard/tests", optionsError);
       return;
     }
     // Create new test
@@ -51,7 +51,7 @@ router.post("/tests/create", async (req, res) => {
     //Mongoose validationError
     if (error instanceof mongoose.Error.ValidationError) {
       optionsError.errorMessage = error.message;
-      res.render("dashboard/tests", optionsError);
+      res.render("pages/dashboard/test", optionsError);
     } else {
       console.log(error);
     }
@@ -66,7 +66,7 @@ router.get("/tests", async (req, res) => {
       path: "tests",
       options: { sort: { createdAt: -1 } },
     });
-    res.render("pages/tests", {
+    res.render("pages/dashboard/tests", {
       tests: user.tests,
       result: user.tests.length,
     });
@@ -75,8 +75,8 @@ router.get("/tests", async (req, res) => {
   }
 });
 
-/* GET test/:id */
-router.get("/test/:testID", async (req, res) => {
+/* GET tests/:id */
+router.get("/tests/:testID", async (req, res) => {
   const { testID } = req.params;
   try {
     const [test, students] = await Promise.all([
@@ -91,7 +91,7 @@ router.get("/test/:testID", async (req, res) => {
 
     const result = test.grades.length;
 
-    res.render("dashboard/test", { test, students, result });
+    res.render("pages/dashboard/test", { test, students, result });
   } catch (error) {
     console.log(error);
   }

@@ -7,12 +7,12 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 
 /* GET signup */
 router.get("/signup", isLoggedOut, (req, res, next) => {
-  res.render("auth/signup");
+  res.render("pages/auth/signup");
 });
 
 /* GET login */
 router.get("/login", isLoggedOut, (req, res, next) => {
-  res.render("auth/login");
+  res.render("pages/auth/login");
 });
 
 /* POST signup */
@@ -27,7 +27,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*#?&]{6,30}$/;
 
   if (!passwordRegex.test(password)) {
-    res.render("auth/signup", {
+    res.render("pages/auth/signup", {
       errorMessage:
         "Password must be 6 to 30 characters long and contain at least one uppercase letter and one number.",
     });
@@ -37,7 +37,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   User.findOne({ email })
     .then((existingUser) => {
       if (existingUser) {
-        res.render("auth/signup", {
+        res.render("pages/auth/signup", {
           errorMessage: "Email is already in use. Please use a different one.",
           errorEmail: true,
         });
@@ -74,20 +74,20 @@ router.post("/login", isLoggedOut, async (req, res) => {
 
   if (!email && password) {
     requiredOptions.errorEmail = true;
-    res.render("auth/login", requiredOptions);
+    res.render("pages/auth/login", requiredOptions);
   } else if (email && !password) {
     requiredOptions.errorPassword = true;
-    res.render("auth/login", requiredOptions);
+    res.render("pages/auth/login", requiredOptions);
   } else if (!email && !password) {
     requiredOptions.errorEmail = true;
     requiredOptions.errorPassword = true;
-    res.render("auth/login", requiredOptions);
+    res.render("pages/auth/login", requiredOptions);
   }
 
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      res.render("auth/login", {
+      res.render("pages/auth/login", {
         errorMessage: "User not found. Please sign up.",
         errorEmail: true,
         email,
@@ -98,7 +98,7 @@ router.post("/login", isLoggedOut, async (req, res) => {
 
     const isPasswordMatch = await bcrypt.compare(password, user.passwordHash);
     if (!isPasswordMatch) {
-      res.render("auth/login", {
+      res.render("pages/auth/login", {
         errorMessage: "Invalid password. Please try again.",
         errorPassword: true,
         email,

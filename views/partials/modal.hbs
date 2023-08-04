@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
 <link rel="stylesheet" href="/stylesheets/components/modal.css" />
 
-<div class="modal modal__hidden" id="{{id}}">
+<div class="modal modal__hidden">
   <div class="modal__container modal__container-hidden">
     <div class="modal__header">
       <span class="modal__header-icon material-symbols-outlined">
@@ -13,7 +13,9 @@
         close
       </span>
     </div>
-    {{> (partial)}}
+    {{#if partial}}
+      {{> (lookup . 'partial')}}
+    {{/if}}
   </div>
 </div>
 

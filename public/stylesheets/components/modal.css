@@ -17,14 +17,15 @@
 
 .modal__header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .modal__close {
   font-size: 2rem;
   cursor: pointer;
   user-select: none;
+  margin-left: auto;
 }
 
 .modal__header-container {
