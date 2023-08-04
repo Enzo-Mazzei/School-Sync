@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.header__menu-icon > span {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.header__title {
+  font-size: var(--title-text-size);
+  font-weight: 500;
+}
+
+.header__user {
+  width: 2.25rem;
+  border-radius: 50%;
+}

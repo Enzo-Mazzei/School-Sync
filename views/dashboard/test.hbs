@@ -1,79 +1,14 @@
 <style>
-  @import '/stylesheets/pages/test.css'; 
-  @import '/stylesheets/components/modal.css'; 
-  @import '/stylesheets/components/form.css';
+  @import '/stylesheets/pages/test.css'; @import
+  '/stylesheets/components/modal.css'; @import
+  '/stylesheets/components/form.css';
 </style>
 
 <div class="test-container">
-  <div class="test-container__header">
-    <div class="test-container__header-left">
-      <a class="test-container__header-icon-back" href="/dashboard/tests">
-        <span class="material-symbols-outlined">
-          arrow_back
-        </span>
-      </a>
-      <span class="test-container__header-icon material-symbols-outlined">
-        share
-      </span>
-      <div class="test-container__header-left-container">
-        <h1 class="test-container__header-title">
-          {{test.title}}
-        </h1>
-        <p class="test-container__header-text">{{result}} result(s) found</p>
-      </div>
-    </div>
-    <div class="test-informations">
-      <div class="test-informations__left">
-        <p class="test-informations__average">Average: {{test.avgGrade}}/{{test.maxGrade}}</p>
-        <p class="test-informations__comment">{{test.comment}}</p>
-      </div>
-      <div class="test-icon__container">
-        <span class="test-icon__edit material-symbols-outlined">
-          edit_note
-        </span>
-        <form action="/dashboard/test/{{test._id}}/delete" method="POST">
-          <button class="test-icon__button" type="submit">
-            <span class="test-icon__delete material-symbols-outlined">
-              delete
-            </span>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="test-collection">
-    <button class="test-container__button" type="button" id="open-modal-button">
-      <span class="test-container__button-icon material-symbols-outlined">
-        add
-      </span>
-    </button>
-    {{#each test.grades}}
-      <div class="test-item">
-        <img
-          class="test-item__image"
-          src="{{student.profilePicture}}"
-          alt="{{student.firstname}} {{student.lastname}}"
-        />
-        <div class="test-item__container">
-          <p class="test-item__full-name">{{student.firstName}}
-            {{student.lastName}}</p>
-          <p class="test-item__grade">{{grade}}/{{../test.maxGrade}}</p>
-        </div>
-        <div class="test-icon__container">
-          <span class="test-icon__edit material-symbols-outlined">
-            edit_note
-          </span>
-          <form action="/dashboard/grade/{{_id}}/delete/{{../test._id}}" method="POST">
-            <button class="test-icon__button" type="submit">
-              <span class="test-icon__delete material-symbols-outlined">
-                delete
-              </span>
-            </button>
-          </form>
-        </div>
-      </div>
-    {{/each}}
-  </div>
+
+  {{> dashboardHeader title=test.title redirect="/dashboard/tests" }}
+
+  <div class="test-header"></div>
 </div>
 
 <div class="modal modal__hidden">

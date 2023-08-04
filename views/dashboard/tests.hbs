@@ -5,19 +5,8 @@
 </style>
 
 <div class="tests-container">
-  <div class="tests-container__header">
-    <div class="tests-container__header-left">
-      <span class="tests-container__header-icon material-symbols-outlined">
-        sticky_note
-      </span>
-      <div class="tests-container__header-left-container">
-        <h1 class="tests-container__header-title">
-          Tests
-        </h1>
-        <p class="tests-container__header-text">{{result}} result(s) found</p>
-      </div>
-    </div>
-  </div>
+  {{> dashboardHeader title="Tests" redirect="/dashboard"}}
+
   <div class="tests-collection">
     <button
         class="tests-container__button tests-container__button-add"

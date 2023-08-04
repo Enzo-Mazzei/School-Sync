@@ -22,6 +22,7 @@
   /* BORDER */
   --primary-border-color: rgba(255, 255, 255, 1);
   --secondary-border-color: rgba(255, 255, 255, 0.5);
+  --third-border-color: rgba(255, 255, 255, 0.25);
 }
 
 body {

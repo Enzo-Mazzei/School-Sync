@@ -1,0 +1,15 @@
+<style>
+  @import "/stylesheets/components/dashboard-header.css";
+</style>
+
+<div class="header">
+  <a href="{{redirect}}">
+    <div class="header__menu-icon">
+      <span class="material-symbols-outlined">
+        chevron_left
+      </span>
+    </div>
+  </a>
+  <h1 class="header__title">{{title}}</h1>
+  <img class="header__user" src="{{currentUser.profilePicture}}" alt="" />
+</div>

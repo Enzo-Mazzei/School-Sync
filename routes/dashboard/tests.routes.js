@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Test = require("../../models/Tests.model");
 const User = require("../../models/User.model");
 const Tests = require("../../models/Tests.model");
+const Grades = require("../../models/Grades.model");
 
 /* POST test/create */
 router.post("/tests/create", async (req, res) => {
@@ -78,18 +79,19 @@ router.get("/tests", async (req, res) => {
 router.get("/test/:testID", async (req, res) => {
   const { testID } = req.params;
   try {
-    const test = await Tests.findOne({ _id: testID }).populate({
-      path: "grades",
-      populate: {
-        path: "student",
-      },
-    });
-    const students = await User.find();
-    res.render("dashboard/test", {
-      test,
-      students,
-      result: test.grades.length,
-    });
+    const [test, students] = await Promise.all([
+      Tests.findOne({ _id: testID }).populate({
+        path: "grades",
+        populate: {
+          path: "student",
+        },
+      }),
+      User.find(),
+    ]);
+
+    const result = test.grades.length;
+
+    res.render("dashboard/test", { test, students, result });
   } catch (error) {
     console.log(error);
   }
@@ -106,21 +108,25 @@ router.post("/test/:testID/delete", async (req, res) => {
       "grades"
     );
 
-    //Remove test from user.tests
-    const userUpdateTest = await User.findOneAndUpdate(
-      { _id: currentUser._id },
-      { $pull: { tests: deletedTest._id } },
-      { new: true }
-    );
+    const grades = deletedTest.grades;
+    const studentIDs = grades.map((grade) => grade.student);
+    const gradeIDs = grades.map((grade) => grade._id);
 
-    //Remove grades of test from user.grades
-    deletedTest.grades.forEach(async (grade) => {
-      const updateUserGrade = await User.findOneAndUpdate(
-        { _id: grade.student },
-        { $pull: { grades: grade._id } },
-        { new: true }
-      );
-    });
+    await Promise.all([
+      User.findOneAndUpdate(
+        { _id: currentUser._id },
+        { $pull: { tests: deletedTest._id } }
+      ),
+      User.updateMany(
+        { _id: { $in: studentIDs } },
+        {
+          $pull: {
+            grades: { $in: gradeIDs },
+          },
+        }
+      ),
+      Grades.deleteMany({ _id: { $in: gradeIDs } }),
+    ]);
 
     res.redirect("/dashboard/tests");
   } catch (error) {

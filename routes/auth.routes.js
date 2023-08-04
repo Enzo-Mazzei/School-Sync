@@ -7,12 +7,12 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 
 /* GET signup */
 router.get("/signup", isLoggedOut, (req, res, next) => {
-  res.render("auth/signup", { layout: false });
+  res.render("auth/signup");
 });
 
 /* GET login */
 router.get("/login", isLoggedOut, (req, res, next) => {
-  res.render("auth/login", { layout: false });
+  res.render("auth/login");
 });
 
 /* POST signup */
@@ -30,7 +30,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
     res.render("auth/signup", {
       errorMessage:
         "Password must be 6 to 30 characters long and contain at least one uppercase letter and one number.",
-      layout: false,
     });
     return;
   }
@@ -41,7 +40,6 @@ router.post("/signup", isLoggedOut, (req, res) => {
         res.render("auth/signup", {
           errorMessage: "Email is already in use. Please use a different one.",
           errorEmail: true,
-          layout: false,
         });
         return;
       }
@@ -72,7 +70,6 @@ router.post("/login", isLoggedOut, async (req, res) => {
     errorMessage: "This field is required.",
     email,
     password,
-    layout: false,
   };
 
   if (!email && password) {
@@ -95,7 +92,6 @@ router.post("/login", isLoggedOut, async (req, res) => {
         errorEmail: true,
         email,
         password,
-        layout: false,
       });
       return;
     }
@@ -107,7 +103,6 @@ router.post("/login", isLoggedOut, async (req, res) => {
         errorPassword: true,
         email,
         password,
-        layout: false,
       });
       return;
     }

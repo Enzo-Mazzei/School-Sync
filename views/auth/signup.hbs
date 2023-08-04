@@ -1,92 +1,79 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>SchoolSync - Log in</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-    />
-    <link rel="stylesheet" href="/stylesheets/base/reset.css" />
-    <link rel="stylesheet" href="/stylesheets/base/style.css" />
-    <link rel="stylesheet" href="/stylesheets/pages/auth.css">
-  </head>
-  <body>
-    <div class="auth-container auth-container-blue">
-      <form class="auth-form" action="/signup" method="POST">
-        <h1 class="auth-form__title">Sign Up</h1>
+<style>
+  @import '/stylesheets/pages/auth.css';
+</style>
 
-        {{! STEP 1 }}
-        <div class="auth-form__group">
-          <input
-            class="auth-form__input"
-            type="text"
-            placeholder=" "
-            name="firstName"
-          />
-          <label class="auth-form__label">First name</label>
-        </div>
-        <div class="auth-form__group">
-          <input
-            class="auth-form__input"
-            type="text"
-            placeholder=" "
-            name="lastName"
-          />
-          <label class="auth-form__label">Last name</label>
-        </div>
-        <button class="auth-form__submit-button" type="button">
-          <span>Continue</span>
-          <span
-            class="material-symbols-outlined auth-form__submit-button-icon-right"
-          >
-            chevron_right
-          </span>
-        </button>
+<div class="auth-container auth-container-blue">
+  <form class="auth-form" action="/signup" method="POST">
+    <h1 class="auth-form__title">Sign Up</h1>
 
-        {{! STEP 2 }}
-        <div class="auth-form__group hidden">
-          <input
-            class="auth-form__input"
-            type="text"
-            placeholder=" "
-            name="email"
-          />
-          <label class="auth-form__label">Email</label>
-        </div>
-        <div class="auth-form__group hidden">
-          <input
-            class="auth-form__input"
-            type="password"
-            placeholder=" "
-            name="password"
-          />
-          <label class="auth-form__label">Password</label>
-        </div>
-        <button class="auth-form__submit-button hidden" type="submit">
-          <span class="material-symbols-outlined">
-            login
-          </span>
-          <span>Continue</span>
-        </button>
-        <p class="auth-form__error-container {{#unless errorMessage}}hidden{{/unless}}">
-          <span class="auth-form__error-icon material-symbols-outlined">
-            error
-          </span>
-          <span class="auth-form__error-text">{{errorMessage}}</span>
-        </p>
-        <div class="auth-form__footer-container">
-          <p class="auth-form__footer-text">Already have an account?
-            <a href="/login">Log in</a>
-          </p>
-          <p class="auth-form__footer-text">Go back to
-            <a href="/">home page</a>
-          </p>
-        </div>
-
-      </form>
+    {{! STEP 1 }}
+    <div class="auth-form__group">
+      <input
+        class="auth-form__input"
+        type="text"
+        placeholder=" "
+        name="firstName"
+      />
+      <label class="auth-form__label">First name</label>
     </div>
-    <script src="/js/signup.js"></script>
-  </body>
-</html>
+    <div class="auth-form__group">
+      <input
+        class="auth-form__input"
+        type="text"
+        placeholder=" "
+        name="lastName"
+      />
+      <label class="auth-form__label">Last name</label>
+    </div>
+    <button class="auth-form__submit-button" type="button">
+      <span>Continue</span>
+      <span
+        class="material-symbols-outlined auth-form__submit-button-icon-right"
+      >
+        chevron_right
+      </span>
+    </button>
+
+    {{! STEP 2 }}
+    <div class="auth-form__group hidden">
+      <input
+        class="auth-form__input"
+        type="text"
+        placeholder=" "
+        name="email"
+      />
+      <label class="auth-form__label">Email</label>
+    </div>
+    <div class="auth-form__group hidden">
+      <input
+        class="auth-form__input"
+        type="password"
+        placeholder=" "
+        name="password"
+      />
+      <label class="auth-form__label">Password</label>
+    </div>
+    <button class="auth-form__submit-button hidden" type="submit">
+      <span class="material-symbols-outlined">
+        login
+      </span>
+      <span>Continue</span>
+    </button>
+    <p class="auth-form__error-container {{#unless errorMessage}}hidden{{/unless}}">
+      <span class="auth-form__error-icon material-symbols-outlined">
+        error
+      </span>
+      <span class="auth-form__error-text">{{errorMessage}}</span>
+    </p>
+    <div class="auth-form__footer-container">
+      <p class="auth-form__footer-text">Already have an account?
+        <a href="/login">Log in</a>
+      </p>
+      <p class="auth-form__footer-text">Go back to
+        <a href="/">home page</a>
+      </p>
+    </div>
+
+  </form>
+</div>
+<script src="/js/signup.js"></script>
