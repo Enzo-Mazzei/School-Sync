@@ -66,7 +66,7 @@ router.get("/tests", async (req, res) => {
       path: "tests",
       options: { sort: { createdAt: -1 } },
     });
-    res.render("dashboard/tests", {
+    res.render("pages/tests", {
       tests: user.tests,
       result: user.tests.length,
     });

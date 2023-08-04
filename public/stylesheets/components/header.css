@@ -19,4 +19,5 @@
 .header__user {
   width: 2.25rem;
   border-radius: 50%;
+  cursor: pointer;
 }
