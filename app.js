@@ -30,12 +30,27 @@ hbs.registerHelper("dateFormatter", function (dateRaw) {
   }
 });
 
-hbs.registerHelper("toLocaleTime", function (dateRaw) {
-  const options = {
-    hour: "numeric",
-    minute: "numeric",
-  };
-  return dateRaw.toLocaleTimeString("en-US", options);
+hbs.registerHelper("toLocaleDate", function (dateRaw) {
+  return dateRaw.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+});
+
+hbs.registerHelper("toValueDate", function (date) {
+  const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  return year + "-" + month + "-" + day;
 });
 
 //Middlewares

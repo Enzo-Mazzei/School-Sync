@@ -1,9 +1,87 @@
 <link rel="stylesheet" href="/stylesheets/base/reset.css" />
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
+<link rel="stylesheet" href="/stylesheets/components/form.css" />
 <link rel="stylesheet" href="/stylesheets/pages/test.css" />
 
 <div class="test-container">
-
   {{> header title=test.title redirect="/dashboard/tests" }}
 
+  {{! INFORMATIONS SCREEN }}
+  <div class="test-informations" id="informations-screen">
+    <h2 class="test-informations__title">{{test.title}}
+      <span class="test-informations__date">{{toLocaleDate test.date}}</span>
+    </h2>
+    <div class="test-informations__stats">
+      <span class="test-informations__stats-icon material-symbols-outlined">
+        grade
+      </span>
+      <p class="test-informations__stats-container">
+        <span>Average score</span>
+        {{test.avgGrade}}/{{test.maxGrade}}
+      </p>
+    </div>
+    {{#if test.comment}}
+      <p class="test-informations__comment">{{test.comment}}</p>
+    {{/if}}
+    <div class="test-informations__actions">
+      <button
+        id="edit-button"
+        class="test-informations__edit-button"
+      >Edit</button>
+      <form action="/dashboard/tests/{{test._id}}/delete" method="POST">
+        <button class="test-informations__delete-button">Delete</button>
+      </form>
+      <p class="test-informations__timestamp">
+        {{dateFormatter test.createdAt}}
+      </p>
+    </div>
+
+  </div>
+
+  {{! EDIT SCREEN }}
+  <div class="test-informations hidden" id="edit-screen">
+    <form
+      class="test-informations__form"
+      action="/dashboard/tests/{{test._id}}/edit"
+      method="POST"
+    >
+      <input
+        type="text"
+        class="form-input"
+        value="{{test.title}}"
+        name="title"
+      />
+      <input
+        type="date"
+        class="form-input"
+        value="{{toValueDate test.date}}"
+        name="date"
+      />
+      <input
+        type="number"
+        class="form-input"
+        value="{{test.maxGrade}}"
+        name="maxGrade"
+      />
+      <textarea
+        class="form-input test-edit__comment"
+        type="text"
+        name="comment"
+      >{{test.comment}}</textarea>
+      <div class="test-informations__actions">
+        <button
+          class="test-informations__edit-button"
+          type="submit"
+        >Save</button>
+        <button
+          class="test-informations__delete-button"
+          type="button"
+          id="cancel-button"
+        >Cancel</button>
+      </div>
+    </form>
+  </div>
+
 </div>
+
+<script src="/js/test.js"></script>

@@ -46,7 +46,7 @@ router.post("/tests/create", async (req, res) => {
       { new: true }
     );
 
-    res.redirect("/dashboard/test/" + testCreate._id);
+    res.redirect("/dashboard/tests/" + testCreate._id);
   } catch (error) {
     //Mongoose validationError
     if (error instanceof mongoose.Error.ValidationError) {
@@ -97,8 +97,8 @@ router.get("/tests/:testID", async (req, res) => {
   }
 });
 
-/* DELETE test/:id */
-router.post("/test/:testID/delete", async (req, res) => {
+/* DELETE tests/:id */
+router.post("/tests/:testID/delete", async (req, res) => {
   const { testID } = req.params;
   const { currentUser } = req.session;
 
@@ -132,6 +132,24 @@ router.post("/test/:testID/delete", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+/* EDIT /tests/:id/edit */
+router.post("/tests/:testID/edit", (req, res) => {
+  const { testID } = req.params;
+  const { title, comment, date, maxGrade } = req.body;
+
+  Test.findOneAndUpdate(
+    { _id: testID },
+    { title, comment, date, maxGrade },
+    { new: true }
+  )
+    .then((result) => {
+      res.redirect("/dashboard/tests/" + testID);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 module.exports = router;

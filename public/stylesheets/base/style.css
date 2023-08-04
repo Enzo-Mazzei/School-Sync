@@ -31,3 +31,7 @@ body {
   background-color: var(--primary-background-color);
   font-size: var(--primary-text-size);
 }
+
+.hidden {
+  display: none;
+}
