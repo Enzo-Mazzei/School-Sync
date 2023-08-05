@@ -11,6 +11,32 @@ require("./db");
 
 // HBS config
 hbs.registerPartials(__dirname + "/views/partials");
+hbs.registerHelper("dateFormatter", function (dateRaw) {
+  const dateNow = new Date();
+  const diffInMilliseconds = dateNow - dateRaw;
+  const diffInSeconds = diffInMilliseconds / 1000;
+  const diffInMinutes = diffInSeconds / 60;
+  const diffInHours = diffInMinutes / 60;
+  const diffInDays = diffInHours / 60;
+
+  if (diffInDays > 1) {
+    return Math.floor(diffInDays) + "d ago";
+  } else if (diffInHours > 1) {
+    return Math.floor(diffInHours) + "h ago";
+  } else if (diffInMinutes > 1) {
+    return Math.floor(diffInMinutes) + "m ago";
+  } else {
+    return Math.floor(diffInSeconds) + "s ago";
+  }
+});
+
+hbs.registerHelper("toLocaleTime", function (dateRaw) {
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+  };
+  return dateRaw.toLocaleTimeString("en-US", options);
+});
 
 //Middlewares
 const isLoggedIn = require("./middleware/isLoggedIn");
