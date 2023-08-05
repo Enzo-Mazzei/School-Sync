@@ -1,4 +1,4 @@
-let logo = document.querySelector(".menu-icon");
+let logo = document.querySelector("#open-modal");
 let menu = document.querySelector("#container");
 let sidebar = document.querySelector(".sidebar");
 let minisidebar = document.querySelector("#mini-sidebar");

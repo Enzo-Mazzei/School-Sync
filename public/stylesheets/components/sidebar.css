@@ -19,13 +19,13 @@ body {
   transition: transform 0.3s ease;
   position: fixed;
   top: 0;
-  padding-top: 3.125rem; 
-  padding-left: 3.125rem; 
-  padding-bottom: 3.125rem; 
+  padding-top: 3.125rem;
+  padding-left: 3.125rem;
+  padding-bottom: 3.125rem;
   bottom: 0;
   left: 0;
-  width:100%;
-  background-color: gray;
+  width: 100%;
+  background-color: var(--secondary-background-color);
 }
 
 .sidebar.open {
@@ -36,7 +36,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.25rem; 
+  padding: 1.25rem;
   margin-left: 0;
 }
 
@@ -54,6 +54,7 @@ span {
   text-decoration: none;
   text-align: center;
   padding: 0.625rem;
+  gap: 1rem;
   display: flex;
   align-items: center;
 }
@@ -92,27 +93,27 @@ span {
 #mini-sidebar {
   transition: transform 0.3s ease;
   position: fixed;
-  left: 3.125rem; 
-  top: 3.125rem; 
+  left: 3.125rem;
+  top: 3.125rem;
   height: 100%;
   z-index: 999;
-  width:100%;
+  width: 100%;
 }
-#mini-sidebar li{
-padding: 0.625rem;
+#mini-sidebar li {
+  padding: 0.625rem;
 }
-#mini-sidebar li a{
+#mini-sidebar li a {
   display: flex;
   align-items: center;
-  }
+}
 #mini-sidebar span {
   cursor: pointer;
 }
 #mini-sidebar.open {
-  display: none; 
-  z-index: -100
+  display: none;
+  z-index: -100;
 }
-.user{
+.user {
   margin-top: auto;
 }
 @media (min-width: 769px) {
@@ -120,9 +121,9 @@ padding: 0.625rem;
   #mini-sidebar {
     width: 15.625rem;
   }
-#mini-sidebar{
-  left: 3.125rem; 
-}
+  #mini-sidebar {
+    left: 3.125rem;
+  }
   #logo {
     margin-left: 7.5rem;
   }
