@@ -1,0 +1,154 @@
+.test-container {
+  padding: 0 1.5rem;
+}
+
+.test-informations {
+  font-size: var(--primary-text-size);
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.test-informations__title {
+  font-size: var(--title-text-size);
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
+}
+
+.test-informations__date {
+  color: var(--secondary-text-color);
+  font-size: var(--secondary-text-size);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.test-informations__comment {
+  color: var(--secondary-text-color);
+  font-weight: 400;
+  font-size: var(--secondary-text-size);
+  white-space: pre-wrap;
+}
+
+.test-informations__stats {
+  margin: 1rem 0;
+  background-color: var(--third-background-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.test-informations__stats-icon {
+  padding: 1rem;
+  background-color: rgba(255, 215, 0, 0.25);
+  border-radius: 0.5rem;
+  color: rgba(255, 215, 0, 1);
+}
+
+.test-informations__stats-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.test-informations__stats-container > span {
+  font-size: 0.8rem;
+  color: var(--secondary-text-color);
+}
+
+.test-informations__timestamp {
+  color: var(--secondary-text-color);
+  font-size: var(--third-text-size);
+  margin-left: auto;
+  font-weight: 300;
+}
+
+.test-informations__actions {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.test-informations__edit-button,
+.test-informations__delete-button {
+  border: none;
+  color: var(--primary-text-color);
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  font-size: var(--primary-text-size);
+  font-family: var(--font-family);
+  cursor: pointer;
+}
+
+.test-informations__delete-button {
+  background-color: var(--error-color);
+}
+
+.test-informations__edit-button {
+  background-color: var(--third-border-color);
+}
+
+.test-informations__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.test-edit__comment {
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.test-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.test-collection__button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+}
+
+.test-collection__button-icon {
+  font-size: 2rem;
+}
+
+.test-item {
+  padding: 1rem;
+  background-color: var(--secondary-background-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.test-item__image {
+  width: 3rem;
+  border-radius: 50%;
+}
+
+.test-item__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

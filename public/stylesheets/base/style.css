@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Oxygen&family=Poppins:wght@300;400;500;600;700;800;900&family=Victor+Mono&display=swap");
+
+:root {
+  --font-family: Poppins;
+  --error-color: #ff2d49;
+  --primary-color: #712cf9;
+
+  /* BACKGROUND */
+  --primary-background-color: rgb(23, 23, 32);
+  --secondary-background-color: rgb(33, 33, 42);
+  --third-background-color: rgb(43, 43, 52);
+
+  /* TEXT */
+  --primary-text-color: rgba(255, 255, 255, 1);
+  --secondary-text-color: rgba(255, 255, 255, 0.5);
+
+  --title-text-size: 1.25rem;
+  --primary-text-size: 1rem;
+  --secondary-text-size: 0.9rem;
+  --third-text-size: 0.8rem;
+
+  /* BORDER */
+  --primary-border-color: rgba(255, 255, 255, 1);
+  --secondary-border-color: rgba(255, 255, 255, 0.5);
+  --third-border-color: rgba(255, 255, 255, 0.25);
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--primary-text-color);
+  background-color: var(--primary-background-color);
+  font-size: var(--primary-text-size);
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,33 @@
+.error-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  transition: all 0.25s ease-in;
+  animation: errorSlide 0.5s ease-out;
+}
+
+.error-text {
+  background-color: var(--error-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: var(--secondary-text-size);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-close {
+  cursor: pointer;
+}
+
+@keyframes errorSlide {
+  0% {
+    transform: translateY(-200px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

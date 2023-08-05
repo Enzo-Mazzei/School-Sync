@@ -6,7 +6,7 @@
   min-height: 100vh;
   box-sizing: border-box;
   padding: 1.5rem;
-  background-color: #21212e;
+  background-color: var(--secondary-background-color);
   transition: all 0.1s ease-out;
 }
 
@@ -17,14 +17,15 @@
 
 .modal__header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .modal__close {
   font-size: 2rem;
   cursor: pointer;
   user-select: none;
+  margin-left: auto;
 }
 
 .modal__header-container {
@@ -34,11 +35,12 @@
 }
 
 .modal__header-title {
-  font-size: 1.5rem;
+  font-size: var(--title-text-size);
 }
 
 .modal__header-icon {
   padding: 1rem;
+  font-size: 1.5rem;
   background-color: rgba(80, 80, 255, 0.1);
   color: var(--primary-color);
   border-radius: 0.5rem;

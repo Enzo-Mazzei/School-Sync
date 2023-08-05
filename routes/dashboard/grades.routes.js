@@ -81,10 +81,23 @@ router.post("/grade/create/:testID", async (req, res) => {
       testUpdate.grades,
       gradeCreate.test._id
     );
-    res.json(gradeCreate);
+    res.redirect("/dashboard/tests/" + testID);
   } catch (error) {
     res.json({ error: error.message });
   }
+});
+
+/* DELETE grade */
+router.post("/grade/:gradeID/delete/:testID", (req, res) => {
+  const { gradeID, testID } = req.params;
+  console.log(gradeID, testID);
+  Grades.findOneAndDelete({ _id: gradeID })
+    .then((result) => {
+      res.redirect("/dashboard/test/" + testID);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const Test = require("../models/Tests.model");
 
-module.exports = (grades, id) => {
+module.exports = (grades, testID) => {
   return new Promise(async (resolve, reject) => {
     // Calculate the average of all the grades in Test document
     let sumGrade = grades.reduce((a, b) => a + b.grade, 0);
@@ -9,7 +9,7 @@ module.exports = (grades, id) => {
     // Update the avgGrade in Test document
     try {
       const testUpdate = await Test.findOneAndUpdate(
-        { _id: id },
+        { _id: testID },
         { avgGrade: avgGrade },
         { new: true }
       );
