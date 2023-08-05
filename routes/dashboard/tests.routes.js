@@ -139,21 +139,32 @@ router.post("/tests/:testID/delete", async (req, res) => {
 });
 
 /* EDIT /tests/:id/edit */
-router.post("/tests/:testID/edit", (req, res) => {
+router.post("/tests/:testID/edit", async (req, res) => {
   const { testID } = req.params;
   const { title, comment, date, maxGrade } = req.body;
 
-  Test.findOneAndUpdate(
-    { _id: testID },
-    { title, comment, date, maxGrade },
-    { new: true }
-  )
-    .then((result) => {
-      res.redirect("/dashboard/tests/" + testID);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  try {
+    const test = await Test.findOne({ _id: testID });
+
+    if (!title || !maxGrade || !date) {
+      res.render("pages/dashboard/test", {
+        test,
+        errorMessage:
+          "Missing field(s): Test name, maximum score and date are require!",
+      });
+      return;
+    }
+
+    const testUpdate = await Test.findOneAndUpdate(
+      { _id: testID },
+      { title, comment, date, maxGrade },
+      { new: true }
+    );
+
+    res.redirect("/dashboard/tests/" + testID);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

@@ -105,3 +105,29 @@
   font-size: 0.9rem;
   resize: vertical;
 }
+
+.test-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.test-collection__button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+}
+
+.test-collection__button-icon {
+  font-size: 2rem;
+}

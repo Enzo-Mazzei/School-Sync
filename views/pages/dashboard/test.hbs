@@ -50,23 +50,27 @@
         class="form-input"
         value="{{test.title}}"
         name="title"
+        placeholder="Test name"
       />
       <input
         type="date"
         class="form-input"
         value="{{toValueDate test.date}}"
         name="date"
+        placeholder="Test date"
       />
       <input
         type="number"
         class="form-input"
         value="{{test.maxGrade}}"
         name="maxGrade"
+        placeholder="Maximum score"
       />
       <textarea
         class="form-input test-edit__comment"
         type="text"
         name="comment"
+        placeholder="Comment"
       >{{test.comment}}</textarea>
       <div class="test-informations__actions">
         <button
@@ -82,6 +86,26 @@
     </form>
   </div>
 
+  {{!-- COLLECTION --}}
+  <div class="test-collection">
+    <button
+      class="test-collection__button"
+      type="button"
+      id="open-modal-button"
+    >
+      <span class="test-container__button-icon material-symbols-outlined">
+        add
+      </span>
+    </button>
+  </div>
 </div>
+
+{{! MODAL }}
+{{> modal headerTitle="Add a score" headerIcon="post_add" partial="modal/formAddScore"}}
+
+{{!-- ERROR --}}
+{{#if errorMessage}}
+  {{> error message=errorMessage}}
+{{/if}}
 
 <script src="/js/test.js"></script>
