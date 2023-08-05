@@ -2,48 +2,48 @@
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
 <link rel="stylesheet" href="/stylesheets/components/form.css" />
 
-<form class="form" action="/dashboard/tests/create" method="POST">
-  <label for="">Students
+<form class="form" action="/dashboard/grade/create/{{test._id}}" method="POST">
+  <label for="">Student
+    <span class="form-require">*</span>
+  </label>
+  <input
+    readonly
+    type="text"
+    class="form-input form-select"
+    id="form-select"
+    placeholder="Select student"
+  />
+  <input hidden id="form-select-id" name="student" />
+  <input hidden id="form-select-id" name="{{test}}" />
+  <div class="form-options form-options__hidden" id="form-options">
+    {{#each students}}
+      <div
+        class="form-options__item"
+        data-name="{{firstName}} {{lastName}}"
+        data-id="{{_id}}"
+        id="form-select-item"
+      >
+        <img
+          class="form-options__item-image"
+          src="{{profilePicture}}"
+          alt="{{firstname}} {{lastname}}"
+        />
+        <span>
+          {{firstName}}
+          {{lastName}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+  <label for="">Grade
     <span class="form-require">*</span>
   </label>
   <input
     class="form-input"
     type="text"
-    name="title"
-    placeholder="Enter test title"
-    value="{{title}}"
+    name="grade"
+    placeholder="Enter student score"
   />
-  <label for="">Maximum score
-    <span class="form-require">*</span>
-  </label>
-  <input
-    class="form-input"
-    type="number"
-    name="maxGrade"
-    placeholder="Enter maximum test score"
-    value="{{maxGrade}}"
-  />
-  <label for="">Date
-    <span class="form-require">*</span>
-  </label>
-  <input
-    class="form-input"
-    type="text"
-    name="date"
-    onfocus="this.type='date'"
-    pattern="\d{4}-\d{2}-\d{2}"
-    placeholder="Select test date"
-    value="{{date}}"
-  />
-  <label for="">Comment
-    <span class="form-optional">(optional)</span>
-  </label>
-  <textarea
-    class="form-input"
-    type="text"
-    name="comment"
-    placeholder="Enter test comment"
-  >{{comment}}</textarea>
   <button class="form-button" type="submit">
     <span class="material-symbols-outlined">
       add
@@ -51,3 +51,5 @@
     <span> Add</span>
   </button>
 </form>
+
+<script src="/js/form.js"></script>

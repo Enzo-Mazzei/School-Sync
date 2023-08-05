@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", () => {
       formSelect.value = item.dataset.name;
       formSelectId.value = item.dataset.id;
-      console.log(item.dataset.id);
     });
   });
 

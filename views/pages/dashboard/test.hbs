@@ -97,6 +97,17 @@
         add
       </span>
     </button>
+
+    {{#each test.grades}}
+      <div class="test-item">
+        <img src="{{student.profilePicture}}" alt="" class="test-item__image" />
+        <div class="test-item__container">
+          <p class="test-item__name">{{student.firstName}} {{student.lastName}}</p>
+          <p class="test-item__score">{{grade}}</p>
+        </div>
+      </div>
+    {{/each}}
+    
   </div>
 </div>
 

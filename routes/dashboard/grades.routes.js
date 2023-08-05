@@ -81,7 +81,7 @@ router.post("/grade/create/:testID", async (req, res) => {
       testUpdate.grades,
       gradeCreate.test._id
     );
-    res.redirect("/dashboard/test/" + testID);
+    res.redirect("/dashboard/tests/" + testID);
   } catch (error) {
     res.json({ error: error.message });
   }

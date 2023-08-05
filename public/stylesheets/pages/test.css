@@ -131,3 +131,24 @@
 .test-collection__button-icon {
   font-size: 2rem;
 }
+
+.test-item {
+  padding: 1rem;
+  background-color: var(--secondary-background-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.test-item__image {
+  width: 3rem;
+  border-radius: 50%;
+}
+
+.test-item__container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
