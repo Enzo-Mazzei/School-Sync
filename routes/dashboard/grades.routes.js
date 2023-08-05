@@ -13,7 +13,7 @@ router.get("/grades", getGrades);
 router.post("/grades/create/:testID", createGrade);
 
 /* GET ONE */
-router.get("/grade/:id", getGrade);
+router.get("/grades/:id", getGrade);
 
 /* POST DELETE */
 router.post("/grades/:gradeID/delete/:testID", deleteGrade);

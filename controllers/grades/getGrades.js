@@ -9,7 +9,6 @@ module.exports = async (req, res, next) => {
         path: "test",
         populate: {
           path: "teacher grades",
-          select: "firstName lastName grade",
         },
       },
     });
