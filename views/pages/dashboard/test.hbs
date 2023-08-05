@@ -86,7 +86,7 @@
     </form>
   </div>
 
-  {{!-- COLLECTION --}}
+  {{! COLLECTION }}
   <div class="test-collection">
     <button
       class="test-collection__button"
@@ -102,19 +102,28 @@
       <div class="test-item">
         <img src="{{student.profilePicture}}" alt="" class="test-item__image" />
         <div class="test-item__container">
-          <p class="test-item__name">{{student.firstName}} {{student.lastName}}</p>
-          <p class="test-item__score">{{grade}}</p>
+          <p class="test-item__name">{{student.firstName}}
+            {{student.lastName}}</p>
+          <p class="test-item__score">{{grade}}/{{../test.maxGrade}}</p>
         </div>
+        <form class="test-item__delete-form" action="/dashboard/grades/{{_id}}/delete/{{../test/_id}}" method="POST">
+          <button class="test-item__delete">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+          </button>
+          <p class="test-item__timestamp">{{dateFormatter createdAt}}</p>
+        </form>
       </div>
     {{/each}}
-    
+
   </div>
 </div>
 
 {{! MODAL }}
 {{> modal headerTitle="Add a score" headerIcon="post_add" partial="modal/formAddScore"}}
 
-{{!-- ERROR --}}
+{{! ERROR }}
 {{#if errorMessage}}
   {{> error message=errorMessage}}
 {{/if}}

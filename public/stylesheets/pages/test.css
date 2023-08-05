@@ -136,19 +136,48 @@
   padding: 1rem;
   background-color: var(--secondary-background-color);
   border-radius: 0.5rem;
-  cursor: pointer;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
 }
 
 .test-item__image {
   width: 3rem;
-  border-radius: 50%;
+  border-radius: 0.5rem;
 }
 
 .test-item__container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.test-item__score {
+  font-size: var(--secondary-text-size);
+  color: var(--secondary-text-color);
+}
+
+.test-item__delete-form {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.test-item__delete {
+  background-color: transparent;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+}
+
+.test-item__delete > span {
+  font-size: 1.25rem;
+}
+.test-item__timestamp {
+  font-size: var(--third-text-size);
+  font-weight: 300;
+  color: var(--secondary-text-color);
 }

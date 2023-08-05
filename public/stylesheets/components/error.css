@@ -6,6 +6,7 @@
   padding: 1rem 1.5rem;
   transition: all 0.25s ease-in;
   animation: errorSlide 0.5s ease-out;
+  width: 100%;
 }
 
 .error-text {
@@ -15,7 +16,10 @@
   font-size: var(--secondary-text-size);
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .error-close {
