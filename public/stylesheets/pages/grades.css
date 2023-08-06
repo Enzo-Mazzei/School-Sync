@@ -22,16 +22,47 @@
   height: 3.5rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  background-color: rgba(255, 0, 0, 0.1);
-  color: rgba(255, 0, 0, 1);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
 }
 
+.grades-item__score-red {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: rgba(255, 0, 0, 1);
+}
+
+.grades-item__score-green {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: rgba(0, 255, 0, 1);
+}
+
+.grades-item__score-orange {
+  background-color: rgba(255, 160, 0, 0.1);
+  color: rgba(255, 160, 0, 1);
+}
+
 .grades-item__container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.grades-item__course {
+  font-size: var(--secondary-text-size);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.grades-item__average {
+  color: var(--secondary-text-color);
+  font-size: var(--third-text-size);
+}
+
+.grades-item__arrow {
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
 }
