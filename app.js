@@ -55,24 +55,21 @@ hbs.registerHelper("toValueDate", function (date) {
 
 //Middlewares
 const isLoggedIn = require("./middleware/isLoggedIn");
+const isTeacher = require("./middleware/isTeacher");
+const updateSession = require("./middleware/updateSession");
 
 // Local variable
-app.use("/", (req, res, next) => {
-  app.locals.currentUser = req.session.currentUser;
-  next();
-});
+app.use("/", updateSession);
 
 // Routes
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
-// app.use("/dashboard", isLoggedIn)
-app.use(
-  "/dashboard",
-  isLoggedIn,
-  require("./routes/dashboard/profiles.routes")
-);
-app.use("/dashboard", isLoggedIn, require("./routes/dashboard/grades.routes"));
-app.use("/dashboard", isLoggedIn, require("./routes/dashboard/tests.routes"));
+
+app.use("/dashboard", isLoggedIn);
+
+app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
+app.use("/dashboard", require("./routes/dashboard/grades.routes"));
+app.use("/dashboard", isTeacher, require("./routes/dashboard/tests.routes"));
 
 // Errors Handling
 require("./error-handling")(app);
