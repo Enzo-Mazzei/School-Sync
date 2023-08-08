@@ -66,3 +66,14 @@
   align-items: center;
   font-size: 1.5rem;
 }
+
+@media (min-width: 576px) {
+  .grades-container {
+    padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem;
+    background-color: rgb(255, 255, 255, 0.025);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  }
+}

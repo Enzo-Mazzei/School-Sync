@@ -70,3 +70,18 @@
   font-size: var(--secondary-text-size);
   color: var(--secondary-text-color);
 }
+
+@media (min-width: 576px) {
+  .grade-container {
+    padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem;
+    background-color: rgb(255, 255, 255, 0.025);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+  }
+
+  .grade-header__title {
+    display: none;
+  }
+}

@@ -32,6 +32,17 @@
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 576px) {
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  .error-text {
+    width: auto;
   }
 }
