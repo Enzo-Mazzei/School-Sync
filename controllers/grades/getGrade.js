@@ -9,12 +9,13 @@ module.exports = async (req, res, next) => {
     path: "test",
     populate: {
       path: "teacher grades",
-      select: "firstName lastName grade",
     },
   });
 
-  if (currentUser._id == grade.student) {
-    res.json(grade);
+  // checking if user is allowed to see the grade
+
+  if (currentUser._id.equals(grade.student)) {
+    res.render("pages/dashboard/grade", grade);
   } else {
     res.json({ error: 401 });
   }

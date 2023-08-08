@@ -10,7 +10,7 @@
           <div class="grades-item__container">
             <p class="grades-item__test">{{test.title}}</p>
             <p class="grades-item__course">{{test.teacher.firstName}} {{test.teacher.lastName}}</p>
-            <p class="grades-item__average">Average score: {{test.avgGrade}}/{{test.maxGrade}}</p>
+            <p class="grades-item__average">{{dateFormatter createdAt}}</p>
           </div>
           <span class="grades-item__arrow material-symbols-outlined">
            chevron_right

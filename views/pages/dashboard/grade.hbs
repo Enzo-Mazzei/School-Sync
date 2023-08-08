@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/stylesheets/pages/grade.css" />
+
+<div class="grade-container">
+  {{> header title=test.title redirect="/dashboard/grades"}}
+  <div class="grade-header">
+    <h1 class="grade-header__title">{{test.title}}</h1>
+    {{#if test.comment}}
+      <p class="grade-header__comment">{{test.comment}}</p>
+    {{/if}}
+    <div class="grade-header__teacter">
+      <img
+        src="{{test.teacher.profilePicture}}"
+        alt=""
+        class="grade-header__teacher-profile-picture"
+      />
+      <div class="grade-header__teacher-container">
+        <p class="grade-header__teacher-name">{{test.teacher.firstName}}
+          {{test.teacher.lastName}}</p>
+      </div>
+    </div>
+    <p class="grade-header__timestamp">{{dateFormatter createdAt}}</p>
+  </div>
+  <div class="grade-content">
+    <div class="grade-stats">
+      <div class="grade-stats__item">
+        <span 
+            id="grade-trending" 
+            class="grade-stats__item-icon material-symbols-outlined"
+            data-grade="{{grade}}"
+            data-avg-grade="{{test.avgGrade}}"
+        ></span>
+        <span class="grade-stats__item-title">My grade</span>
+        <span class="grade-stats__item-content">{{grade}}/{{test.maxGrade}}</span>
+      </div>
+      <div class="grade-stats__item">
+        <span class="grade-stats__item-icon material-symbols-outlined">bar_chart</span>
+        <span class="grade-stats__item-title">Avg grade</span>
+        <span class="grade-stats__item-content">{{test.avgGrade}}/{{test.maxGrade}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/grade.js"></script>

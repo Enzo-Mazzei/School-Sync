@@ -17,16 +17,16 @@ hbs.registerHelper("dateFormatter", function (dateRaw) {
   const diffInSeconds = diffInMilliseconds / 1000;
   const diffInMinutes = diffInSeconds / 60;
   const diffInHours = diffInMinutes / 60;
-  const diffInDays = diffInHours / 60;
+  const diffInDays = diffInHours / 24;
 
   if (diffInDays > 1) {
-    return Math.floor(diffInDays) + "d ago";
+    return Math.round(diffInDays) + "d ago";
   } else if (diffInHours > 1) {
-    return Math.floor(diffInHours) + "h ago";
+    return Math.round(diffInHours) + "h ago";
   } else if (diffInMinutes > 1) {
-    return Math.floor(diffInMinutes) + "m ago";
+    return Math.round(diffInMinutes) + "m ago";
   } else {
-    return Math.floor(diffInSeconds) + "s ago";
+    return Math.round(diffInSeconds) + "s ago";
   }
 });
 
