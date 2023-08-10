@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/base/reset.css" />
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
 <link rel="stylesheet" href="/stylesheets/pages/tests.css" />
+<link rel="stylesheet" href="/stylesheets/components/sidebar.css" />
 
 <div class="tests-container">
   {{> header title="Tests" redirect="/dashboard"}}
@@ -57,3 +58,5 @@
 {{#if errorMessage}}
   {{> error message=errorMessage}}
 {{/if}}
+<div class="sidebar-container">
+{{> sidebar}}</div>

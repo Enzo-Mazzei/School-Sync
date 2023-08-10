@@ -65,7 +65,7 @@ app.use("/", (req, res, next) => {
 // Routes
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
-// app.use("/dashboard", isLoggedIn)
+app.use("/dashboard", isLoggedIn);
 app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
 app.use("/dashboard", require("./routes/dashboard/grades.routes"));
 app.use("/dashboard", require("./routes/dashboard/tests.routes"));

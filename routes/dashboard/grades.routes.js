@@ -21,7 +21,7 @@ router.get("/grades", async (req, res) => {
       },
     })
     .then((user) => {
-      res.render("dashboard/grades", {
+      res.render("pages/dashboard/grades", {
         grades: user.grades,
       });
     })
