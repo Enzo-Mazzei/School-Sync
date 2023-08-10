@@ -1,4 +1,4 @@
-const Test = require("../models/Tests.model");
+const Tests = require("../../models/Tests.model");
 
 module.exports = (grades, testID) => {
   return new Promise(async (resolve, reject) => {
@@ -8,7 +8,7 @@ module.exports = (grades, testID) => {
 
     // Update the avgGrade in Test document
     try {
-      const testUpdate = await Test.findOneAndUpdate(
+      const testUpdate = await Tests.findOneAndUpdate(
         { _id: testID },
         { avgGrade: avgGrade },
         { new: true }

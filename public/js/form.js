@@ -4,9 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const formSelectItem = document.querySelectorAll(".form-options__item");
   const formSelectId = document.querySelector("#form-select-id");
 
-  const offsetY = formSelect.offsetTop + formSelect.offsetHeight + 1;
-  formOptions.style.top = offsetY;
-
   formSelectItem.forEach(function (item) {
     item.addEventListener("click", () => {
       formSelect.value = item.dataset.name;
@@ -15,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("click", (e) => {
+    const offsetY = formSelect.offsetTop + formSelect.offsetHeight + 1;
+    formOptions.style.top = offsetY;
     if (e.target === formSelect) {
       formOptions.classList.toggle("form-options__hidden");
     } else {

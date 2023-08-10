@@ -1,35 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const gradeItem = document.querySelectorAll(".grades-container__item");
+  const gradesItem = document.querySelectorAll(".grades-item");
 
-  gradeItem.forEach((item) => {
-    const $grade = item.children[1].children[0].children[0];
-    const $maxGrade = item.children[1].children[0].children[1].children[0];
-    const $icon = item.children[0];
+  gradesItem.forEach((item) => {
+    const score = item.querySelector(".grades-item__score");
 
-    const grade = Number($grade.innerHTML);
-    const maxGrade = Number($maxGrade.innerHTML);
+    const grade = Number(item.dataset.grade);
+    const maxGrade = Number(item.dataset.maxGrade);
 
-    $grade.innerHTML = formatNumber(grade);
-
-    const icon = item.children[0];
+    console.log(grade, maxGrade);
 
     const ratio = grade / maxGrade;
 
     if (ratio >= 0.75) {
-      $icon.classList.add("grades-container__item-icon-green");
+      score.classList.add("grades-item__score-green");
     } else if (ratio >= 0.5) {
-      $icon.classList.add("grades-container__item-icon-orange");
+      score.classList.add("grades-item__score-orange");
     } else {
-      $icon.classList.add("grades-container__item-icon-red");
+      score.classList.add("grades-item__score-red");
     }
   });
 });
-
-function formatNumber(number) {
-  const formattedNumber = number.toFixed(1);
-  if (formattedNumber.length === 3) {
-    return "0" + formattedNumber;
-  } else {
-    return "" + formattedNumber;
-  }
-}
