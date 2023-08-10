@@ -17,16 +17,16 @@ hbs.registerHelper("dateFormatter", function (dateRaw) {
   const diffInSeconds = diffInMilliseconds / 1000;
   const diffInMinutes = diffInSeconds / 60;
   const diffInHours = diffInMinutes / 60;
-  const diffInDays = diffInHours / 60;
+  const diffInDays = diffInHours / 24;
 
   if (diffInDays > 1) {
-    return Math.floor(diffInDays) + "d ago";
+    return Math.round(diffInDays) + "d ago";
   } else if (diffInHours > 1) {
-    return Math.floor(diffInHours) + "h ago";
+    return Math.round(diffInHours) + "h ago";
   } else if (diffInMinutes > 1) {
-    return Math.floor(diffInMinutes) + "m ago";
+    return Math.round(diffInMinutes) + "m ago";
   } else {
-    return Math.floor(diffInSeconds) + "s ago";
+    return Math.round(diffInSeconds) + "s ago";
   }
 });
 
@@ -55,20 +55,22 @@ hbs.registerHelper("toValueDate", function (date) {
 
 //Middlewares
 const isLoggedIn = require("./middleware/isLoggedIn");
+const isTeacher = require("./middleware/isTeacher");
+const updateSession = require("./middleware/updateSession");
 
 // Local variable
-app.use("/", (req, res, next) => {
-  app.locals.currentUser = req.session.currentUser;
-  next();
-});
+app.use("/", updateSession);
 
 // Routes
 app.use("/", require("./routes/index.routes"));
 app.use("/", require("./routes/auth.routes"));
-// app.use("/dashboard", isLoggedIn)
+
+// app.use("/dashboard", isLoggedIn);
+
 app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
 app.use("/dashboard", require("./routes/dashboard/grades.routes"));
 app.use("/dashboard", require("./routes/dashboard/tests.routes"));
+app.use("/dashboard", require("./routes/dashboard/courses.routes"));
 
 // Errors Handling
 require("./error-handling")(app);

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
 <link rel="stylesheet" href="/stylesheets/components/form.css" />
 
-<form class="form" action="/dashboard/grade/create/{{test._id}}" method="POST">
+<form class="form" action="/dashboard/grades/create/{{test._id}}" method="POST">
   <label for="">Student
     <span class="form-require">*</span>
   </label>
@@ -40,7 +40,8 @@
   </label>
   <input
     class="form-input"
-    type="text"
+    type="number"
+    step="0.1"
     name="grade"
     placeholder="Enter student score"
   />
