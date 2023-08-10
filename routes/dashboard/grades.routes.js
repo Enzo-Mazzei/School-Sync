@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const isTeacher = require("../../middleware/isTeacher");
-
 const createGrade = require("../../controllers/grades/createGrade");
 const deleteGrade = require("../../controllers/grades/deleteGrade");
 const getGrades = require("../../controllers/grades/getGrades");

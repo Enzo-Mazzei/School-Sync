@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/stylesheets/base/reset.css" />
+<link rel="stylesheet" href="/stylesheets/base/style.css" />
+<link rel="stylesheet" href="/stylesheets/components/form.css" />
+<link rel="stylesheet" href="/stylesheets/pages/profile-edit.css" />
+  <div class="profile-edit-container">
+    <h2 class="profile-edit__title">Change Email</h2>
+    <form class="profile-edit__form" action="/dashboard/profile/edit/email" method="POST">
+      <div class="form-group">
+        <label for="email" class="form-label">New Email</label>
+        <input
+          type="email"
+          class="form-input"
+          id="email"
+          value="{{user.email}}"
+          name="email"
+          placeholder="{{user.email}}"
+        />
+      </div>
+      <button class="profile-edit__save-button" type="submit">Save Email</button>
+      <a href="/dashboard/profile" class="profile-edit__cancel-button">Cancel</a>
+    </form>
+  </div>
+{{#if errorMessage}}
+  {{> error message=errorMessage}}
+{{/if}}
