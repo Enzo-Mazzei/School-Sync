@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const gradeTrending = document.querySelector("#grade-trending");
-  const grade = gradeTrending.dataset.grade;
-  const avgGrade = gradeTrending.dataset.avgGrade;
+  const grade = Number(gradeTrending.dataset.grade);
+  const avgGrade = Number(gradeTrending.dataset.avgGrade);
 
   if (grade >= avgGrade) {
     gradeTrending.style.color = "rgb(0,255,0)";

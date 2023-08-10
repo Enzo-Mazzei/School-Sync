@@ -69,7 +69,7 @@ app.use("/", require("./routes/auth.routes"));
 
 app.use("/dashboard", require("./routes/dashboard/profiles.routes"));
 app.use("/dashboard", require("./routes/dashboard/grades.routes"));
-// app.use("/dashboard", isTeacher, require("./routes/dashboard/tests.routes"));
+app.use("/dashboard", require("./routes/dashboard/tests.routes"));
 app.use("/dashboard", require("./routes/dashboard/courses.routes"));
 
 // Errors Handling
