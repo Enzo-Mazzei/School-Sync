@@ -3,6 +3,8 @@
 <link rel="stylesheet" href="/stylesheets/components/form.css" />
 <link rel="stylesheet" href="/stylesheets/pages/test.css" />
 
+<div class="main-app">
+  {{> sidebar tests=true}}
 <div class="test-container">
   {{> header title=test.title redirect="/dashboard/tests" }}
 
@@ -122,7 +124,7 @@
 
   </div>
 </div>
-
+</div>
 {{! MODAL }}
 {{> modal headerTitle="Add a score" headerIcon="post_add" partial="modal/formAddScore"}}
 

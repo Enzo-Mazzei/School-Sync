@@ -2,11 +2,15 @@
 <link rel="stylesheet" href="/stylesheets/base/style.css" />
 <link rel="stylesheet" href="/stylesheets/components/form.css" />
 <link rel="stylesheet" href="/stylesheets/pages/profile-edit.css" />
+  <div class="main-app">
+    {{> sidebar}}
   <div class="profile-edit-container">
-    <h2 class="profile-edit__title">Change Email</h2>
-    <form class="profile-edit__form" action="/dashboard/profile/edit/email" method="POST">
-      <div class="form-group">
-        <label for="email" class="form-label">New Email</label>
+    {{> header title="Change email adress" redirect="/dashboard/profile"}}
+    <form class="form" action="/dashboard/profile/edit/email" method="POST">
+        <label for="email" class="form-label">
+          New email
+          <span class="form-require">*</span>
+          </label>
         <input
           type="email"
           class="form-input"
@@ -15,9 +19,7 @@
           name="email"
           placeholder="{{user.email}}"
         />
-      </div>
-      <button class="profile-edit__save-button" type="submit">Save Email</button>
-      <a href="/dashboard/profile" class="profile-edit__cancel-button">Cancel</a>
+      <button class="form-button" type="submit">Save email</button>
     </form>
   </div>
 {{#if errorMessage}}

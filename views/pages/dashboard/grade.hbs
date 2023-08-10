@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/stylesheets/pages/grade.css" />
 
+<div class="main-app">
+  {{> sidebar grades=true}}
 <div class="grade-container">
   {{> header title=test.title redirect="/dashboard/grades"}}
   <div class="grade-header">
@@ -39,6 +41,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script src="/js/grade.js"></script>

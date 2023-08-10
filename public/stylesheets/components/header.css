@@ -31,6 +31,6 @@
     display: none;
   }
   .header__menu-icon {
-    display: none;
+    margin-right: 2rem;
   }
 }

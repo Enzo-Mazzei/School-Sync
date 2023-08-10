@@ -1,7 +1,9 @@
 <link rel="stylesheet" href="/stylesheets/pages/grades.css">
 
+<div class="main-app">
+  {{> sidebar grades=true}}
 <div class="grades-container">
-  {{> header title="Lastest grades" redirect="/dashboard"}}
+  {{> header title="Lastest grades"}}
   <div class="grades-collection">
     {{#each grades}}
       <a href="/dashboard/grades/{{_id}}">
@@ -20,5 +22,7 @@
     {{/each}}
   </div>
 </div>
+</div>
 
 <script src="/js/grades.js"></script>
+<script src="/js/sidebar.js"></script>

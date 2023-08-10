@@ -1,11 +1,13 @@
-let logo = document.querySelector("#open-modal");
-let menu = document.querySelector("#container");
-let sidebar = document.querySelector(".sidebar");
-let minisidebar = document.querySelector("#mini-sidebar");
-logo.addEventListener("click", toggleMenu);
+document.addEventListener("DOMContentLoaded", () => {
+  const openSidebar = document.querySelector("#open-sidebar");
+  const closeSidebar = document.querySelector("#close-sidebar");
+  const sidebar = document.querySelector(".sidebar");
 
-function toggleMenu() {
-  menu.classList.toggle("open");
-  sidebar.classList.toggle("open");
-  minisidebar.classList.toggle("open");
-}
+  openSidebar.addEventListener("click", () => {
+    sidebar.classList.add("sidebar-open");
+  });
+
+  closeSidebar.addEventListener("click", () => {
+    sidebar.classList.remove("sidebar-open");
+  });
+});
