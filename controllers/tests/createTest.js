@@ -6,17 +6,24 @@ module.exports = async (req, res, next) => {
   const { currentUser } = req.session;
 
   try {
+    const user = await User.findOne({ _id: currentUser._id }).populate("tests");
+
     // Handleling Error: field is empty
     if (!title || !maxGrade || !date) {
-      const user = await User.findOne({ _id: currentUser._id }).populate(
-        "tests"
-      );
-      res.render("pages/dashboard/tests", {
+      return res.render("pages/dashboard/tests", {
         tests: user.tests,
-        errorMessage:
-          "Missing field(s): Test name, maximum score and date are require!",
+        errorMessage: "Missing field(s): Test name, maximum score and date are require!",
       });
-      return;
+    }
+
+    // Handling invalid maxGrade format
+    const maxGradePattern = /^[0-9]+$/;
+    const maxGradeTest = maxGradePattern.test(maxGrade);
+    if (!maxGradeTest) {
+      return res.render("pages/dashboard/tests", {
+        tests: user.tests,
+        errorMessage: "Maximum score type is invalid: need to be a number.",
+      });
     }
 
     // Create new test
@@ -29,7 +36,7 @@ module.exports = async (req, res, next) => {
     });
 
     await User.findOneAndUpdate(
-      { _id: testCreate.teacher },
+      { _id: currentUser._id },
       { $push: { tests: testCreate._id } },
       { new: true }
     );

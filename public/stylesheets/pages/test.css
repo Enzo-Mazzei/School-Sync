@@ -1,6 +1,8 @@
 .test-container {
   padding: 0 1.5rem;
   flex: 1;
+  background-color: var(--primary-background-color);
+  min-height: 100vh;
 }
 
 .test-informations {
@@ -13,8 +15,10 @@
 .test-informations__title {
   font-size: var(--title-text-size);
   display: flex;
+  align-items: center;
   gap: 0.5rem;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .test-informations__date {
@@ -35,8 +39,8 @@
 
 .test-informations__stats {
   margin: 1rem 0;
-  background-color: var(--third-background-color);
-  padding: 0.5rem;
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -44,7 +48,11 @@
 }
 
 .test-informations__stats-icon {
-  padding: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(255, 215, 0, 0.25);
   border-radius: 0.5rem;
   color: rgba(255, 215, 0, 1);
@@ -71,10 +79,10 @@
 }
 
 .test-informations__actions {
-  margin-top: 2rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .test-informations__edit-button,
@@ -110,8 +118,7 @@
 .test-collection {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem 0;
+  gap: 1rem;
 }
 
 .test-collection__button {
@@ -193,8 +200,6 @@
     min-height: calc(100vh - 4rem);
     border-radius: 1rem;
     margin: 2rem 2rem 2rem 0;
-    background-color: rgb(255, 255, 255, 0.025);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
     position: relative;
   }
   .test-collection__button {
@@ -203,16 +208,7 @@
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
   }
-  .test-informations__title {
-    display: none;
-  }
-  .test-informations__stats {
-    margin: 0 0 1rem;
-  }
   .test-container__button-text {
     display: block;
-  }
-  .test-collection {
-    margin-top: 2rem;
   }
 }
