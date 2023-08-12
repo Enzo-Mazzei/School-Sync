@@ -1,0 +1,37 @@
+/* ANIMATION */
+
+@keyframes slide-from-left {
+  0% {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-right {
+  0% {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-bottom {
+  0% {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

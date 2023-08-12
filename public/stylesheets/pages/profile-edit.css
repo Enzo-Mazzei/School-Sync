@@ -1,0 +1,21 @@
+.profile-edit-container {
+  padding: 0 1.5rem;
+  flex: 1;
+}
+
+@media (min-width: 576px) {
+  .profile-edit-container {
+    padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem 2rem 2rem 0;
+    background-color: rgb(255, 255, 255, 0.025);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    position: relative;
+  }
+
+  .form {
+    min-height: 0;
+    max-width: 300px;
+  }
+}

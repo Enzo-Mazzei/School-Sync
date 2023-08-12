@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/stylesheets/components/sidebar.css" />
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img class="sidebar-header__logo" src="/images/logo.webp" alt="">
+    <span class="sidebar-header__title">SchoolSync</span>
+    <span id="close-sidebar" class="material-symbols-outlined sidebar-close">close</span>
+  </div>
+  <nav class="sidebar-nav">
+    <ul class="sidebar-list">
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">dashboard</span>
+          <span>Dashboard</span>
+        </li>
+      </a>
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">news</span>
+          <span>News</span>
+        </li>
+      </a>
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">calendar_month</span>
+          <span>Schedule</span>
+        </li>
+      </a>
+      {{#if currentUser.isStudent}}
+      <a href="/dashboard/grades">
+        <li class="sidebar-list__item {{#if grades}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">trending_up</span>
+          <span>Grades</span>
+        </li>
+      </a>
+      {{/if}}
+      {{#if currentUser.isTeacher}}
+      <a href="/dashboard/tests">
+        <li class="sidebar-list__item {{#if tests}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">note</span>
+          <span>Tests</span>
+        </li>
+      </a>
+      {{/if}}
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">receipt_long</span>
+          <span>Homework</span>
+        </li>
+      </a>
+    </ul>
+  </nav>
+  <a class="sidebar-profile" href="/dashboard/profile">
+    <img class="sidebar-profile__picture" src="{{currentUser.profilePicture}}" alt="">
+    <div class="sidebar-profile__container">
+      <p class="sidebar-profile__name">{{currentUser.firstName}} {{currentUser.lastName}}</p>
+      <p class="sidebar-profile__role">{{currentUser.role}}</p>
+    </div>
+  </a>
+</div>
+<script src="/js/sidebar.js"></script>

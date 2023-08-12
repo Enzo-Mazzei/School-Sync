@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/stylesheets/base/reset.css" />
+<link rel="stylesheet" href="/stylesheets/base/style.css" />
+<link rel="stylesheet" href="/stylesheets/pages/tests.css" />
+<link rel="stylesheet" href="/stylesheets/components/sidebar.css" />
+
+<div class="main-app">
+  {{> sidebar tests=true}}
+
+  <div class="tests-container">
+    {{> header title="Tests"}}
+
+    {{! Collection of tests }}
+    <div class="tests-collection">
+
+      {{! Add test button }}
+      <button
+        class="tests-collection__button"
+        type="button"
+        id="open-modal-button"
+        data-modal-id="modal-add-tests"
+      >
+        <span class="tests-container__button-icon material-symbols-outlined">
+          add
+        </span>
+        <span class="tests-container__button-text">Add a test</span>
+      </button>
+
+      {{! Items of tests collection }}
+      {{#each tests}}
+        <a href="/dashboard/tests/{{_id}}">
+          <div class="tests-collection__item">
+
+            {{! Item left }}
+            <div class="tests-collection__item-container">
+              <span class="tests-collection__item-icon material-symbols-outlined">
+                quick_reference
+              </span>
+              <p class="tests-collection__item-title">{{title}}</p>
+            </div>
+
+            {{! Item right }}
+            <div class="tests-collection__item__right">
+              <p class="tests-collection__item-createdAt">
+                {{dateFormatter createdAt}}
+              </p>
+              <span class="material-symbols-outlined">
+                chevron_right
+              </span>
+            </div>
+          </div>
+        </a>
+      {{/each}}
+
+    </div>
+
+  </div>
+</div>
+
+{{! MODAL }}
+{{> modal headerTitle="Add a test" headerIcon="library_add" partial="modal/formAddTest"}}
+
+{{!-- ERROR --}}
+{{#if errorMessage}}
+  {{> error message=errorMessage}}
+{{/if}}

@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/stylesheets/base/reset.css" />
+<link rel="stylesheet" href="/stylesheets/base/style.css" />
+<link rel="stylesheet" href="/stylesheets/components/header.css" />
+
+<div class="header">
+  {{#if redirect}}
+    <a href="{{redirect}}">
+      <div class="header__menu-icon">
+        <span class="material-symbols-outlined">
+          chevron_left
+        </span>
+      </div>
+    </a>
+  {{/if}}
+  <h1 class="header__title">{{title}}</h1>
+  <img id="open-sidebar" class="header__user" src="{{currentUser.profilePicture}}" alt="" />
+</div>

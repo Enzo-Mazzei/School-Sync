@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="/stylesheets/base/reset.css" />
+<link rel="stylesheet" href="/stylesheets/base/style.css" />
+<link rel="stylesheet" href="/stylesheets/components/form.css" />
+
+<form class="form" action="/dashboard/grades/create/{{test._id}}" method="POST">
+  <label for="">Student
+    <span class="form-require">*</span>
+  </label>
+  <input
+    readonly
+    type="text"
+    class="form-input form-select"
+    id="form-select"
+    placeholder="Select student"
+  />
+  <input hidden id="form-select-id" name="student" />
+  <input hidden id="form-select-id" name="{{test}}" />
+  <div class="form-options form-options__hidden" id="form-options">
+    {{#each students}}
+      <div
+        class="form-options__item"
+        data-name="{{firstName}} {{lastName}}"
+        data-id="{{_id}}"
+        id="form-select-item"
+      >
+        <img
+          class="form-options__item-image"
+          src="{{profilePicture}}"
+          alt="{{firstname}} {{lastname}}"
+        />
+        <span>
+          {{firstName}}
+          {{lastName}}
+        </span>
+      </div>
+    {{/each}}
+  </div>
+  <label for="">Grade
+    <span class="form-require">*</span>
+  </label>
+  <input
+    class="form-input"
+    type="number"
+    step="0.1"
+    name="grade"
+    placeholder="Enter student score"
+  />
+  <button class="form-button" type="submit">
+    <span class="material-symbols-outlined">
+      add
+    </span>
+    <span> Add</span>
+  </button>
+</form>
+
+<script src="/js/form.js"></script>

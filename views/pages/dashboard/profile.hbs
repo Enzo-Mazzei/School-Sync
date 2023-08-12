@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/stylesheets/pages/profile.css" />
+<div class="main-app">
+  {{> sidebar}}
+  <div class="profile-container">
+    {{> header title="Profile"}}
+    <div class="profile-card">
+      <h2 class="profile-card__title">Hello,</h2>
+      <p class="profile-card__info">{{user.firstName}} {{user.lastName}}</p>
+    </div>
+    <div class="profile-card">
+      <h2 class="profile-card__title">Class</h2>
+      <p class="profile-card__info">{{user.class}}</p>
+    </div>
+    <div class="profile-card">
+      <h2 class="profile-card__title">Email</h2>
+      <p class="profile-card__info">{{user.email}}</p>
+      <a href="/dashboard/profile/edit/email" class="profile-card__edit-link">Edit Email</a>
+    </div>
+    <div class="profile-card">
+      <h2 class="profile-card__title">Change Password</h2>
+      <p class="profile-card__info">You have the option to modify your password.</p>
+      <a href="/dashboard/profile/edit/password" class="profile-card__edit-link">Change Password</a>
+    </div>
+  </div>
+</div>

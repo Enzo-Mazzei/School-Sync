@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/stylesheets/pages/grades.css">
+
+<div class="main-app">
+  {{> sidebar grades=true}}
+<div class="grades-container">
+  {{> header title="Lastest grades"}}
+  <div class="grades-collection">
+    {{#each grades}}
+      <a href="/dashboard/grades/{{_id}}">
+        <div class="grades-item" id="grades-item" data-grade="{{grade}}" data-max-grade="{{test.maxGrade}}">
+          <div class="grades-item__score">{{grade}}</div>
+          <div class="grades-item__container">
+            <p class="grades-item__test">{{test.title}}</p>
+            <p class="grades-item__course">{{test.teacher.firstName}} {{test.teacher.lastName}}</p>
+            <p class="grades-item__average">{{dateFormatter createdAt}}</p>
+          </div>
+          <span class="grades-item__arrow material-symbols-outlined">
+           chevron_right
+          </span>
+        </div>
+      </a>
+    {{/each}}
+  </div>
+</div>
+</div>
+
+<script src="/js/grades.js"></script>
+<script src="/js/sidebar.js"></script>
