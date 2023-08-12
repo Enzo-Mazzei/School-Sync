@@ -1,0 +1,24 @@
+<h1>Classes Page</h1>
+
+<form action="/dashboard/classes" method="POST">
+  <label for="number">Number:</label>
+  <input type="number" id="number" name="number" required>
+  <label for="letter">Letter:</label>
+  <input type="text" id="letter" name="letter" maxlength="1" required>
+  <label for="year">Year:</label>
+  <input type="number" id="year" name="year" required>
+  <button type="submit">Create Class</button>
+</form>
+
+<h2>Classes List:</h2>
+<ul>
+  {{#each classes}}
+    <li>
+      Class {{number}}{{letter}}, Year: {{year}}
+      <form action="/dashboard/classes/{{_id}}?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+      <a href="/dashboard/classes/{{_id}}">Add students</a>
+    </li>
+  {{/each}}
+</ul>
