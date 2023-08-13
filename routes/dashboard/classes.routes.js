@@ -100,4 +100,21 @@ router.post("/classes/:classId/search", async (req, res) => {
   }
 });
 
+router.post("/classes/:classId/remove", async (req, res) => {
+  try {
+    const classId = req.params.classId;
+    const studentId = req.body.studentId;
+
+    await User.findByIdAndUpdate(studentId, { $unset: { class: 1 } });
+    await Class.findByIdAndUpdate(classId, { $pull: { students: studentId } });
+
+    res.redirect(`/dashboard/classes/${classId}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "An error occurred while processing the request.",
+    });
+  }
+});
+
 module.exports = router;

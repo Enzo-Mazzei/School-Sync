@@ -3,6 +3,10 @@
 <ul>
   {{#each classDetails.students}}
     <li>{{firstName}} {{lastName}}</li>
+          <form action="/dashboard/classes/{{../classDetails._id}}/remove" method="POST">
+        <input type="hidden" name="studentId" value="{{this._id}}">
+        <button type="submit">-</button>
+      </form>
   {{/each}}
 </ul>
 
