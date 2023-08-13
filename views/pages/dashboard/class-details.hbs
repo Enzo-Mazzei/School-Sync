@@ -1,0 +1,35 @@
+<h1>Class Page</h1>
+<h2>All Students in Class:</h2>
+<ul>
+  {{#each classDetails.students}}
+    <li>{{firstName}} {{lastName}}</li>
+          <form action="/dashboard/classes/{{../classDetails._id}}/remove" method="POST">
+        <input type="hidden" name="studentId" value="{{this._id}}">
+        <button type="submit">-</button>
+      </form>
+  {{/each}}
+</ul>
+
+<form action="/dashboard/classes/{{classDetails._id}}/search" method="GET">
+  <label for="studentName">Search Students:</label>
+  <input type="text" id="studentName" name="studentName" required>
+  <button type="submit">Search</button>
+</form>
+
+{{#if students.length}}
+  <h2>Search Results:</h2>
+  <ul>
+    {{#each students}}
+      <li>
+        {{firstName}} {{lastName}}
+        <form action="/dashboard/classes/{{../classDetails._id}}/search" method="POST">
+          <input type="hidden" name="studentId" value="{{this._id}}">
+          <button type="submit">+</button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No results found.</p>
+{{/if}}
+
