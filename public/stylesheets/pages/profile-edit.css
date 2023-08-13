@@ -1,57 +1,23 @@
 .profile-edit-container {
+  background-color: var(--primary-background-color);
+  padding: 0 1.5rem;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.form {
+  min-height: 0;
+}
+
+@media (min-width: 576px) {
+  .profile-edit-container {
     padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem 2rem 2rem 0;
+    position: relative;
   }
-  
-  .profile-edit__title {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
+  .form {
+    max-width: 300px;
   }
-  
-  .profile-edit__form {
-    max-width: 400px;
-  }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-label {
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--primary-border-color);
-    border-radius: 0.5rem;
-    font-size: 1rem;
-  }
-  
-  .profile-edit__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  
-  .profile-edit__save-button,
-  .profile-edit__cancel-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .profile-edit__save-button {
-    background-color: var(--primary-background-color);
-    color: var(--primary-text-color);
-  }
-  
-  .profile-edit__cancel-button {
-    background-color: var(--secondary-background-color);
-    color: var(--primary-text-color);
-  }
-  
+}

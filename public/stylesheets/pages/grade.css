@@ -1,5 +1,8 @@
 .grade-container {
   padding: 0 1.5rem;
+  flex: 1;
+  background-color: var(--primary-background-color);
+  min-height: 100vh;
 }
 
 .grade-header {
@@ -10,16 +13,16 @@
 
 .grade-header__title {
   font-size: var(--title-text-size);
+  margin-bottom: 1rem;
 }
 
 .grade-header__comment {
-  margin-top: 0.5rem;
   font-size: var(--secondary-text-size);
   color: var(--secondary-text-color);
 }
 
-.grade-header__teacter {
-  background-color: var(--third-background-color);
+.grade-header__teacher {
+  background-color: var(--secondary-background-color);
   padding: 1rem;
   border-radius: 0.5rem;
   display: flex;
@@ -67,8 +70,33 @@
 
 .grade-header__timestamp {
   margin-top: 1rem;
-  font-size: var(--secondary-text-size);
+  font-weight: 300;
+  font-size: var(--third-text-size);
   color: var(--secondary-text-color);
+}
+
+.grade-date {
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.grade-date__icon {
+  font-size: 2rem;
+  color: var(--secondary-text-color);
+}
+
+.grade-date__text {
+  font-size: 1rem;
+}
+
+.grade-header__teacher-role {
+  color: var(--secondary-text-color);
+  font-size: 0.9rem;
 }
 
 @media (min-width: 576px) {
@@ -76,12 +104,6 @@
     padding: 0 1.5rem;
     min-height: calc(100vh - 4rem);
     border-radius: 1rem;
-    margin: 2rem;
-    background-color: rgb(255, 255, 255, 0.025);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
-  }
-
-  .grade-header__title {
-    display: none;
+    margin: 2rem 2rem 2rem 0;
   }
 }

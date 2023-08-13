@@ -1,5 +1,9 @@
 .grades-container {
   padding: 0 1.5rem;
+  flex: 1;
+  min-height: 100vh;
+  background-color: var(--primary-background-color);
+  position: relative;
 }
 
 .grades-collection {
@@ -65,6 +69,57 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  position: relative;
+}
+
+.search {
+  position: relative;
+}
+
+.search > input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.75rem 4rem 0.75rem 1rem;
+  background-color: var(--secondary-background-color);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.search > button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1/1;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+}
+
+.search > button > span {
+  font-size: 1.25rem;
+}
+
+.search > input:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.grade-noresult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--secondary-background-color);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.grade-noresult > span {
+  font-size: 3rem;
 }
 
 @media (min-width: 576px) {
@@ -72,8 +127,10 @@
     padding: 0 1.5rem;
     min-height: calc(100vh - 4rem);
     border-radius: 1rem;
-    margin: 2rem;
-    background-color: rgb(255, 255, 255, 0.025);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    margin: 2rem 2rem 2rem 0;
+  }
+
+  .search {
+    max-width: 300px;
   }
 }

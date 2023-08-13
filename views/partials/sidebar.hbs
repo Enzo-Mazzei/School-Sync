@@ -1,56 +1,67 @@
 <link rel="stylesheet" href="/stylesheets/components/sidebar.css" />
 
-<div id="container">
-  <div id="mini-sidebar">
-    <ul>
-      <li><a class="icon icon-data" href="#"><span
-            class="material-symbols-outlined"
-          >dashboard</span></a></li>
-      <li>
-        <a class="icon icon-location" href="#"><span
-            class="material-symbols-outlined"
-          >news</span></a></li>
-      <li><a class="icon icon-study" href="#"><span
-            class="material-symbols-outlined"
-          >calendar_month</span></a></li>
-      <li><a class="icon icon-photo" href="#"><span
-            class="material-symbols-outlined"
-          >trending_up</span></a></li>
-      <li><a class="icon icon-wallet" href="#"><span
-            class="material-symbols-outlined"
-          >receipt_long</span></a></li>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img class="sidebar-header__logo" src="/images/logo.webp" alt="">
+    <span class="sidebar-header__title">SchoolSync</span>
+    <span id="close-sidebar" class="material-symbols-outlined sidebar-close">close</span>
+  </div>
+  <nav class="sidebar-nav">
+    <ul class="sidebar-list">
+      <a href="/dashboard">
+        <li class="sidebar-list__item {{#if dashboard}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">dashboard</span>
+          <span>Dashboard</span>
+        </li>
+      </a>
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">news</span>
+          <span>News</span>
+        </li>
+      </a>
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">calendar_month</span>
+          <span>Schedule</span>
+        </li>
+      </a>
+      {{#if currentUser.isStudent}}
+      <a href="/dashboard/grades">
+        <li class="sidebar-list__item {{#if grades}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">trending_up</span>
+          <span>Grades</span>
+        </li>
+      </a>
+      {{/if}}
+      {{#if currentUser.isTeacher}}
+      <a href="#">
+        <li class="sidebar-list__item {{#if classes}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">format_list_bulleted</span>
+          <span>Classes</span>
+        </li>
+      </a>
+      <a href="/dashboard/tests">
+        <li class="sidebar-list__item {{#if tests}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">note</span>
+          <span>Tests</span>
+        </li>
+      </a>
+      {{/if}}
+      <a href="#">
+        <li class="sidebar-list__item">
+          <span class="material-symbols-outlined sidebar-list__icon">receipt_long</span>
+          <span>Homework</span>
+        </li>
+      </a>
     </ul>
-  </div>
-  <div id="sidebar" class="sidebar">
-      <div id="logo">
-    <div class="menu-icon">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+  </nav>
+  <a class="sidebar-profile" href="/dashboard/profile">
+    <img class="sidebar-profile__picture" src="{{currentUser.profilePicture}}" alt="">
+    <div class="sidebar-profile__container">
+      <p class="sidebar-profile__name">{{currentUser.firstName}} {{currentUser.lastName}}</p>
+      <p class="sidebar-profile__role">{{currentUser.role}}</p>
     </div>
-  </div>
-    <nav class="menu effect" id="menu">
-      <ul>
-        <li><a class="icon icon-data" href="#"><span
-              class="material-symbols-outlined"
-            >dashboard</span>Dashboard</a></li>
-        <li><a class="icon icon-location" href="#"><span
-              class="material-symbols-outlined"
-            >news</span>News</a></li>
-        <li><a class="icon icon-study" href="#"><span
-              class="material-symbols-outlined"
-            >calendar_month</span>Schedule</a></li>
-        <li><a class="icon icon-photo" href="#"><span
-              class="material-symbols-outlined"
-            >trending_up</span>Grades</a></li>
-        <li><a class="icon icon-wallet" href="#"><span
-              class="material-symbols-outlined"
-            >receipt_long</span>Homework</a></li>
-      </ul>
-    </nav><div class="user">
-      {{currentUser.firstName}}
-      {{currentUser.lastName}}
-      {{currentUser.profilePicture}}</div>
-  </div>
+  </a>
 </div>
 <script src="/js/sidebar.js"></script>
