@@ -8,8 +8,8 @@
   </div>
   <nav class="sidebar-nav">
     <ul class="sidebar-list">
-      <a href="#">
-        <li class="sidebar-list__item">
+      <a href="/dashboard">
+        <li class="sidebar-list__item {{#if dashboard}}sidebar-list__item-active{{/if}}">
           <span class="material-symbols-outlined sidebar-list__icon">dashboard</span>
           <span>Dashboard</span>
         </li>
@@ -35,6 +35,12 @@
       </a>
       {{/if}}
       {{#if currentUser.isTeacher}}
+      <a href="#">
+        <li class="sidebar-list__item {{#if classes}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">format_list_bulleted</span>
+          <span>Classes</span>
+        </li>
+      </a>
       <a href="/dashboard/tests">
         <li class="sidebar-list__item {{#if tests}}sidebar-list__item-active{{/if}}">
           <span class="material-symbols-outlined sidebar-list__icon">note</span>

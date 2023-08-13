@@ -1,15 +1,18 @@
 .profile-container {
   display: flex;
   flex-direction: column;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 1.5rem;
+  box-sizing: border-box;
   gap: 1rem;
+  background-color: var(--primary-background-color);
   flex: 1;
+  min-height: 100vh;
 }
 
 .profile-card {
   padding: 1.5rem;
   background-color: var(--secondary-background-color);
-  border: 1px solid var(--secondary-border-color);
+  /* border: 1px solid var(--secondary-border-color); */
   border-radius: 0.5rem;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -33,7 +36,7 @@
   background-color: var(--primary-color);
   padding: 0.5rem 1rem;
   margin-right: auto;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   z-index: 0;
 }
 
@@ -43,8 +46,6 @@
     min-height: calc(100vh - 4rem);
     border-radius: 1rem;
     margin: 2rem 2rem 2rem 0;
-    background-color: rgb(255, 255, 255, 0.025);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
     position: relative;
   }
 }
