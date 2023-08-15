@@ -1,4 +1,27 @@
+<style>
+    @import "/stylesheets/pages/dashboard.css";
+</style>
+
 <div class="main-app">
     {{> sidebar dashboard=true}}
+
+    <div class="dashboard-container">
+        {{> header title="Dashboard"}}
+
+        <div class="dashboard-welcome">
+            <h1>Hi <b>{{currentUser.firstName}}</b>, welcome to your dashboard.</h1>
+
+            {{#if currentUser.isStudent}}
+            <a href="/dashboard/grades">Go to Grades</a>
+            {{/if}}
+            {{#if currentUser.isTeacher}}
+            <a href="/dashboard/classes">Go to Classes</a>
+            {{/if}}
+            {{#if currentUser.isTeacher}}
+            <a href="/dashboard/tests">Go to Tests</a>
+            {{/if}}
+        </div>
+
+    </div>
 
 </div>

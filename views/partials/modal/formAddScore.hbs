@@ -9,6 +9,7 @@
   <input readonly type="text" class="form-input form-select" id="form-select" placeholder="Select student" />
   <input hidden id="form-select-id" name="student" />
   <input hidden id="form-select-id" name="{{test}}" />
+  {{#if students}}
   <div class="form-options form-options__hidden" id="form-options">
     {{#each students}}
     <div class="form-options__item" data-name="{{firstName}} {{lastName}}" data-id="{{_id}}" id="form-select-item">
@@ -20,6 +21,16 @@
     </div>
     {{/each}}
   </div>
+  {{else}}
+  <div class="form-options" id="form-options">
+    <div class="form-options__item-no-found">
+      <span>
+        No students found, please first add
+        <a href="/dashboard/classes/{{test.class._id}}">students</a>.
+      </span>
+    </div>
+  </div>
+  {{/if}}
   <label for="">Grade
     <span class="form-require">*</span>
   </label>

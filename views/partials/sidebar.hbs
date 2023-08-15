@@ -54,6 +54,14 @@
           <span>Homework</span>
         </li>
       </a>
+      {{#if currentUser.isAdmin}}
+      <a href="/dashboard/admin">
+        <li class="sidebar-list__item {{#if admin}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">shield_person</span>
+          <span>Admin</span>
+        </li>
+      </a>
+      {{/if}}
     </ul>
   </nav>
   <a class="sidebar-profile" href="/dashboard/profile">

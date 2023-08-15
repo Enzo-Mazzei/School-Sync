@@ -10,25 +10,28 @@ const searchStudent = require("../../controllers/classes/searchStudent");
 const addStudentToClass = require("../../controllers/classes/addStudentToClass");
 const removeStudentFromClass = require("../../controllers/classes/removeStudentFromClass");
 
+// Middlewares
+const isTeacher = require("../../middleware/isTeacher");
+
 /* GET CLASSES */
-router.get("/classes", getClasses);
+router.get("/classes", isTeacher, getClasses);
 
 /* CREATE CLASS */
-router.post("/classes", createClass);
+router.post("/classes", isTeacher, createClass);
 
 /* DELETE CLASS */
-router.post("/classes/:id/delete", deleteClass);
+router.post("/classes/:id/delete", isTeacher, deleteClass);
 
 /* GET CLASS */
-router.get("/classes/:id", getClass);
+router.get("/classes/:id", isTeacher, getClass);
 
 /* GET CLASS SEARCH */
-router.get("/classes/:id/search", searchStudent);
+router.get("/classes/:id/search", isTeacher, searchStudent);
 
 /* GET CLASSES ADD STUDENT */
-router.post("/classes/:id/add", addStudentToClass);
+router.post("/classes/:id/add", isTeacher, addStudentToClass);
 
 /* REMOVE CLASSES STUDENT */
-router.post("/classes/:id/remove", removeStudentFromClass);
+router.post("/classes/:id/remove", isTeacher, removeStudentFromClass);
 
 module.exports = router;

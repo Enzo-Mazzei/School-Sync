@@ -12,6 +12,7 @@
   </label>
   <input readonly type="text" class="form-input form-select" id="form-select" placeholder="Select a class" />
   <input hidden id="form-select-id" name="classID" />
+  {{#if classesList}}
   <div class="form-options form-options__hidden" id="form-options">
     {{#each classesList}}
     <div class="form-options__item" data-name="{{number}}{{letter}} - {{year}}" data-id="{{_id}}" id="form-select-item">
@@ -21,6 +22,15 @@
     </div>
     {{/each}}
   </div>
+  {{else}}
+  <div class="form-options form-options__hidden" id="form-options">
+    <div class="form-options__item-no-found">
+      <span>
+        No class found, please first create a <a href="/dashboard/classes/">class</a>.
+      </span>
+    </div>
+  </div>
+  {{/if}}
   <label for="">Maximum grade
     <span class="form-require">*</span>
   </label>
