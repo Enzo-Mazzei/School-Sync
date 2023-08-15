@@ -4,7 +4,9 @@ module.exports = getProfile = async (req, res) => {
   try {
     const { currentUser } = req.session;
 
-    const user = await User.findOne({ _id: currentUser._id });
+    const user = await User.findOne({ _id: currentUser._id }).populate(
+      "classes"
+    );
     if (!user) {
       return res.render("pages/dashboard/email-edit", {
         errorMessage: "User not found",

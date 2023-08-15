@@ -37,6 +37,10 @@ const testSchema = new Schema(
         ref: "Grades",
       },
     ],
+    class: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classes",
+    },
   },
   { timestamps: true }
 );

@@ -43,10 +43,12 @@ const userSchema = new Schema(
       enum: ["student", "teacher", "admin"],
       default: "student",
     },
-    class: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Classes",
-    },
+    classes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Classes",
+      },
+    ],
     courses: [
       {
         type: mongoose.Schema.Types.ObjectId,

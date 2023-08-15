@@ -1,20 +1,23 @@
-const User = require("../../models/User.model");
 const Tests = require("../../models/Tests.model");
+const ClassModel = require("../../models/Class.model");
 
 module.exports = async (req, res, next) => {
   const { testID } = req.params;
   try {
-    const [test, students] = await Promise.all([
-      Tests.findOne({ _id: testID }).populate({
-        path: "grades",
+    const test = await Tests.findOne({ _id: testID })
+      .populate({
+        path: "grades class",
         populate: {
           path: "student",
         },
-      }),
-      User.find(),
-    ]);
+      })
+      .populate("class");
 
-    res.render("pages/dashboard/test", { test, students });
+    const classFind = await ClassModel.findOne({ _id: test.class }).populate(
+      "students"
+    );
+
+    res.render("pages/dashboard/test", { test, students: classFind.students });
   } catch (error) {
     console.log(error);
   }

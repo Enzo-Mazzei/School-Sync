@@ -11,7 +11,7 @@
 
     <div class="class-main">
       <ul class="class-student-in">
-        <h1>Class: {{classDetails.letter}}{{classDetails.number}}{{classDetails.year}}</h1>
+        <h1>{{classDetails.number}}{{classDetails.letter}} - {{classDetails.year}}</h1>
         {{#each classDetails.students}}
         <li>
           <span>
@@ -47,7 +47,7 @@
               <img src="{{profilePicture}}" alt="">
               {{firstName}} {{lastName}}
             </span>
-            <form action="/dashboard/classes/{{../classDetails._id}}/search" method="POST">
+            <form action="/dashboard/classes/{{../classDetails._id}}/add" method="POST">
               <input type="hidden" name="studentId" value="{{this._id}}">
               <button type="submit">
                 <span class="material-symbols-outlined">
