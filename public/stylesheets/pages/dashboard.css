@@ -39,6 +39,10 @@
   color: var(--secondary-text-color);
 }
 
+canvas {
+  margin-top: 1rem;
+}
+
 @media (min-width: 576px) {
   .dashboard-container {
     padding: 0 1.5rem;

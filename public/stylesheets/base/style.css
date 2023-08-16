@@ -3,7 +3,7 @@
 :root {
   --font-family: Poppins;
   --error-color: #ff2d49;
-  --primary-color: #712cf9;
+  --primary-color: rgb(113, 44, 249);
 
   /* BACKGROUND */
   --primary-background-color: rgb(23, 23, 32);

@@ -20,8 +20,14 @@
             {{#if currentUser.isTeacher}}
             <a href="/dashboard/tests">Go to Tests</a>
             {{/if}}
+            {{#if currentUser.isStudent}}
+            <canvas id="student-chart" height="500"></canvas>
+            {{/if}}
         </div>
 
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/dashboard.js"></script>
