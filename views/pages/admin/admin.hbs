@@ -7,12 +7,13 @@
 
   <div class="admin-container">
     {{> header title="Admin"}}
+    <div class="admin-notifs" id="admin-notifs"></div>
     <div class="admin-collection">
       {{#each users}}
       <div class="admin-user">
         <img src="{{_doc.profilePicture}}" alt="">
         <p>{{_doc.firstName}} {{_doc.lastName}}</p>
-        <select name="role">
+        <select name="role" class="admin-select" data-user-id="{{_doc._id}}">
           <option value="admin" {{#if isAdmin}}selected{{/if}}>Admin</option>
           <option value="teacher" {{#if isTeacher}}selected{{/if}}>Teacher</option>
           <option value="student" {{#if isStudent}}selected{{/if}}>Student</option>
@@ -22,3 +23,5 @@
     </div>
   </div>
 </div>
+
+<script src="/js/admin.js"></script>

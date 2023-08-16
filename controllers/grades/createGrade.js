@@ -30,8 +30,6 @@ module.exports = async (req, res, netx) => {
       return;
     }
 
-    console.log(studentIDs, student);
-
     if (!grade || !student) {
       res.render("pages/dashboard/test", {
         test,
@@ -45,7 +43,11 @@ module.exports = async (req, res, netx) => {
     const gradeCreate = await Grades.create({ grade, student, test: testID });
 
     const [userUpdate, testUpdate] = await Promise.all([
-      User.findOneAndUpdate({ _id: gradeCreate.student._id }, { $push: { grades: gradeCreate._id } }, { new: true }),
+      User.findOneAndUpdate(
+        { _id: gradeCreate.student._id },
+        { $push: { grades: gradeCreate._id } },
+        { new: true }
+      ),
       Tests.findOneAndUpdate(
         { _id: gradeCreate.test._id },
         { $push: { grades: gradeCreate._id } },
@@ -53,7 +55,10 @@ module.exports = async (req, res, netx) => {
       ).populate("grades"),
     ]);
 
-    const testUpdateAverage = await updateAvgGrade(testUpdate.grades, gradeCreate.test._id);
+    const testUpdateAverage = await updateAvgGrade(
+      testUpdate.grades,
+      gradeCreate.test._id
+    );
 
     res.redirect("/dashboard/tests/" + testID);
   } catch (error) {
