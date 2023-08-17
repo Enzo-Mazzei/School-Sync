@@ -38,6 +38,12 @@ const classSchema = new Schema(
         ref: "Courses",
       },
     ],
+    news: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "News",
+      },
+    ],
   },
   { timestamps: true }
 );
