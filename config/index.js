@@ -7,7 +7,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/school-sync";
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/school-sync";
 
 module.exports = (app) => {
   // app.use(logger("dev"));
@@ -21,7 +22,9 @@ module.exports = (app) => {
 
   app.use(express.static(path.join(__dirname, "..", "public")));
 
-  app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
+  app.use(
+    favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
+  );
 
   app.use(
     session({

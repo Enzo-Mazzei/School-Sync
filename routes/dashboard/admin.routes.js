@@ -1,10 +1,17 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
 // Controllers
-const getAdmin = require("../../controllers/admin/getAdmin")
+const getAdmin = require("../../controllers/admin/getAdmin");
+
+// Middlewares
+const isAdmin = require("../../middleware/isAdmin");
+const updateRole = require("../../controllers/admin/updateRole");
 
 /* GET ADMIN */
-router.get("/admin", getAdmin)
+router.get("/admin", isAdmin, getAdmin);
 
-module.exports = router
+/* UPDATE ROLE */
+router.post("/update-role", updateRole);
+
+module.exports = router;

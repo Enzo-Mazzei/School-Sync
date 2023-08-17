@@ -1,23 +1,30 @@
-const Tests = require("../../models/Tests.model");
-const ClassModel = require("../../models/Class.model");
+const Tests = require('../../models/Tests.model');
+const ClassModel = require('../../models/Class.model');
 
 module.exports = async (req, res, next) => {
-  const { testID } = req.params;
+  const {testID} = req.params;
   try {
-    const test = await Tests.findOne({ _id: testID })
+    const test = await Tests.findOne({_id: testID})
       .populate({
-        path: "grades class",
+        path: 'grades class',
         populate: {
-          path: "student",
+          path: 'student',
         },
       })
-      .populate("class");
+      .populate('class');
 
-    const classFind = await ClassModel.findOne({ _id: test.class }).populate(
-      "students"
+    const classFind = await ClassModel.findOne({_id: test.class}).populate(
+      'students',
     );
 
-    res.render("pages/dashboard/test", { test, students: classFind.students });
+    if (classFind) {
+      return res.render('pages/dashboard/test', {
+        test,
+        students: classFind.students,
+      });
+    } else {
+      return res.render('pages/dashboard/test', {test});
+    }
   } catch (error) {
     console.log(error);
   }

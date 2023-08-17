@@ -57,15 +57,21 @@
     min-height: calc(100vh - 4rem);
     border-radius: 1rem;
     margin: 2rem 2rem 2rem 0;
+    position: relative;
   }
 
   .classes-button {
-    margin-left: auto;
     background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 1.5rem;
     gap: 0.5rem;
+    right: 1.5rem;
   }
 
   .classes-button__text {
     display: block;
+    font-weight: 500;
   }
 }

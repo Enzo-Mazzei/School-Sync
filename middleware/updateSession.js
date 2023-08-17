@@ -11,6 +11,11 @@ const updateSession = async (req, res, next) => {
     if (req.session.currentUser.role === "student") {
       req.session.currentUser.isStudent = true;
     }
+    if (req.session.currentUser.role === "admin") {
+      req.session.currentUser.isTeacher = true;
+      req.session.currentUser.isStudent = true;
+      req.session.currentUser.isAdmin = true;
+    }
     req.app.locals.currentUser = req.session.currentUser;
   }
   next();

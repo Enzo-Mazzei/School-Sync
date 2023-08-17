@@ -40,6 +40,17 @@
   z-index: 0;
 }
 
+.profile-logout-button {
+  background-color: var(--error-color);
+  color: white;
+  font-family: var(--font-family);
+  padding: 0.5rem 2rem;
+  font-size: var(--primary-text-size);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 @media (min-width: 576px) {
   .profile-container {
     padding: 0 1.5rem;
