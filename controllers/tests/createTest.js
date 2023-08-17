@@ -1,5 +1,6 @@
 const User = require("../../models/User.model");
 const Tests = require("../../models/Tests.model");
+const ClassModel = require("../../models/Class.model");
 
 module.exports = async (req, res, next) => {
   try {
@@ -8,10 +9,13 @@ module.exports = async (req, res, next) => {
 
     const user = await User.findOne({ _id: currentUser._id }).populate("tests");
 
+    const classesList = await ClassModel.find();
+
     // Handleling Error: field is empty
     if (!title || !maxGrade || !date || !classID) {
       return res.render("pages/dashboard/tests", {
         tests: user.tests,
+        classesList,
         errorMessage:
           "Missing field(s): Test name, maximum score and date are require!",
       });
@@ -23,6 +27,7 @@ module.exports = async (req, res, next) => {
     if (!maxGradeTest) {
       return res.render("pages/dashboard/tests", {
         tests: user.tests,
+        classesList,
         errorMessage: "Maximum score type is invalid: need to be a number.",
       });
     }

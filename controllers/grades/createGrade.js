@@ -10,15 +10,14 @@ module.exports = async (req, res, netx) => {
   const { testID } = req.params;
 
   try {
-    const [test, students] = await Promise.all([
-      Tests.findOne({ _id: testID }).populate({
+    const test = await Tests.findOne({ _id: testID })
+      .populate({
         path: "grades",
         populate: {
           path: "student",
         },
-      }),
-      User.find(),
-    ]);
+      })
+      .populate("class");
 
     const studentIDs = test.grades.map((grade) => grade.student._id.toString());
 
