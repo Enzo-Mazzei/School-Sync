@@ -1,39 +1,43 @@
-{{#if currentUser.isTeacher}}
-<div class="create-news">
-  <h2>Create News</h2>
-  <form action="/dashboard/news" method="POST">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
+<style>
+  @import "/stylesheets/pages/news.css";
+</style>
 
-    <label for="content">Content:</label>
-    <textarea id="content" name="content" required></textarea>
+<div class="main-app">
+  {{> sidebar news=true}}
+  <div class="news-container">
+    {{> header title="Recent News"}}
+    <div class="news-collection">
 
-  <label for="classes">Classes:</label>
-<select id="classes" name="classes" multiple>
-  {{#each user.classes}}
-    <option value="{{this._id}}">{{this.number}}{{this.letter}} {{this.year}}</option>
-  {{/each}}
-</select>
+      {{! Add test button }}
+      {{#if currentUser.isTeacher}}
+      <button class="news-collection__button" type="button" id="open-modal-button">
+        <span class="news-container__button-icon material-symbols-outlined">
+          add
+        </span>
+        <span class="news-container__button-text">Add a new</span>
+      </button>
+      {{/if}}
 
-    <button type="submit">Create</button>
-  </form>
-</div>
-{{/if}}
-    
-<div class="news-list">
-  <h2>Recent News</h2>
-  {{#each news}}
-    <div class="news-card">
-      <h3>{{this.title}}</h3>
-      <p>{{this.content}}</p>
-      <div class="metadata">
-        <p class="user">{{this.author.firstName}} {{this.author.lastName}}</p>
-        <p class="date">{{toLocaleDate this.date}}</p>
-<form action="/dashboard/news/{{this._id}}" method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type="submit" class="remove-button">Remove</button>
-</form>
+      {{#each news}}
+      <div class="news-card">
+        <h3>{{this.title}}</h3>
+        <p>{{this.content}}</p>
+        <div class="metadata">
+          <p class="user">{{this.author.firstName}} {{this.author.lastName}}</p>
+          <p class="date">{{toLocaleDate this.date}}</p>
+        </div>
+        {{#if ../currentUser.isTeacher}}
+        <form action="/dashboard/news/{{this._id}}" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="remove-button">Remove</button>
+        </form>
+        {{/if}}
       </div>
+      {{/each}}
     </div>
-  {{/each}}
+  </div>
 </div>
+
+
+{{! MODAL }}
+{{> modal headerTitle="Add a new" headerIcon="library_add" partial="modal/formAddNew"}}
