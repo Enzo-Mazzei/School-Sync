@@ -1,3 +1,4 @@
+{{#if currentUser.isTeacher}}
 <div class="create-news">
   <h2>Create News</h2>
   <form action="/dashboard/news" method="POST">
@@ -8,16 +9,16 @@
     <textarea id="content" name="content" required></textarea>
 
   <label for="classes">Classes:</label>
-    <select id="classes" name="classes" multiple>
-      {{#each existingClasses}}
-        <option value="{{this._id}}">{{this.number}}{{this.letter}} {{this.year}}</option>
-      {{/each}}
-    </select>
+<select id="classes" name="classes" multiple>
+  {{#each user.classes}}
+    <option value="{{this._id}}">{{this.number}}{{this.letter}} {{this.year}}</option>
+  {{/each}}
+</select>
 
     <button type="submit">Create</button>
   </form>
 </div>
-
+{{/if}}
     
 <div class="news-list">
   <h2>Recent News</h2>
