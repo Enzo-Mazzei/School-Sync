@@ -21,7 +21,9 @@
             <a href="/dashboard/tests">Go to Tests</a>
             {{/if}}
             {{#if currentUser.isStudent}}
+            {{#unless currentUser.isAdmin}}
             <canvas id="student-chart" height="500"></canvas>
+            {{/unless}}
             {{/if}}
         </div>
 

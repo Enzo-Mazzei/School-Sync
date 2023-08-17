@@ -20,12 +20,12 @@
           <span>News</span>
         </li>
       </a>
-      <a href="#">
+      {{!-- <a href="#">
         <li class="sidebar-list__item">
           <span class="material-symbols-outlined sidebar-list__icon">calendar_month</span>
           <span>Schedule</span>
         </li>
-      </a>
+      </a> --}}
       {{#if currentUser.isStudent}}
       <a href="/dashboard/grades">
         <li class="sidebar-list__item {{#if grades}}sidebar-list__item-active{{/if}}">
@@ -48,12 +48,12 @@
         </li>
       </a>
       {{/if}}
-      <a href="#">
+      {{!-- <a href="#">
         <li class="sidebar-list__item">
           <span class="material-symbols-outlined sidebar-list__icon">receipt_long</span>
           <span>Homework</span>
         </li>
-      </a>
+      </a> --}}
       {{#if currentUser.isAdmin}}
       <a href="/dashboard/admin">
         <li class="sidebar-list__item {{#if admin}}sidebar-list__item-active{{/if}}">

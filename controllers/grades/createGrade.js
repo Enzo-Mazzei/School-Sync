@@ -1,3 +1,4 @@
+const ClassModel = require("../../models/Class.model");
 const Grades = require("../../models/Grades.model");
 const Tests = require("../../models/Tests.model");
 const User = require("../../models/User.model");
@@ -21,10 +22,15 @@ module.exports = async (req, res, netx) => {
 
     const studentIDs = test.grades.map((grade) => grade.student._id.toString());
 
+    const currentClassId = test.class;
+    const currentClass = await ClassModel.findOne({
+      _id: currentClassId,
+    }).populate("students");
+
     if (studentIDs.includes(student)) {
       res.render("pages/dashboard/test", {
         test,
-        students,
+        students: currentClass.students,
         errorMessage: "Student already have a grade!",
       });
       return;
@@ -33,7 +39,7 @@ module.exports = async (req, res, netx) => {
     if (!grade || !student) {
       res.render("pages/dashboard/test", {
         test,
-        students,
+        students: currentClass.students,
         errorMessage: "Missing field(s): student, grade are requiere!",
       });
       return;
