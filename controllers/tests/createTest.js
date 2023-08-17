@@ -2,17 +2,18 @@ const User = require("../../models/User.model");
 const Tests = require("../../models/Tests.model");
 
 module.exports = async (req, res, next) => {
-  const { title, comment, maxGrade, date } = req.body;
-  const { currentUser } = req.session;
-
   try {
+    const { title, comment, maxGrade, date, classID } = req.body;
+    const { currentUser } = req.session;
+
     const user = await User.findOne({ _id: currentUser._id }).populate("tests");
 
     // Handleling Error: field is empty
-    if (!title || !maxGrade || !date) {
+    if (!title || !maxGrade || !date || !classID) {
       return res.render("pages/dashboard/tests", {
         tests: user.tests,
-        errorMessage: "Missing field(s): Test name, maximum score and date are require!",
+        errorMessage:
+          "Missing field(s): Test name, maximum score and date are require!",
       });
     }
 
@@ -33,6 +34,7 @@ module.exports = async (req, res, next) => {
       maxGrade,
       teacher: currentUser._id,
       date,
+      class: classID,
     });
 
     await User.findOneAndUpdate(

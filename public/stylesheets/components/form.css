@@ -100,3 +100,14 @@ input[type="number"].form-input {
 .form-error__icon {
   font-size: 0.8rem;
 }
+
+.form-options__item-no-found {
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-options__item-no-found a {
+  color: var(--primary-color);
+}

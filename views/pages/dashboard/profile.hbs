@@ -13,7 +13,11 @@
     </div>
     <div class="profile-card">
       <h2 class="profile-card__title">Class</h2>
-      <p class="profile-card__info">{{user.class}}</p>
+      <p class="profile-card__info">
+        {{#each user.classes}}
+        {{number}}{{letter}} - {{year}}
+        {{/each}}
+      </p>
     </div>
     <div class="profile-card">
       <h2 class="profile-card__title">Email</h2>
@@ -25,5 +29,8 @@
       <p class="profile-card__info">You have the option to modify your password.</p>
       <a href="/dashboard/profile/edit/password" class="profile-card__edit-link">Change password</a>
     </div>
+    <form action="/logout" method="POST">
+      <button class="profile-logout-button">Logout</button>
+    </form>
   </div>
 </div>

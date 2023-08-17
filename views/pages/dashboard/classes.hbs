@@ -1,24 +1,36 @@
-<h1>Classes Page</h1>
+<style>
+  @import "/stylesheets/pages/classes.css";
+</style>
 
-<form action="/dashboard/classes" method="POST">
-  <label for="number">Number:</label>
-  <input type="number" id="number" name="number" required>
-  <label for="letter">Letter:</label>
-  <input type="text" id="letter" name="letter" maxlength="1" required>
-  <label for="year">Year:</label>
-  <input type="number" id="year" name="year" required>
-  <button type="submit">Create Class</button>
-</form>
+<div class="main-app">
+  {{> sidebar classes=true}}
+  <div class="classes-container">
+    {{> header title="Classes"}}
 
-<h2>Classes List:</h2>
-<ul>
-  {{#each classes}}
-    <li>
-      Class {{number}}{{letter}}, Year: {{year}}
-      <form action="/dashboard/classes/{{_id}}?_method=DELETE" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-      <a href="/dashboard/classes/{{_id}}">Add students</a>
-    </li>
-  {{/each}}
-</ul>
+    <ul class="classes-list">
+      <li class="classes-button" id="open-modal-button">
+        <span class="material-symbols-outlined">
+          add
+        </span>
+        <p class="classes-button__text">Add a class</p>
+      </li>
+      {{#each classes}}
+      <li class="classes-item">
+        <span>{{number}}{{letter}} - {{year}}</span>
+        <a href="/dashboard/classes/{{_id}}">Add students</a>
+        <form action="/dashboard/classes/{{_id}}/delete" method="POST">
+          <button type="submit">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+          </button>
+        </form>
+      </li>
+      {{/each}}
+    </ul>
+
+  </div>
+</div>
+
+{{! MODAL }}
+{{> modal headerTitle="Add a class" headerIcon="fact_check" partial="modal/formAddClass"}}
