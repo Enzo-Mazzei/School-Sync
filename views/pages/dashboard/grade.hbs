@@ -9,7 +9,15 @@
     {{#if test.comment}}
       <p class="grade-header__comment">{{test.comment}}</p>
     {{/if}}
-    <div class="grade-header__teacter">
+    <p class="grade-header__timestamp">{{dateFormatter createdAt}}</p>
+  </div>
+  <div class="grade-date">
+    <span class="material-symbols-outlined grade-date__icon">
+      event 
+    </span>
+    <p class="grade-date__text">{{toLocaleDate test.date}}</p>
+  </div>
+  <div class="grade-header__teacher">
       <img
         src="{{test.teacher.profilePicture}}"
         alt=""
@@ -18,10 +26,9 @@
       <div class="grade-header__teacher-container">
         <p class="grade-header__teacher-name">{{test.teacher.firstName}}
           {{test.teacher.lastName}}</p>
+          <p class="grade-header__teacher-role">Teacher</p>
       </div>
     </div>
-    <p class="grade-header__timestamp">{{dateFormatter createdAt}}</p>
-  </div>
   <div class="grade-content">
     <div class="grade-stats">
       <div class="grade-stats__item">

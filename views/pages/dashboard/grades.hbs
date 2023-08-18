@@ -2,10 +2,22 @@
 
 <div class="main-app">
   {{> sidebar grades=true}}
-<div class="grades-container">
-  {{> header title="Lastest grades"}}
-  <div class="grades-collection">
-    {{#each grades}}
+  <div class="grades-container">
+    {{> header title="Lastest grades"}}
+    <div class="grades-collection">
+      {{!-- Search --}}
+      <form action="/dashboard/grades" class="search">
+        <input type="text" name="q" placeholder="Search...">
+        <button>
+          <span class="material-symbols-outlined">
+            search
+          </span>
+        </button>
+      </form>
+
+      {{!-- Items --}}
+      {{#if grades.length}}
+      {{#each grades}}
       <a href="/dashboard/grades/{{_id}}">
         <div class="grades-item" id="grades-item" data-grade="{{grade}}" data-max-grade="{{test.maxGrade}}">
           <div class="grades-item__score">{{grade}}</div>
@@ -15,13 +27,21 @@
             <p class="grades-item__average">{{dateFormatter createdAt}}</p>
           </div>
           <span class="grades-item__arrow material-symbols-outlined">
-           chevron_right
+            chevron_right
           </span>
         </div>
       </a>
-    {{/each}}
+      {{/each}}
+      {{else}}
+      <div class="grade-noresult">
+        <span class="material-symbols-outlined">
+          search_off
+        </span>
+        <p>No result found.</p>
+      </div>
+      {{/if}}
+    </div>
   </div>
-</div>
 </div>
 
 <script src="/js/grades.js"></script>

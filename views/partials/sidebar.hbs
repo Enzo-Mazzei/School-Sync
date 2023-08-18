@@ -8,24 +8,24 @@
   </div>
   <nav class="sidebar-nav">
     <ul class="sidebar-list">
-      <a href="#">
-        <li class="sidebar-list__item">
+      <a href="/dashboard">
+        <li class="sidebar-list__item {{#if dashboard}}sidebar-list__item-active{{/if}}">
           <span class="material-symbols-outlined sidebar-list__icon">dashboard</span>
           <span>Dashboard</span>
         </li>
       </a>
-      <a href="#">
-        <li class="sidebar-list__item">
+      <a href="/dashboard/news">
+        <li class="sidebar-list__item {{#if news}}sidebar-list__item-active{{/if}}">
           <span class="material-symbols-outlined sidebar-list__icon">news</span>
           <span>News</span>
         </li>
       </a>
-      <a href="#">
+      {{!-- <a href="#">
         <li class="sidebar-list__item">
           <span class="material-symbols-outlined sidebar-list__icon">calendar_month</span>
           <span>Schedule</span>
         </li>
-      </a>
+      </a> --}}
       {{#if currentUser.isStudent}}
       <a href="/dashboard/grades">
         <li class="sidebar-list__item {{#if grades}}sidebar-list__item-active{{/if}}">
@@ -35,6 +35,12 @@
       </a>
       {{/if}}
       {{#if currentUser.isTeacher}}
+      <a href="/dashboard/classes">
+        <li class="sidebar-list__item {{#if classes}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">format_list_bulleted</span>
+          <span>Classes</span>
+        </li>
+      </a>
       <a href="/dashboard/tests">
         <li class="sidebar-list__item {{#if tests}}sidebar-list__item-active{{/if}}">
           <span class="material-symbols-outlined sidebar-list__icon">note</span>
@@ -42,12 +48,20 @@
         </li>
       </a>
       {{/if}}
-      <a href="#">
+      {{!-- <a href="#">
         <li class="sidebar-list__item">
           <span class="material-symbols-outlined sidebar-list__icon">receipt_long</span>
           <span>Homework</span>
         </li>
+      </a> --}}
+      {{#if currentUser.isAdmin}}
+      <a href="/dashboard/admin">
+        <li class="sidebar-list__item {{#if admin}}sidebar-list__item-active{{/if}}">
+          <span class="material-symbols-outlined sidebar-list__icon">shield_person</span>
+          <span>Admin</span>
+        </li>
       </a>
+      {{/if}}
     </ul>
   </nav>
   <a class="sidebar-profile" href="/dashboard/profile">

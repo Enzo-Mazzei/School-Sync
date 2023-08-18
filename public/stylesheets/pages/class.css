@@ -1,0 +1,162 @@
+.class-container {
+  padding: 0 1.5rem;
+  flex: 1;
+  background-color: var(--primary-background-color);
+  min-height: 100vh;
+}
+
+.search {
+  position: relative;
+}
+
+.search > input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.75rem 4rem 0.75rem 1rem;
+  background-color: var(--secondary-background-color);
+  font-family: var(--font-family);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.search > button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  aspect-ratio: 1/1;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+}
+
+.search > button > span {
+  font-size: 1.25rem;
+}
+
+.search > input:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.class-student {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.class-student__item {
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.class-student__item > span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.class-student__item img {
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+.class-student__item > form > button,
+.class-student-in > li > form > button {
+  background-color: var(--primary-background-color);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: none;
+}
+
+.class-student__item > form > button > span,
+.class-student-in > li > form > button > span {
+  color: white;
+}
+
+.class-student-in {
+  background-color: var(--secondary-background-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.class-student-in > li > span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.class-student-in > li img {
+  height: 3rem;
+  border-radius: 0.5rem;
+}
+
+.class-student-in > h1 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--third-background-color);
+  border-radius: 0.5rem;
+}
+
+.class-student-in > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--third-background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 576px) {
+  .class-container {
+    padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem 2rem 2rem 0;
+  }
+
+  .class-main {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+  }
+
+  .class-student-in {
+    flex: 1;
+    min-height: calc(100vh - 13.5rem);
+    margin-bottom: 0;
+  }
+
+  .class-search {
+    flex: 1;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: var(--secondary-background-color);
+  }
+
+  .search > input {
+    background-color: var(--third-background-color);
+  }
+
+  .class-student__item {
+    background-color: var(--third-background-color);
+  }
+}

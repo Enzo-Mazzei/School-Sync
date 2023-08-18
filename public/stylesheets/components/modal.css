@@ -64,7 +64,6 @@
     min-height: 100vh;
     top: 0;
     left: 0;
-    backdrop-filter: blur(1rem);
     z-index: 900;
     background-color: rgba(0, 0, 0, 0.5);
   }

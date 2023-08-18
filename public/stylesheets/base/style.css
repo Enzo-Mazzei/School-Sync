@@ -3,7 +3,7 @@
 :root {
   --font-family: Poppins;
   --error-color: #ff2d49;
-  --primary-color: #712cf9;
+  --primary-color: rgb(113, 44, 249);
 
   /* BACKGROUND */
   --primary-background-color: rgb(23, 23, 32);
@@ -29,7 +29,7 @@
 body {
   font-family: var(--font-family);
   color: var(--primary-text-color);
-  background-color: var(--primary-background-color);
+  background-color: rgb(15, 15, 24);
   font-size: var(--primary-text-size);
 }
 
@@ -39,4 +39,5 @@ body {
 
 .main-app {
   display: flex;
+  align-items: flex-start;
 }

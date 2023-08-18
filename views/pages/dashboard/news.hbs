@@ -1,0 +1,44 @@
+<style>
+  @import "/stylesheets/pages/news.css";
+</style>
+
+<div class="main-app">
+  {{> sidebar news=true}}
+  <div class="news-container">
+    {{> header title="Recent News"}}
+    <div class="news-collection">
+
+      {{! Add test button }}
+      {{#if currentUser.isTeacher}}
+      <button class="news-collection__button" type="button" id="open-modal-button">
+        <span class="news-container__button-icon material-symbols-outlined">
+          add
+        </span>
+        <span class="news-container__button-text">Add a new</span>
+      </button>
+      {{/if}}
+
+      {{#each news}}
+      <div class="news-card">
+        <div class="metadata">
+          <img src="{{this.author.profilePicture}}" alt="">
+          <p class="user">{{this.author.firstName}} {{this.author.lastName}}</p>
+          <p class="date">{{toLocaleDate this.date}}</p>
+        </div>
+        <h3>{{this.title}}</h3>
+        <p class="card-content">{{this.content}}</p>
+        {{#if ../currentUser.isTeacher}}
+        <form action="/dashboard/news/{{this._id}}" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="remove-button">Remove</button>
+        </form>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+
+{{! MODAL }}
+{{> modal headerTitle="Add a new" headerIcon="library_add" partial="modal/formAddNew"}}

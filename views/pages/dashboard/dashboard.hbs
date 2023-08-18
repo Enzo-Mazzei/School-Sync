@@ -1,0 +1,35 @@
+<style>
+    @import "/stylesheets/pages/dashboard.css";
+</style>
+
+<div class="main-app">
+    {{> sidebar dashboard=true}}
+
+    <div class="dashboard-container">
+        {{> header title="Dashboard"}}
+
+        <div class="dashboard-welcome">
+            <h1>Hi <b>{{currentUser.firstName}}</b>, welcome to your dashboard.</h1>
+
+            {{#if currentUser.isStudent}}
+            <a href="/dashboard/grades">Go to Grades</a>
+            {{/if}}
+            {{#if currentUser.isTeacher}}
+            <a href="/dashboard/classes">Go to Classes</a>
+            {{/if}}
+            {{#if currentUser.isTeacher}}
+            <a href="/dashboard/tests">Go to Tests</a>
+            {{/if}}
+            {{#if currentUser.isStudent}}
+            {{#unless currentUser.isAdmin}}
+            <canvas id="student-chart" height="500"></canvas>
+            {{/unless}}
+            {{/if}}
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/dashboard.js"></script>

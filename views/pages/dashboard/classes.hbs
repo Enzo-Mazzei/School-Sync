@@ -1,0 +1,36 @@
+<style>
+  @import "/stylesheets/pages/classes.css";
+</style>
+
+<div class="main-app">
+  {{> sidebar classes=true}}
+  <div class="classes-container">
+    {{> header title="Classes"}}
+
+    <ul class="classes-list">
+      <li class="classes-button" id="open-modal-button">
+        <span class="material-symbols-outlined">
+          add
+        </span>
+        <p class="classes-button__text">Add a class</p>
+      </li>
+      {{#each classes}}
+      <li class="classes-item">
+        <span>{{number}}{{letter}} - {{year}}</span>
+        <a href="/dashboard/classes/{{_id}}">Add students</a>
+        <form action="/dashboard/classes/{{_id}}/delete" method="POST">
+          <button type="submit">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+          </button>
+        </form>
+      </li>
+      {{/each}}
+    </ul>
+
+  </div>
+</div>
+
+{{! MODAL }}
+{{> modal headerTitle="Add a class" headerIcon="fact_check" partial="modal/formAddClass"}}

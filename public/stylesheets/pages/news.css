@@ -1,0 +1,110 @@
+.news-container {
+  padding: 0 1.5rem;
+  flex: 1;
+  background-color: var(--primary-background-color);
+  min-height: 100vh;
+}
+
+.news-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.news-collection__button {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-text-color);
+  background-color: var(--secondary-background-color);
+  font-family: var(--font-family);
+}
+
+.news-collection__button-icon {
+  font-size: 2rem;
+}
+
+.news-container__button-text {
+  display: none;
+}
+
+.news-card {
+  background-color: var(--secondary-background-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.news-card > h3 {
+  font-size: 1.25rem;
+}
+
+.news-card > .metadata {
+  color: var(--secondary-text-color);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.news-card .date {
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.news-card .card-content {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+
+.news-card > form > button {
+  background-color: var(--error-color);
+  color: white;
+  font-family: var(--font-family);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.news-card > hr {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.news-card > .metadata > img {
+  width: 2rem;
+  border-radius: 50%;
+}
+
+@media (min-width: 576px) {
+  .news-container {
+    padding: 0 1.5rem;
+    min-height: calc(100vh - 4rem);
+    border-radius: 1rem;
+    margin: 2rem 2rem 2rem 0;
+    position: relative;
+  }
+  .news-collection__button {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  .news-container__button-text {
+    display: block;
+  }
+}

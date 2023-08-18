@@ -1,0 +1,68 @@
+<style>
+  @import "/stylesheets/pages/class.css";
+</style>
+
+
+<div class="main-app">
+  {{> sidebar classes=true}}
+
+  <div class="class-container">
+    {{> header title="Add student" redirect="/dashboard/classes"}}
+
+    <div class="class-main">
+      <ul class="class-student-in">
+        <h1>{{classDetails.number}}{{classDetails.letter}} - {{classDetails.year}}</h1>
+        {{#each classDetails.students}}
+        <li>
+          <span>
+            <img src="{{profilePicture}}" alt="">
+            {{firstName}} {{lastName}}
+          </span>
+          <form action="/dashboard/classes/{{../classDetails._id}}/remove" method="POST">
+            <input type="hidden" name="studentId" value="{{this._id}}">
+            <button type="submit">
+              <span class="material-symbols-outlined">
+                remove
+              </span>
+            </button>
+          </form>
+          {{/each}}
+        </li>
+      </ul>
+
+      <div class="class-search">
+        <form class="search" action="/dashboard/classes/{{classDetails._id}}/search" method="GET">
+          <input type="text" id="studentName" name="studentName" placeholder="Search student..." required>
+          <button type="submit">
+            <span class="material-symbols-outlined">
+              search
+            </span>
+          </button>
+        </form>
+        {{#if students.length}}
+        <ul class="class-student">
+          {{#each students}}
+          <li class="class-student__item">
+            <span>
+              <img src="{{profilePicture}}" alt="">
+              {{firstName}} {{lastName}}
+            </span>
+            <form action="/dashboard/classes/{{../classDetails._id}}/add" method="POST">
+              <input type="hidden" name="studentId" value="{{this._id}}">
+              <button type="submit">
+                <span class="material-symbols-outlined">
+                  add
+                </span>
+              </button>
+            </form>
+          </li>
+          {{/each}}
+        </ul>
+        {{else}}
+        {{!-- <p>No results found.</p> --}}
+        {{/if}}
+      </div>
+    </div>
+
+  </div>
+</div>

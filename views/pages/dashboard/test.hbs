@@ -5,105 +5,68 @@
 
 <div class="main-app">
   {{> sidebar tests=true}}
-<div class="test-container">
-  {{> header title=test.title redirect="/dashboard/tests" }}
+  <div class="test-container">
+    {{> header title=test.title redirect="/dashboard/tests" }}
 
-  {{! INFORMATIONS SCREEN }}
-  <div class="test-informations" id="informations-screen">
-    <h2 class="test-informations__title">{{test.title}}
-      <span class="test-informations__date">{{toLocaleDate test.date}}</span>
-    </h2>
+    {{! INFORMATIONS SCREEN }}
+    <div class="test-informations" id="informations-screen">
+      <h2 class="test-informations__title">{{test.title}} | {{test.class.number}}{{test.class.letter}} -
+        {{test.class.year}}
+        <span class="test-informations__date">{{toLocaleDate test.date}}</span>
+      </h2>
+      {{#if test.comment}}
+      <p class="test-informations__comment">{{test.comment}}</p>
+      {{/if}}
+      <div class="test-informations__actions">
+        <button id="edit-button" class="test-informations__edit-button">Edit</button>
+        <form action="/dashboard/tests/{{test._id}}/delete" method="POST">
+          <button class="test-informations__delete-button">Delete</button>
+        </form>
+        <p class="test-informations__timestamp">
+          {{dateFormatter test.createdAt}}
+        </p>
+      </div>
+
+    </div>
+
+    {{! EDIT SCREEN }}
+    <div class="test-informations hidden" id="edit-screen">
+      <form class="test-informations__form" action="/dashboard/tests/{{test._id}}/edit" method="POST">
+        <input type="text" class="form-input" value="{{test.title}}" name="title" placeholder="Test name" />
+        <input type="date" class="form-input" value="{{toValueDate test.date}}" name="date" placeholder="Test date" />
+        <input type="number" class="form-input" value="{{test.maxGrade}}" name="maxGrade" placeholder="Maximum grade" />
+        <textarea class="form-input test-edit__comment" type="text" name="comment"
+          placeholder="Comment">{{test.comment}}</textarea>
+        <div class="test-informations__actions">
+          <button class="test-informations__edit-button" type="submit">Save</button>
+          <button class="test-informations__delete-button" type="button" id="cancel-button">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    {{!-- AVERAGE SCORE --}}
     <div class="test-informations__stats">
       <span class="test-informations__stats-icon material-symbols-outlined">
         grade
       </span>
       <p class="test-informations__stats-container">
-        <span>Average score</span>
+        <span>Average grade</span>
         {{test.avgGrade}}/{{test.maxGrade}}
       </p>
     </div>
-    {{#if test.comment}}
-      <p class="test-informations__comment">{{test.comment}}</p>
-    {{/if}}
-    <div class="test-informations__actions">
-      <button
-        id="edit-button"
-        class="test-informations__edit-button"
-      >Edit</button>
-      <form action="/dashboard/tests/{{test._id}}/delete" method="POST">
-        <button class="test-informations__delete-button">Delete</button>
-      </form>
-      <p class="test-informations__timestamp">
-        {{dateFormatter test.createdAt}}
-      </p>
-    </div>
 
-  </div>
+    {{! COLLECTION }}
+    <div class="test-collection">
+      <button class="test-collection__button" type="button" id="open-modal-button">
+        <span class="test-container__button-icon material-symbols-outlined">
+          add
+        </span>
+        <span class="test-container__button-text">
+          Add a grade
+        </span>
+      </button>
 
-  {{! EDIT SCREEN }}
-  <div class="test-informations hidden" id="edit-screen">
-    <form
-      class="test-informations__form"
-      action="/dashboard/tests/{{test._id}}/edit"
-      method="POST"
-    >
-      <input
-        type="text"
-        class="form-input"
-        value="{{test.title}}"
-        name="title"
-        placeholder="Test name"
-      />
-      <input
-        type="date"
-        class="form-input"
-        value="{{toValueDate test.date}}"
-        name="date"
-        placeholder="Test date"
-      />
-      <input
-        type="number"
-        class="form-input"
-        value="{{test.maxGrade}}"
-        name="maxGrade"
-        placeholder="Maximum score"
-      />
-      <textarea
-        class="form-input test-edit__comment"
-        type="text"
-        name="comment"
-        placeholder="Comment"
-      >{{test.comment}}</textarea>
-      <div class="test-informations__actions">
-        <button
-          class="test-informations__edit-button"
-          type="submit"
-        >Save</button>
-        <button
-          class="test-informations__delete-button"
-          type="button"
-          id="cancel-button"
-        >Cancel</button>
-      </div>
-    </form>
-  </div>
-
-  {{! COLLECTION }}
-  <div class="test-collection">
-    <button
-      class="test-collection__button"
-      type="button"
-      id="open-modal-button"
-    >
-      <span class="test-container__button-icon material-symbols-outlined">
-        add
-      </span>
-      <span class="test-container__button-text">
-        Add a grade
-      </span>
-    </button>
-
-    {{#each test.grades}}
+      {{#each test.grades}}
       <div class="test-item">
         <img src="{{student.profilePicture}}" alt="" class="test-item__image" />
         <div class="test-item__container">
@@ -120,17 +83,17 @@
           <p class="test-item__timestamp">{{dateFormatter createdAt}}</p>
         </form>
       </div>
-    {{/each}}
+      {{/each}}
 
+    </div>
   </div>
 </div>
-</div>
 {{! MODAL }}
-{{> modal headerTitle="Add a score" headerIcon="post_add" partial="modal/formAddScore"}}
+{{> modal headerTitle="Add a grade" headerIcon="post_add" partial="modal/formAddScore"}}
 
 {{! ERROR }}
 {{#if errorMessage}}
-  {{> error message=errorMessage}}
+{{> error message=errorMessage}}
 {{/if}}
 
 <script src="/js/test.js"></script>

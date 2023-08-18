@@ -6,44 +6,44 @@
   <label for="">Title
     <span class="form-require">*</span>
   </label>
-  <input
-    class="form-input"
-    type="text"
-    name="title"
-    placeholder="Enter test title"
-    value="{{title}}"
-  />
-  <label for="">Maximum score
+  <input class="form-input" type="text" name="title" placeholder="Enter test title" value="{{title}}" />
+  <label for="">Classes
     <span class="form-require">*</span>
   </label>
-  <input
-    class="form-input"
-    type="number"
-    name="maxGrade"
-    placeholder="Enter maximum test score"
-    value="{{maxGrade}}"
-  />
+  <input readonly type="text" class="form-input form-select" id="form-select" placeholder="Select a class" />
+  <input hidden id="form-select-id" name="classID" />
+  {{#if classesList}}
+  <div class="form-options form-options__hidden" id="form-options">
+    {{#each classesList}}
+    <div class="form-options__item" data-name="{{number}}{{letter}} - {{year}}" data-id="{{_id}}" id="form-select-item">
+      <span>
+        {{number}}{{letter}} - {{year}}
+      </span>
+    </div>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="form-options form-options__hidden" id="form-options">
+    <div class="form-options__item-no-found">
+      <span>
+        No class found, please first create a <a href="/dashboard/classes/">class</a>.
+      </span>
+    </div>
+  </div>
+  {{/if}}
+  <label for="">Maximum grade
+    <span class="form-require">*</span>
+  </label>
+  <input class="form-input" type="number" name="maxGrade" placeholder="Enter maximum test grade" value="{{maxGrade}}" />
   <label for="">Date
     <span class="form-require">*</span>
   </label>
-  <input
-    class="form-input"
-    type="text"
-    name="date"
-    onfocus="this.type='date'"
-    pattern="\d{4}-\d{2}-\d{2}"
-    placeholder="Select test date"
-    value="{{date}}"
-  />
+  <input class="form-input" type="text" name="date" onfocus="this.type='date'" pattern="\d{4}-\d{2}-\d{2}"
+    placeholder="Select test date" value="{{date}}" />
   <label for="">Comment
     <span class="form-optional">(optional)</span>
   </label>
-  <textarea
-    class="form-input"
-    type="text"
-    name="comment"
-    placeholder="Enter test comment"
-  >{{comment}}</textarea>
+  <textarea class="form-input" type="text" name="comment" placeholder="Enter test comment">{{comment}}</textarea>
   <button class="form-button" type="submit">
     <span class="material-symbols-outlined">
       add
@@ -51,3 +51,5 @@
     <span> Add</span>
   </button>
 </form>
+
+<script src="/js/form.js"></script>
