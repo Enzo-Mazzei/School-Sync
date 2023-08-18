@@ -20,12 +20,13 @@
 
       {{#each news}}
       <div class="news-card">
-        <h3>{{this.title}}</h3>
-        <p>{{this.content}}</p>
         <div class="metadata">
+          <img src="{{this.author.profilePicture}}" alt="">
           <p class="user">{{this.author.firstName}} {{this.author.lastName}}</p>
           <p class="date">{{toLocaleDate this.date}}</p>
         </div>
+        <h3>{{this.title}}</h3>
+        <p class="card-content">{{this.content}}</p>
         {{#if ../currentUser.isTeacher}}
         <form action="/dashboard/news/{{this._id}}" method="POST">
           <input type="hidden" name="_method" value="DELETE">

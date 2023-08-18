@@ -50,6 +50,21 @@
 
 .news-card > .metadata {
   color: var(--secondary-text-color);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.news-card .date {
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.news-card .card-content {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+  line-height: 1.5rem;
 }
 
 .news-card > form > button {
@@ -61,6 +76,16 @@
   border-radius: 0.25rem;
   cursor: pointer;
   font-size: 0.9rem;
+}
+
+.news-card > hr {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.news-card > .metadata > img {
+  width: 2rem;
+  border-radius: 50%;
 }
 
 @media (min-width: 576px) {
